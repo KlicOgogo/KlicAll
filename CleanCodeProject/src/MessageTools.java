@@ -11,7 +11,9 @@ public class MessageTools {
 
     public void addMessage() {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Input author's name: ");
         String authorAdd = scanner.nextLine();
+        System.out.println("Input the text of the message: ");
         String messageAdd = scanner.nextLine();
         allMessages.add(new Message(UUID.randomUUID().toString(), messageAdd, authorAdd, System.currentTimeMillis()));
     }

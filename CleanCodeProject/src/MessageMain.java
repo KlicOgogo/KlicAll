@@ -13,64 +13,70 @@ public class MessageMain {
             ArrayList<Message> forUseSearchMethods;
             MessageTools workTool = new MessageTools();
             Scanner scan = new Scanner(System.in);
-            String help = "For working with chat tools run these commands: \t" +
-                    "addMessage  \t" +
-                    "toFile <String filename>  \t" +
-                    "fromFile <String filename>  \n" +
-                    "history  \t" +
-                    "deleteId <Integer id>  \t" +
-                    "searchAuthor <String author>  \n" +
-                    "searchExp <String expression> \t" +
-                    "searchRegExp <String regExpression> \t" +
-                    "historyIntervals \t" +
-                    "help \t" +
-                    "quit \n";
+            String help = "For working with chat tools run these commands typing a proper number: \n" +
+                    "1 - adding a message  \t" +
+                    "2 - saving to file  \t" +
+                    "3 - loading from file  \n" +
+                    "4 - observing history  \t" +
+                    "5 - deleting by id \t" +
+                    "6 - searching by author \n" +
+                    "7 - searching by expression  \t" +
+                    "8 - searching by regular expression \n" +
+                    "9 - observing history in time interval \t" +
+                    "10 - help \t" +
+                    "11 - quit \n";
             String run = "Type your command: \n";
             System.out.println(help);
             int quit = 0;
             while (quit == 0) {
                 System.out.println(run);
                 String command = scan.next();
-                if (command.equals("addMessage")) {
+                if (command.equals("1")) {
                     workTool.addMessage();
-                } else if (command.equals("toFile")) {
+                } else if (command.equals("2")) {
+                    System.out.println("Input file's name:");
                     String fileName = scan.next();
                     workTool.toFile(fileName);
-                } else if (command.equals("fromFile")) {
+                } else if (command.equals("3")) {
+                    System.out.println("Input file's name:");
                     String fileName = scan.next();
                     workTool.loadFromFile(fileName);
-                } else if (command.equals("history")) {
+                } else if (command.equals("4")) {
                     workTool.watchAll();
-                } else if (command.equals("deleteId")) {
+                } else if (command.equals("5")) {
+                    System.out.println("Input id:");
                     String id = scan.next();
                     workTool.removeById(id);
-                } else if (command.equals("searchAuthor")) {
+                } else if (command.equals("6")) {
+                    System.out.println("Input author's name:");
                     String author = scan.next();
                     forUseSearchMethods = workTool.searchAuthor(author);
                     for (Message i : forUseSearchMethods) {
                         System.out.println(i.toString());
                     }
                     forUseSearchMethods.clear();
-                } else if (command.equals("searchExp")) {
+                } else if (command.equals("7")) {
+                    System.out.println("Input the expression:");
                     String expression = scan.next();
                     forUseSearchMethods = workTool.searchExpression(expression);
                     for (Message i : forUseSearchMethods) {
                         System.out.println(i.toString());
                     }
                     forUseSearchMethods.clear();
-                } else if (command.equals("searchRegExp")) {
+                } else if (command.equals("8")) {
+                    System.out.println("Input the regular expression:");
                     String regExpression = scan.next();
                     forUseSearchMethods = workTool.searchExpression(regExpression);
                     for (Message i : forUseSearchMethods) {
                         System.out.println(i.toString());
                     }
                     forUseSearchMethods.clear();
-                } else if (command.equals("help")) {
+                } else if (command.equals("10")) {
                     System.out.println(help);
-                } else if (command.equals("quit")) {
+                } else if (command.equals("11")) {
                     scan.close();
                     quit = 1;
-                } else if (command.equals("historyIntervals")) {
+                } else if (command.equals("9")) {
                     scan.nextLine();
                     System.out.println("Input 2 dates: lower and upper in format dd/MM/yyyy HH:mm:ss in 2 lines:");
                     SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
