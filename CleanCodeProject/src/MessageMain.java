@@ -72,8 +72,8 @@ public class MessageMain {
                     quit = 1;
                 } else if (command.equals("historyIntervals")) {
                     scan.nextLine();
-                    System.out.println("Input 2 dates: lower and upper in format dd/mm/yyyy HH:mm:ss in 2 lines:");
-                    SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy HH:mm:ss");
+                    System.out.println("Input 2 dates: lower and upper in format dd/MM/yyyy HH:mm:ss in 2 lines:");
+                    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                     Date lowerDate = format.parse(scan.nextLine());
                     Date upperDate = format.parse(scan.nextLine());
                     forUseSearchMethods = workTool.historySendingTime(lowerDate, upperDate);
