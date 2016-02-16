@@ -1,3 +1,5 @@
+import java.sql.Timestamp;
+import java.util.Date;
 /**
  * Created by andrejka on 16.2.16.
  */
@@ -5,7 +7,7 @@ public class Message implements Comparable {
     private int id;
     private String message;
     private String author;
-    long timestamp;
+    private long timestamp;
 
     public Message(int newId, String newMessage, String newAuthor, long newTimestamp) {
         id = newId;
@@ -31,8 +33,14 @@ public class Message implements Comparable {
     {
         return timestamp;
     }
+
+    public Date getDate() {
+        long ms = timestamp;
+        return new Date(ms);
+    }
+
     public String toString() {
-        return id + " " + message + " " + author + " " + timestamp;
+        return "id: "+ id + "; message: " + message + "; author: " + author + "; timestamp: " + timestamp + ";";
     }
 
     public int compareTo(Object object) {

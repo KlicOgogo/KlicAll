@@ -50,13 +50,25 @@ public class MessageMain {
                     workTool.removeById(id);
                 } else if (command.equals("searchByAuthor")) {
                     String author = scan.next();
-                    workTool.searchAuthor(author);
+                    forUseSearchMethods = workTool.searchAuthor(author);
+                    for (Message i : forUseSearchMethods) {
+                        System.out.println(i.toString());
+                    }
+                    forUseSearchMethods.clear();
                 } else if (command.equals("searchByExpression")) {
                     String expression = scan.next();
-                    workTool.searchExpression(expression);
+                    forUseSearchMethods = workTool.searchExpression(expression);
+                    for (Message i : forUseSearchMethods) {
+                        System.out.println(i.toString());
+                    }
+                    forUseSearchMethods.clear();
                 } else if (command.equals("searchByRegExpression")) {
                     String regExpression = scan.next();
-                    workTool.searchExpression(regExpression);
+                    forUseSearchMethods = workTool.searchExpression(regExpression);
+                    for (Message i : forUseSearchMethods) {
+                        System.out.println(i.toString());
+                    }
+                    forUseSearchMethods.clear();
                 } else if (command.equals("help")) {
                     System.out.println(help);
                 } else if (command.equals("quit")) {
@@ -64,12 +76,6 @@ public class MessageMain {
                     quit = 1;
                 }
             }
-           /*
-            //output = workTool.historySendingTime(new LocalDateTime(new LocalDate(2014, 10, 10), new LocalTime(22, 10, 10, 0)),
-                    new LocalDateTime(new LocalDate(2016, 10, 10), new LocalTime(22, 10, 10, 0)));
-            LocalDateTime l = new LocalDateTime(2015, 10, 10, 10, 10, 10, 0);
-            System.out.println(output.toString());
-*/
         } catch (IOException exception) {
             System.out.println(exception.getMessage());
         }

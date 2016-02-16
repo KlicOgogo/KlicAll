@@ -48,7 +48,6 @@ public class MessageTools {
         Reader reader = new InputStreamReader(new FileInputStream(fileName));
         Gson gson = new GsonBuilder().create();
         Message[] messageAdd = gson.fromJson(reader, Message[].class);
-        System.out.println(messageAdd.toString());
         for (Message i : messageAdd)
         {
             allMessages.add(i);
