@@ -14,16 +14,16 @@ public class MessageMain {
             MessageTools workTool = new MessageTools();
             Scanner scan = new Scanner(System.in);
             String help = "For working with chat tools run these commands typing a proper number: \n" +
-                    "1 - adding a message  \t" +
-                    "2 - saving to file  \t" +
-                    "3 - loading from file  \n" +
-                    "4 - observing history  \t" +
-                    "5 - deleting by id \t" +
+                    "1 - adding a message \t \t" +
+                    "2 - saving to file \t \t" +
+                    "3 - loading from file \n" +
+                    "4 - observing history \t \t" +
+                    "5 - deleting by id \t \t" +
                     "6 - searching by author \n" +
-                    "7 - searching by expression  \t" +
+                    "7 - searching by expression  \t \t" +
                     "8 - searching by regular expression \n" +
-                    "9 - observing history in time interval \t" +
-                    "10 - help \t" +
+                    "9 - observing history in time interval \t \t" +
+                    "10 - help \t \t" +
                     "11 - quit \n";
             String run = "Type your command: \n";
             System.out.println(help);
