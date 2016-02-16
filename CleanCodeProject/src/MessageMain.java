@@ -1,9 +1,5 @@
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.*;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
@@ -14,7 +10,7 @@ import java.text.ParseException;
 public class MessageMain {
     public static void main(String[] args) {
         try {
-            ArrayList<Message> forUseSearchMethods = new ArrayList<>();
+            ArrayList<Message> forUseSearchMethods;
             MessageTools workTool = new MessageTools();
             Scanner scan = new Scanner(System.in);
             String help = "For working with chat tools run these commands: \t" +
@@ -91,9 +87,6 @@ public class MessageMain {
             System.out.println(exception.getMessage());
         } catch (ParseException exception) {
             System.out.println(exception.getMessage());
-        } catch (NoSuchElementException exception) {
-            System.out.println(exception.getMessage());
         }
-
     }
 }
