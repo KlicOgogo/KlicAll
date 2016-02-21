@@ -1,99 +1,74 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 import java.util.*;
 import java.io.*;
+import java.util.stream.Collectors;
 
-/**
- * Created by andrejka on 16.2.16.
- */
 public class MessageTools {
-    private ArrayList<Message> allMessages = new ArrayList<Message>();
+    private ArrayList<Message> data;
 
-    public void addMessage() {
+    public MessageTools() {
+        data = new ArrayList<>();
+    }
+
+    public void add() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input author's name: ");
         String authorAdd = scanner.nextLine();
         System.out.println("Input the text of the message: ");
         String messageAdd = scanner.nextLine();
-        allMessages.add(new Message(UUID.randomUUID().toString(), messageAdd, authorAdd, System.currentTimeMillis()));
+        data.add(new Message(UUID.randomUUID().toString(), messageAdd, authorAdd, System.currentTimeMillis()));
     }
 
-    public void toFile(String fileName) throws IOException {
+    public void saveFile(String fileName) throws IOException {
         Writer writer = new FileWriter(fileName);
         Gson gson = new GsonBuilder().create();
-        gson.toJson(allMessages, writer);
+        gson.toJson(data, writer);
         writer.close();
     }
 
-    public void loadFromFile(String fileName) throws IOException {
-        allMessages.clear();
+    public void loadFile(String fileName) throws IOException {
+        data.clear();
         Reader reader = new InputStreamReader(new FileInputStream(fileName));
         Gson gson = new GsonBuilder().create();
         Message[] messageAdd = gson.fromJson(reader, Message[].class);
-        for (Message i : messageAdd) {
-            allMessages.add(i);
-        }
+        Collections.addAll(data, messageAdd);
         reader.close();
     }
 
-    public void watchAll() {
-        ArrayList<Message> messagesCopy = new ArrayList<>(allMessages.size());
-        for (Message i : allMessages) {
-            messagesCopy.add(i);
-        }
-        Collections.sort(messagesCopy);
-        for (Message i : messagesCopy) {
+    public void allHistory() {
+        ArrayList<Message> copy = new ArrayList<>(data.size());
+        copy.addAll(data.stream().collect(Collectors.toList()));
+        Collections.sort(copy);
+        for (Message i : copy) {
             System.out.println(i.toString());
         }
     }
 
-    public void removeById(String id) {
-        for (Message i : allMessages) {
+    public void removeId(String id) {
+        for (Message i : data) {
             if (i.getId().equals(id)) {
-                allMessages.remove(i);
+                data.remove(i);
                 break;
             }
         }
     }
 
     public ArrayList<Message> searchAuthor(String author) {
-        ArrayList<Message> properAuthor = new ArrayList<>();
-        for (Message i : allMessages) {
-            if (i.getAuthor().equals(author)) {
-                properAuthor.add(i);
-            }
-        }
-        return properAuthor;
+        return data.stream().filter(i -> i.getAuthor().equals(author)).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public ArrayList<Message> searchExpression(String expression) {
-        ArrayList<Message> properExpression = new ArrayList<>();
-        for (Message i : allMessages) {
-            if (i.getMessage().contains(expression)) {
-                properExpression.add(i);
-            }
-        }
-        return properExpression;
+        return data.stream().filter(i -> i.getMessage().contains(expression)).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public ArrayList<Message> searchRegExpression(String regExpression) {
-        ArrayList<Message> properRegExpression = new ArrayList<>();
-        for (Message i : allMessages) {
-            if (i.getMessage().matches(regExpression)) {
-                properRegExpression.add(i);
-            }
-        }
-        return properRegExpression;
+        return data.stream().filter(i -> i.getMessage().matches(regExpression)).collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public ArrayList<Message> historySendingTime(Date lowerDate, Date upperDate) {
-        ArrayList<Message> properTimestamp = new ArrayList<>();
-        for (Message i : allMessages) {
-            if ((i.getDate().after(lowerDate)) && (i.getDate().before(upperDate))) {
-                properTimestamp.add(i);
-            }
-        }
-        return properTimestamp;
+    public ArrayList<Message> historyIntervals(Date lowerDate, Date upperDate) {
+        return data.stream().filter(i -> (i.getDate().after(lowerDate)) && (i.getDate().before(upperDate))).collect(Collectors.toCollection(ArrayList::new));
     }
 
 }

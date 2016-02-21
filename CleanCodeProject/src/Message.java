@@ -1,8 +1,5 @@
 import java.util.Date;
 
-/**
- * Created by andrejka on 16.2.16.
- */
 public class Message implements Comparable {
     private String id;
     private String message;
@@ -26,10 +23,6 @@ public class Message implements Comparable {
 
     public String getMessage() {
         return message;
-    }
-
-    public long getTimestamp() {
-        return timestamp;
     }
 
     public Date getDate() {
