@@ -8,14 +8,13 @@ import java.util.stream.Collectors;
 public class MessageHistoryTools {
 
     public void add(ArrayList<Message> data) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Input author's name: ");
-        String authorAdd = scanner.nextLine();
-        System.out.println("Input the text of the message: ");
-        String messageAdd = scanner.nextLine();
-        data.add(new Message(UUID.randomUUID().toString(), messageAdd, authorAdd, System.currentTimeMillis()));
-        scanner.close();
-    }
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Input author's name: ");
+            String authorAdd = scanner.nextLine();
+            System.out.println("Input the text of the message: ");
+            String messageAdd = scanner.nextLine();
+            data.add(new Message(UUID.randomUUID().toString(), messageAdd, authorAdd, System.currentTimeMillis()));
+        }
 
     public void saveFile(ArrayList<Message> data) {
         Scanner scanner = new Scanner(System.in);
