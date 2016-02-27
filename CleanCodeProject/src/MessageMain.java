@@ -26,33 +26,33 @@ public class MessageMain {
             String command = scanner.next();
             switch (command) {
                 case "1":
-                    historyTool.add(messages);
+                    historyTool.add(messages, scanner);
                     break;
                 case "2": {
-                    historyTool.saveFile(messages);
+                    historyTool.saveFile(messages, scanner);
                     break;
                 }
                 case "3": {
-                    historyTool.loadFile(messages);
+                    historyTool.loadFile(messages, scanner);
                     break;
                 }
                 case "4":
                     historyTool.allHistory(messages);
                     break;
                 case "5":
-                    historyTool.removeId(messages);
+                    historyTool.removeId(messages, scanner);
                     break;
                 case "6":
-                    searchTool.searchAuthor(messages);
+                    searchTool.searchAuthor(messages, scanner);
                     break;
                 case "7":
-                    searchTool.searchExpression(messages);
+                    searchTool.searchExpression(messages, scanner);
                     break;
                 case "8":
-                    searchTool.searchRegExpression(messages);
+                    searchTool.searchRegExpression(messages, scanner);
                     break;
                 case "9":
-                    searchTool.historyIntervals(messages);
+                    searchTool.historyIntervals(messages, scanner);
                     break;
                 case "10":
                     System.out.println(help);

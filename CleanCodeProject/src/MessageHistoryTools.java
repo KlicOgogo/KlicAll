@@ -7,17 +7,16 @@ import java.util.stream.Collectors;
 
 public class MessageHistoryTools {
 
-    public void add(ArrayList<Message> data) {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Input author's name: ");
-            String authorAdd = scanner.nextLine();
-            System.out.println("Input the text of the message: ");
-            String messageAdd = scanner.nextLine();
-            data.add(new Message(UUID.randomUUID().toString(), messageAdd, authorAdd, System.currentTimeMillis()));
-        }
+    public void add(ArrayList<Message> data, Scanner scanner) {
+        scanner.nextLine();
+        System.out.println("Input author's name: ");
+        String authorAdd = scanner.nextLine();
+        System.out.println("Input the text of the message: ");
+        String messageAdd = scanner.nextLine();
+        data.add(new Message(UUID.randomUUID().toString(), messageAdd, authorAdd, System.currentTimeMillis()));
+    }
 
-    public void saveFile(ArrayList<Message> data) {
-        Scanner scanner = new Scanner(System.in);
+    public void saveFile(ArrayList<Message> data, Scanner scanner) {
         System.out.println("Input file's name:");
         String fileName = scanner.next();
         try (Writer writer = new FileWriter(fileName)) {
@@ -29,9 +28,8 @@ public class MessageHistoryTools {
         }
     }
 
-    public void loadFile(ArrayList<Message> data) {
+    public void loadFile(ArrayList<Message> data, Scanner scanner) {
         data.clear();
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Input file's name:");
         String fileName = scanner.next();
         try (Reader reader = new InputStreamReader(new FileInputStream(fileName))) {
@@ -53,8 +51,7 @@ public class MessageHistoryTools {
         }
     }
 
-    public void removeId(ArrayList<Message> data) {
-        Scanner scanner = new Scanner(System.in);
+    public void removeId(ArrayList<Message> data, Scanner scanner) {
         System.out.println("Input id:");
         String id = scanner.next();
         for (Message i : data) {
@@ -64,5 +61,4 @@ public class MessageHistoryTools {
             }
         }
     }
-
 }
