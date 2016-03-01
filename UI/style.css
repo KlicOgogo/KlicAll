@@ -41,16 +41,17 @@ p {
     border-radius: 2px;
     padding: 7px;
     border: 1px solid;
-    font-weight: bold;\
 }
 
 .message-my {
     background-color: cyan;
     margin-left: 48%;
+    font-weight: bold;
 }
 
 .message-ego {
     background-color: limegreen;
+    font-weight: bold;
 }
 
 .edit-delete {
@@ -68,9 +69,11 @@ p {
 .you-edited {
     background-color: darkturquoise;
     margin-left: 48%;
+    font-weight: bold;
 }
 .ego-edited {
     background-color: lime;
+    font-weight: bold;
 }
 
 #send-message{
