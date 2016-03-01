@@ -36,8 +36,9 @@ p {
 
 .message {
     position: relative;
-    width: 50%;
-    margin: 3px;
+    width: 90%;
+    margin: 2px;
+    margin-left: 0;
     border-radius: 2px;
     padding: 7px;
     border: 1px solid;
@@ -45,7 +46,6 @@ p {
 
 .message-my {
     background-color: cyan;
-    margin-left: 48%;
     font-weight: bold;
 }
 
@@ -68,7 +68,6 @@ p {
 
 .you-edited {
     background-color: darkturquoise;
-    margin-left: 48%;
     font-weight: bold;
 }
 .ego-edited {
@@ -79,7 +78,7 @@ p {
 #send-message{
     position: inherit;
     bottom: 0;
-    margin-left: 48%;
+    margin-left: 0;
     margin-bottom: 0;
     width: 82%;
 }
@@ -95,7 +94,7 @@ p {
 
 #send-form {
     height: 50px;
-    width: 62%;
+    width: 110.5%;
     margin-bottom: 0px;
     font-size: larger;
 }
