@@ -19,6 +19,13 @@ h2 {
     color: lightgoldenrodyellow;
 }
 
+h3 {
+    font-size: 20px;
+    margin-left: 0;
+    height: 15px;
+    width: 40%;
+    color: lime;
+}
 p {
     font-size: 60px;
     margin-left: 0;
@@ -34,7 +41,7 @@ p {
     border-radius: 2px;
     padding: 7px;
     border: 1px solid;
-    font-weight: bold;
+    font-weight: bold;\
 }
 
 .message-my {
