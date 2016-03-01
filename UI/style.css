@@ -1,8 +1,5 @@
 body {
     background-color: black;
-    overflow-y: scroll;
-    margin: 0;
-    padding: 0;
     position: relative;
 }
 
@@ -32,60 +29,63 @@ p {
 
 .message {
     position: relative;
-    width: 60%;
+    width: 50%;
     margin: 3px;
     border-radius: 2px;
     padding: 7px;
     border: 1px solid;
+    font-weight: bold;
 }
 
 .message-my {
     background-color: cyan;
-    margin-left: 38%;
+    margin-left: 48%;
 }
 
 .message-ego {
     background-color: limegreen;
 }
 
-.message-options {
-    font-size: x-small;
-    font-style: italic;
+.edit-delete {
+    font-size: small;
     float: right;
     margin-left: 10px;
     margin-top: 10px;
 }
 
 .message-removed {
-    background-color: lightgray;
-    color: gray;
+    background-color: saddlebrown;
     font-style: italic;
-    font-size: small;
-
 }
 
-#new-message{
-    position: absolute;
+.you-edited {
+    background-color: darkturquoise;
+    margin-left: 48%;
+}
+.ego-edited {
+    background-color: lime;
+}
+
+#send-message{
+    position: inherit;
     bottom: 0;
+    margin-left: 48%;
     margin-bottom: 0;
-    width: 95%;
+    width: 82%;
 }
 
 #send-button {
-    margin-left: 3%;
-    position: relative;
+    margin-left: 0;
     background-color: darkblue;
-    color: white;
     height: 30px;
-    right: 25px;
+    right: 29px;
     font-size: larger;
+    border-color: darkblue;
 }
 
-#input-text {
-    border: 1px grey solid;
-    border-radius: 5px;
+#send-form {
     height: 50px;
-    width: 90%;
+    width: 62%;
     margin-bottom: 0px;
     font-size: larger;
 }
