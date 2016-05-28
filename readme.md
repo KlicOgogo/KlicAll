@@ -1,2 +1,2 @@
-login: andrejka, password: password
+login: andrejka, password: password ||||||||
 login: someone, password: qwerty
