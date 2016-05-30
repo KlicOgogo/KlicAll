@@ -1,0 +1,11 @@
+GET http://localhost:8000/chat?token=TN19EN HTTP/1.1
+Host: localhost:8000
+Content-Length: 20
+User-Agent: Composer
+
+HTTP/1.1 200 OK
+Date: Mon, 30 May 2016 12:52:45 GMT
+Access-control-allow-origin: *
+Content-length: 44
+
+{"messages":["seflgsrlts"],"token":"TN27EN"}
