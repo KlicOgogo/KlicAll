@@ -1,0 +1,1 @@
+/usr/bin/c++   -g   CMakeFiles/Course_project.dir/main.cpp.o CMakeFiles/Course_project.dir/random_graph.cpp.o  -o Course_project 
