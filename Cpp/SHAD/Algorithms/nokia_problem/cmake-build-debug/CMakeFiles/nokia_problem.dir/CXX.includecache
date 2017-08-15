@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/andrejka/CLionProjects/nokia_problem/main.cpp
+iostream
+-
+vector
+-
+list
+-
+queue
+-
+stack
+-
+unordered_map
+-
+

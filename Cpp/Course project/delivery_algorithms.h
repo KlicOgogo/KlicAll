@@ -14,7 +14,7 @@ public:
     DeliveryAlgorithms() = default;
 
     DeliveryAlgorithms(const RandomGraph &graph_, int terminal_) :
-            terminal(terminal_), order(graph.get_order()) {
+            terminal(terminal_), order(graph_.get_order()) {
         if (graph_.connected()) {
             graph = graph_;
         } else {

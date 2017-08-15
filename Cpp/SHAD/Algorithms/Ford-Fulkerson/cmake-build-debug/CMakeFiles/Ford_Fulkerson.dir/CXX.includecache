@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/andrejka/CLionProjects/Ford-Fulkerson/main.cpp
+iostream
+-
+vector
+-
+queue
+-
+fstream
+-
+climits
+-
+list
+-
+unordered_map
+-
+

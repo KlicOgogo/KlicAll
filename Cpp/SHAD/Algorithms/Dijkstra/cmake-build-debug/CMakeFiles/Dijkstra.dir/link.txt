@@ -1,0 +1,1 @@
+/usr/bin/c++   -g   CMakeFiles/Dijkstra.dir/main.cpp.o  -o Dijkstra 

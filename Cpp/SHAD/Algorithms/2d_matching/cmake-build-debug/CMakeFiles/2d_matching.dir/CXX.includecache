@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/andrejka/CLionProjects/2d_matching/main.cpp
+iostream
+-
+vector
+-
+unordered_map
+-
+unordered_set
+-
+queue
+-
+

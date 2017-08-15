@@ -1,0 +1,3 @@
+/home/andrejka/CLionProjects/2d_matching/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/andrejka/CLionProjects/2d_matching/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/andrejka/CLionProjects/2d_matching/cmake-build-debug/CMakeFiles/2d_matching.dir

@@ -1,0 +1,19 @@
+﻿Построение начато 12.05.2015 19:41:13.
+     1>Проект "C:\Users\Andrejka\documents\visual studio 2012\Projects\Вучэбная практыка 4\Дыяграма круг\Дыяграма круг.vcxproj" в узле 2 (целевые объекты Build).
+     1>InitializeBuildStatus:
+         Создание "Debug\Дыяграма круг.unsuccessfulbuild", так как было задано "AlwaysCreate".
+       ClCompile:
+         Для всех выходных данных обновления не требуется.
+       ResourceCompile:
+         Для всех выходных данных обновления не требуется.
+       Link:
+         Для всех выходных данных обновления не требуется.
+         Дыяграма круг.vcxproj -> C:\Users\Andrejka\documents\visual studio 2012\Projects\Вучэбная практыка 4\Debug\Дыяграма круг.exe
+       FinalizeBuildStatus:
+         Файл "Debug\Дыяграма круг.unsuccessfulbuild" удаляется.
+         Обращение к "Debug\Дыяграма круг.lastbuildstate".
+     1>Построение проекта "C:\Users\Andrejka\documents\visual studio 2012\Projects\Вучэбная практыка 4\Дыяграма круг\Дыяграма круг.vcxproj" завершено (целевые объекты Build).
+
+Построение успешно завершено.
+
+Затраченное время: 00:00:00.34

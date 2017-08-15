@@ -1,0 +1,1 @@
+/usr/bin/c++   -g   CMakeFiles/z_from_prefix.dir/main.cpp.o  -o z_from_prefix 

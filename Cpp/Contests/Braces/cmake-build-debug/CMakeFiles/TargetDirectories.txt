@@ -1,0 +1,3 @@
+/home/andrejka/CLionProjects/VK_CUP_D/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/andrejka/CLionProjects/VK_CUP_D/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/andrejka/CLionProjects/VK_CUP_D/cmake-build-debug/CMakeFiles/VK_CUP_D.dir

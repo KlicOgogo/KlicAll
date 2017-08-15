@@ -1,0 +1,17 @@
+{
+    "contents" : "dat<-read.table(\"zad5.txt\")\ndat\nplot(dat,type=\"p\",main=\"Диаграмма рассеяния\",xlab=\"X\", ylab=\"Y\")\n> cl<-kmeans(dat,2)\nplot(dat,col=ifelse(cl2$cluster==3,\"red\",ifelse((cl2$cluster==1),\"blue\",\"green\")))\nlegend(\"topleft\",legend=c(\"1\",\"2\", \"3\"),fill=c(\"blue\",\"green\",\"red\"))\nplot(dat,pch=ifelse(cl2$cluster==1,1,ifelse(cl2$cluster==2,2,3)))\nlegend(\"topleft\",legend=c(\"1\",\"2\", \"3\"),pch=c(1,2,3))",
+    "created" : 1447480954353.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3875668634",
+    "id" : "7A4C6A11",
+    "lastKnownWriteTime" : 1447482021,
+    "path" : "E:/NaFaNyA_files/ВКИАД (Введение в компьютерный и интеллектуальный анализ данных)/labs/zad5/zad5.R",
+    "project_path" : "zad5.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

@@ -1,0 +1,1 @@
+/usr/bin/c++   -g   CMakeFiles/VK_CUP_B.dir/main.cpp.o  -o VK_CUP_B 

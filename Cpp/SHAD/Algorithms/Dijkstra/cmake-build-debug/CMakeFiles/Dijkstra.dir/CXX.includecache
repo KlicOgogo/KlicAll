@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/andrejka/CLionProjects/Dijkstra/main.cpp
+iostream
+-
+vector
+-
+fstream
+-
+algorithm
+-
+climits
+-
+

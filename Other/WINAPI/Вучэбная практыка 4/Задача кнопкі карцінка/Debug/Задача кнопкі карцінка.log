@@ -1,0 +1,24 @@
+﻿Построение начато 29.04.2015 9:42:03.
+     1>Проект "C:\Users\Andrejka\Documents\Visual Studio 2012\Projects\Вучэбная практыка 4\Задача кнопкі карцінка\Задача кнопкі карцінка.vcxproj" в узле 2 (целевые объекты Build).
+     1>InitializeBuildStatus:
+         Создание "Debug\Задача кнопкі карцінка.unsuccessfulbuild", так как было задано "AlwaysCreate".
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt "Задача кнопкі карцінка.cpp"
+         Задача кнопкі карцінка.cpp
+     1>c:\users\andrejka\documents\visual studio 2012\projects\вучэбная практыка 4\задача кнопкі карцінка\задача кнопкі карцінка.cpp(100): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110): см. объявление "strcpy"
+     1>c:\users\andrejka\documents\visual studio 2012\projects\вучэбная практыка 4\задача кнопкі карцінка\задача кнопкі карцінка.cpp(76): warning C4101: success: неиспользованная локальная переменная
+       ResourceCompile:
+         Для всех выходных данных обновления не требуется.
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Andrejka\Documents\Visual Studio 2012\Projects\Вучэбная практыка 4\Debug\Задача кнопкі карцінка.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Andrejka\Documents\Visual Studio 2012\Projects\Вучэбная практыка 4\Debug\Задача кнопкі карцінка.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Andrejka\Documents\Visual Studio 2012\Projects\Вучэбная практыка 4\Debug\Задача кнопкі карцінка.lib" /MACHINE:X86 "Debug\Задача кнопкі карцінка.res"
+         "Debug\Задача кнопкі карцінка.obj"
+         Задача кнопкі карцінка.vcxproj -> C:\Users\Andrejka\Documents\Visual Studio 2012\Projects\Вучэбная практыка 4\Debug\Задача кнопкі карцінка.exe
+       FinalizeBuildStatus:
+         Файл "Debug\Задача кнопкі карцінка.unsuccessfulbuild" удаляется.
+         Обращение к "Debug\Задача кнопкі карцінка.lastbuildstate".
+     1>Построение проекта "C:\Users\Andrejka\Documents\Visual Studio 2012\Projects\Вучэбная практыка 4\Задача кнопкі карцінка\Задача кнопкі карцінка.vcxproj" завершено (целевые объекты Build).
+
+Построение успешно завершено.
+
+Затраченное время: 00:00:05.03

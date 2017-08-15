@@ -1,0 +1,3 @@
+/home/andrejka/CLionProjects/nokia_problem/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/andrejka/CLionProjects/nokia_problem/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/andrejka/CLionProjects/nokia_problem/cmake-build-debug/CMakeFiles/nokia_problem.dir

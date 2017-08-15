@@ -1,0 +1,18 @@
+﻿Построение начато 24.04.2015 0:53:57.
+     1>Проект "C:\Users\Andrejka\Documents\Visual Studio 2010\Projects\Задача пра кружкі з меню\Лаба 5 вінапі\Лаба 5 вінапі.vcxproj" в узле 2 (целевые объекты Build).
+     1>InitializeBuildStatus:
+         Обращение к "Debug\Кружкі з меню.unsuccessfulbuild".
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt "Простае меню кружкі.cpp"
+         Простае меню кружкі.cpp
+       ResourceCompile:
+         Для всех выходных данных обновления не требуется.
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Andrejka\Documents\Visual Studio 2010\Projects\Задача пра кружкі з меню\Debug\Кружкі з меню.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Andrejka\Documents\Visual Studio 2010\Projects\Задача пра кружкі з меню\Debug\Кружкі з меню.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Andrejka\Documents\Visual Studio 2010\Projects\Задача пра кружкі з меню\Debug\Кружкі з меню.lib" /MACHINE:X86 "Debug\Кружкі з меню.res"
+         "Debug\Простае меню кружкі.obj"
+     1>LINK : fatal error LNK1104: не удается открыть файл "C:\Users\Andrejka\Documents\Visual Studio 2010\Projects\Задача пра кружкі з меню\Debug\Кружкі з меню.exe"
+     1>Построение проекта "C:\Users\Andrejka\Documents\Visual Studio 2010\Projects\Задача пра кружкі з меню\Лаба 5 вінапі\Лаба 5 вінапі.vcxproj" завершено (целевые объекты Build) с ошибкой.
+
+Сбой построения.
+
+Затраченное время: 00:00:05.86

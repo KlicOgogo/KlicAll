@@ -1,0 +1,16 @@
+#define IDR_MENU 10000
+#define IDM_ 10001
+#define IDM_OPEN 10002
+#define IDM_NEWCOLOR 10003
+#define IDM_MOVE_VERT 10004
+#define IDM_MOVE_HOR 10005
+IDR_MENU MENUEX
+BEGIN
+  POPUP "Window",IDM_
+  BEGIN
+    MENUITEM "Open file",IDM_OPEN
+    MENUITEM "Choose bgcolor",IDM_NEWCOLOR
+    MENUITEM "Move down",IDM_MOVE_VERT
+    MENUITEM "Move right",IDM_MOVE_HOR
+  END
+END

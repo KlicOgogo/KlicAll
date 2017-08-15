@@ -1,0 +1,1 @@
+/usr/bin/c++   -g   CMakeFiles/Aho_Corasick.dir/main.cpp.o  -o Aho_Corasick 

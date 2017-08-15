@@ -1,0 +1,4 @@
+#include "Res/22Mnu.rc"
+#include "Res/22Dlg.rc"
+#include "Res/222Dlg.rc"
+#include "Res/2222Dlg.rc"
