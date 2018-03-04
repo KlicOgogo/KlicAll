@@ -66,7 +66,7 @@ typename std::iterator_traits<RandomAccessIterator>::value_type KthStatistic
         }
         std::sort(stepIterator, upperBound);
         temp.push_back(*(stepIterator+(upperBound-stepIterator)/2));
-        pivot = KthStatisti(temp.begin(), temp.end(), 1+(temp.end()-temp.begin())/2);
+        pivot = KthStatistic(temp.begin(), temp.end(), 1+(temp.end()-temp.begin())/2);
         index = Partition(lowerBound, upperBound, pivot);
         if (first+k-1 > index.upper_) {
             lowerBound = index.upper_+1;

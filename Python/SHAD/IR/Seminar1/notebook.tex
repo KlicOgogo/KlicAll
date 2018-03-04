@@ -1,0 +1,3436 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Untitled}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    top-5 similar files of
+6005-adaptive-stochastic-optimization-from-sets-to-paths.txt:
+6002-smooth-interactive-submodular-set-cover.txt
+5933-on-the-consistency-theory-of-high-dimensional-variable-screening.txt
+6030-fighting-bandits-with-a-new-kind-of-smoothness.txt
+6033-online-learning-with-gaussian-payoffs-and-side-observations.txt
+5711-stopwasting-my-gradients-practical-svrg.txt
+
+top-5 similar files of
+5861-learning-wake-sleep-recurrent-attention-models.txt:
+5928-a-universal-catalyst-for-first-order-optimization.txt
+5933-on-the-consistency-theory-of-high-dimensional-variable-screening.txt
+5669-copula-variational-inference.txt
+5847-attention-based-models-for-speech-recognition.txt
+5796-learning-continuous-control-policies-by-stochastic-value-gradients.txt
+
+top-5 similar files of
+5814-parallel-correlation-clustering-on-big-graphs.txt:
+5881-optimization-monte-carlo-efficient-and-embarrassingly-parallel-likelihood-free-inference.txt
+5648-learning-to-transduce-with-unbounded-memory.txt
+5909-learning-causal-graphs-with-small-interventions.txt
+5969-sparse-local-embeddings-for-extreme-multi-label-classification.txt
+5699-gap-safe-screening-rules-for-sparse-multi-task-and-multi-class-models.txt
+
+top-5 similar files of
+5745-distributionally-robust-logistic-regression.txt:
+5914-high-dimensional-em-algorithm-statistical-optimization-and-asymptotic-normality.txt
+5703-robust-gaussian-graphical-modeling-with-the-trimmed-graphical-lasso.txt
+5933-on-the-consistency-theory-of-high-dimensional-variable-screening.txt
+5996-optimal-ridge-detection-using-coverage-risk.txt
+5719-on-the-limitation-of-spectral-methods-from-the-gaussian-hidden-clique-problem-to-rank-one-perturbations-of-gaussian-tensors.txt
+
+top-5 similar files of
+5747-extending-gossip-algorithms-to-distributed-estimation-of-u-statistics.txt:
+5819-sgd-algorithms-based-on-incomplete-u-statistics-large-scale-minimization-of-empirical-risk.txt
+5816-evaluating-the-statistical-significance-of-biclusters.txt
+5973-bayesian-manifold-learning-the-locally-linear-latent-variable-model-ll-lvm.txt
+5960-a-gaussian-process-model-of-quasar-spectral-energy-distributions.txt
+5701-anytime-influence-bounds-and-the-explosive-behavior-of-continuous-time-diffusion-networks.txt
+
+top-5 similar files of
+5662-robust-feature-sample-linear-discriminant-analysis-for-brain-disorders-diagnosis.txt:
+6035-adaptive-low-complexity-sequential-inference-for-dirichlet-process-mixture-models.txt
+5996-optimal-ridge-detection-using-coverage-risk.txt
+5960-a-gaussian-process-model-of-quasar-spectral-energy-distributions.txt
+5705-robust-pca-with-compressed-data.txt
+5891-a-complete-recipe-for-stochastic-gradient-mcmc.txt
+
+top-5 similar files of
+5987-fast-lifted-map-inference-via-partitioning.txt:
+5900-lifted-inference-rules-with-constraints.txt
+6024-regret-lower-bound-and-optimal-algorithm-in-finite-stochastic-partial-monitoring.txt
+5787-tensorizing-neural-networks.txt
+5807-policy-evaluation-using-the-return.txt
+5981-bounding-the-cost-of-search-based-lifted-inference.txt
+
+top-5 similar files of
+5707-subspace-clustering-with-irrelevant-features-via-robust-dantzig-selector.txt:
+5705-robust-pca-with-compressed-data.txt
+5991-differentially-private-subspace-clustering.txt
+5800-tree-guided-mcmc-inference-for-normalized-random-measure-mixture-models.txt
+5844-adaptive-online-learning.txt
+5651-bidirectional-recurrent-neural-networks-as-generative-models.txt
+
+top-5 similar files of
+5716-fast-randomized-kernel-ridge-regression-with-statistical-guarantees.txt:
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+6026-revenue-optimization-against-strategic-buyers.txt
+5963-rectified-factor-networks.txt
+5778-bidirectional-recurrent-convolutional-networks-for-multi-frame-super-resolution.txt
+5961-neural-adaptive-sequential-monte-carlo.txt
+
+top-5 similar files of
+5703-robust-gaussian-graphical-modeling-with-the-trimmed-graphical-lasso.txt:
+5745-distributionally-robust-logistic-regression.txt
+5726-regularization-free-estimation-in-trace-regression-with-symmetric-positive-semidefinite-matrices.txt
+5771-closed-form-estimators-for-high-dimensional-generalized-linear-models.txt
+5935-beyond-sub-gaussian-measurements-high-dimensional-structured-estimation-with-sub-exponential-designs.txt
+5922-when-are-kalman-filter-restless-bandits-indexable.txt
+
+top-5 similar files of
+5665-scalable-inference-for-gaussian-process-models-with-black-box-likelihoods.txt:
+5895-kullback-leibler-proximal-variational-inference.txt
+5973-bayesian-manifold-learning-the-locally-linear-latent-variable-model-ll-lvm.txt
+5870-equilibrated-adaptive-learning-rates-for-non-convex-optimization.txt
+5786-deep-poisson-factor-modeling.txt
+5874-gaussian-process-random-fields.txt
+
+top-5 similar files of
+5875-mcmc-for-variationally-sparse-gaussian-processes.txt:
+5881-optimization-monte-carlo-efficient-and-embarrassingly-parallel-likelihood-free-inference.txt
+5714-robust-portfolio-optimization.txt
+5665-scalable-inference-for-gaussian-process-models-with-black-box-likelihoods.txt
+5794-probabilistic-curve-learning-coulomb-repulsion-and-the-electrostatic-gaussian-process.txt
+5772-learning-stationary-time-series-using-gaussian-processes-with-nonparametric-kernels.txt
+
+top-5 similar files of
+5670-fast-second-order-stochastic-backpropagation-for-variational-inference.txt:
+5965-bayesian-dark-knowledge.txt
+6032-the-pareto-regret-frontier-for-bandits.txt
+5678-local-expectation-gradients-for-black-box-variational-inference.txt
+5648-learning-to-transduce-with-unbounded-memory.txt
+5635-grammar-as-a-foreign-language.txt
+
+top-5 similar files of 5874-gaussian-process-random-fields.txt:
+5665-scalable-inference-for-gaussian-process-models-with-black-box-likelihoods.txt
+6035-adaptive-low-complexity-sequential-inference-for-dirichlet-process-mixture-models.txt
+6033-online-learning-with-gaussian-payoffs-and-side-observations.txt
+5723-adaptive-primal-dual-splitting-methods-for-statistical-learning-and-image-processing.txt
+5755-linear-response-methods-for-accurate-covariance-estimates-from-mean-field-variational-bayes.txt
+
+top-5 similar files of
+5864-color-constancy-by-learning-to-predict-chromaticity-from-luminance.txt:
+5912-bounding-errors-of-expectation-propagation.txt
+5708-a-class-of-network-models-recoverable-by-spectral-clustering.txt
+5960-a-gaussian-process-model-of-quasar-spectral-energy-distributions.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5973-bayesian-manifold-learning-the-locally-linear-latent-variable-model-ll-lvm.txt
+
+top-5 similar files of
+5647-binaryconnect-training-deep-neural-networks-with-binary-weights-during-propagations.txt:
+5784-learning-both-weights-and-connections-for-efficient-neural-network.txt
+5775-learning-structured-output-representation-using-deep-conditional-generative-models.txt
+5924-a-dual-augmented-block-minimization-framework-for-learning-with-limited-memory.txt
+5797-path-sgd-path-normalized-optimization-in-deep-neural-networks.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+
+top-5 similar files of 5765-the-human-kernel.txt:
+5640-exploring-models-and-data-for-image-question-answering.txt
+5772-learning-stationary-time-series-using-gaussian-processes-with-nonparametric-kernels.txt
+5795-preconditioned-spectral-descent-for-deep-learning.txt
+5702-estimating-mixture-models-via-mixtures-of-polynomials.txt
+6032-the-pareto-regret-frontier-for-bandits.txt
+
+top-5 similar files of
+5882-inverse-reinforcement-learning-with-locally-consistent-reward-functions.txt:
+5807-policy-evaluation-using-the-return.txt
+5889-softstar-heuristic-guided-probabilistic-inference.txt
+5850-training-very-deep-networks.txt
+5872-efficient-and-robust-automated-machine-learning.txt
+5823-interpolating-convex-and-non-convex-tensor-decompositions-via-the-subspace-norm.txt
+
+top-5 similar files of
+5818-collaboratively-learning-preferences-from-ordinal-data.txt:
+6032-the-pareto-regret-frontier-for-bandits.txt
+5823-interpolating-convex-and-non-convex-tensor-decompositions-via-the-subspace-norm.txt
+5921-convergence-rates-of-active-learning-for-maximum-likelihood-estimation.txt
+5979-time-sensitive-recommendation-from-recurrent-user-activities.txt
+5648-learning-to-transduce-with-unbounded-memory.txt
+
+top-5 similar files of 6023-copeland-dueling-bandits.txt:
+5903-online-rank-elicitation-for-plackett-luce-a-dueling-bandits-approach.txt
+5852-learning-to-segment-object-candidates.txt
+5930-stochastic-online-greedy-learning-with-semi-bandit-feedbacks.txt
+5669-copula-variational-inference.txt
+5875-mcmc-for-variationally-sparse-gaussian-processes.txt
+
+top-5 similar files of
+5734-individual-planning-in-infinite-horizon-multiagent-settings-inference-structure-and-scalability.txt:
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt
+5773-deep-generative-image-models-using-a-laplacian-pyramid-of-adversarial-networks.txt
+5914-high-dimensional-em-algorithm-statistical-optimization-and-asymptotic-normality.txt
+5927-a-generalization-of-submodular-cover-via-the-diminishing-return-property-on-the-integer-lattice.txt
+5913-local-smoothness-in-variance-reduced-optimization.txt
+
+top-5 similar files of
+5785-unsupervised-learning-by-program-synthesis.txt:
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5866-pointer-networks.txt
+5960-a-gaussian-process-model-of-quasar-spectral-energy-distributions.txt
+5780-galileo-perceiving-physical-object-properties-by-integrating-a-physics-engine-with-deep-learning.txt
+5738-b-bit-marginal-regression.txt
+
+top-5 similar files of
+5810-inference-for-determinantal-point-processes-without-spectral-knowledge.txt:
+5688-halting-in-random-walk-kernels.txt
+5711-stopwasting-my-gradients-practical-svrg.txt
+6015-learning-with-incremental-iterative-regularization.txt
+5837-empirical-localization-of-homogeneous-divergences-on-discrete-sample-spaces.txt
+5720-regularized-em-algorithms-a-unified-framework-and-statistical-guarantees.txt
+
+top-5 similar files of
+5988-active-learning-from-weak-and-strong-labelers.txt:
+5921-convergence-rates-of-active-learning-for-maximum-likelihood-estimation.txt
+5939-efficient-and-parsimonious-agnostic-active-learning.txt
+5879-spectral-learning-of-large-structured-hmms-for-comparative-epigenomics.txt
+5756-latent-bayesian-melding-for-integrating-individual-and-population-models.txt
+5773-deep-generative-image-models-using-a-laplacian-pyramid-of-adversarial-networks.txt
+
+top-5 similar files of
+5643-learning-from-small-samples-an-analysis-of-simple-decision-heuristics.txt:
+5807-policy-evaluation-using-the-return.txt
+5805-large-scale-probabilistic-predictors-with-and-without-guarantees-of-validity.txt
+5983-estimating-jaccard-index-with-missing-observations-a-matrix-calibration-approach.txt
+5720-regularized-em-algorithms-a-unified-framework-and-statistical-guarantees.txt
+5850-training-very-deep-networks.txt
+
+top-5 similar files of
+5943-spherical-random-features-for-polynomial-kernels.txt:
+5962-convolutional-spike-triggered-covariance-analysis-for-neural-subunit-models.txt
+5934-finite-time-analysis-of-projected-langevin-monte-carlo.txt
+5999-fast-classification-rates-for-high-dimensional-gaussian-generative-models.txt
+5951-learning-to-linearize-under-uncertainty.txt
+5740-optimal-rates-for-random-fourier-features.txt
+
+top-5 similar files of
+5756-latent-bayesian-melding-for-integrating-individual-and-population-models.txt:
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5988-active-learning-from-weak-and-strong-labelers.txt
+5693-sample-complexity-bounds-for-iterative-stochastic-policy-optimization.txt
+5965-bayesian-dark-knowledge.txt
+5960-a-gaussian-process-model-of-quasar-spectral-energy-distributions.txt
+
+top-5 similar files of
+5887-statistical-topological-data-analysis-a-kernel-perspective.txt:
+5719-on-the-limitation-of-spectral-methods-from-the-gaussian-hidden-clique-problem-to-rank-one-perturbations-of-gaussian-tensors.txt
+6034-fast-rates-for-exp-concave-empirical-risk-minimization.txt
+5676-tractable-learning-for-complex-probability-queries.txt
+5773-deep-generative-image-models-using-a-laplacian-pyramid-of-adversarial-networks.txt
+5732-explore-no-more-improved-high-probability-regret-bounds-for-non-stochastic-bandits.txt
+
+top-5 similar files of
+5821-on-variance-reduction-in-stochastic-gradient-descent-and-its-asynchronous-variants.txt:
+5919-variance-reduced-stochastic-gradient-descent-with-neighbors.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5717-taming-the-wild-a-unified-analysis-of-hogwild-style-algorithms.txt
+5745-distributionally-robust-logistic-regression.txt
+5920-non-convex-statistical-optimization-for-sparse-tensor-graphical-model.txt
+
+top-5 similar files of
+5750-newton-stein-method-a-second-order-method-for-glms-via-steins-lemma.txt:
+5918-convergence-rates-of-sub-sampled-newton-methods.txt
+5930-stochastic-online-greedy-learning-with-semi-bandit-feedbacks.txt
+5931-linear-multi-resource-allocation-with-semi-bandit-feedback.txt
+6021-efficient-compressive-phase-retrieval-with-constrained-sensing-vectors.txt
+5946-saliency-scale-and-information-towards-a-unifying-theory.txt
+
+top-5 similar files of
+5803-learning-bayesian-networks-with-thousands-of-variables.txt:
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt
+5823-interpolating-convex-and-non-convex-tensor-decompositions-via-the-subspace-norm.txt
+5805-large-scale-probabilistic-predictors-with-and-without-guarantees-of-validity.txt
+5888-variational-consensus-monte-carlo.txt
+5759-data-generation-as-sequential-decision-making.txt
+
+top-5 similar files of
+5908-testing-closeness-with-unequal-sized-samples.txt:
+5847-attention-based-models-for-speech-recognition.txt
+5831-combinatorial-bandits-revisited.txt
+5851-deep-convolutional-inverse-graphics-network.txt
+5669-copula-variational-inference.txt
+5775-learning-structured-output-representation-using-deep-conditional-generative-models.txt
+
+top-5 similar files of
+5922-when-are-kalman-filter-restless-bandits-indexable.txt:
+5740-optimal-rates-for-random-fourier-features.txt
+5879-spectral-learning-of-large-structured-hmms-for-comparative-epigenomics.txt
+5837-empirical-localization-of-homogeneous-divergences-on-discrete-sample-spaces.txt
+5718-beyond-convexity-stochastic-quasi-convex-optimization.txt
+6002-smooth-interactive-submodular-set-cover.txt
+
+top-5 similar files of
+6006-learning-structured-densities-via-infinite-dimensional-exponential-families.txt:
+5920-non-convex-statistical-optimization-for-sparse-tensor-graphical-model.txt
+5793-the-population-posterior-and-bayesian-modeling-on-streams.txt
+5890-gradient-free-hamiltonian-monte-carlo-with-efficient-kernel-exponential-families.txt
+5689-rate-agnostic-causal-structure-learning.txt
+5652-recognizing-retinal-ganglion-cells-in-the-dark.txt
+
+top-5 similar files of
+5847-attention-based-models-for-speech-recognition.txt:
+5677-double-or-nothing-multiplicative-incentive-mechanisms-for-crowdsourcing.txt
+5653-a-recurrent-latent-variable-model-for-sequential-data.txt
+5857-inferring-algorithmic-patterns-with-stack-augmented-recurrent-nets.txt
+5934-finite-time-analysis-of-projected-langevin-monte-carlo.txt
+5861-learning-wake-sleep-recurrent-attention-models.txt
+
+top-5 similar files of
+5772-learning-stationary-time-series-using-gaussian-processes-with-nonparametric-kernels.txt:
+5760-stochastic-expectation-propagation.txt
+5966-gp-kernels-for-cross-spectrum-analysis.txt
+5995-a-market-framework-for-eliciting-private-data.txt
+6026-revenue-optimization-against-strategic-buyers.txt
+5967-end-to-end-learning-of-lda-by-mirror-descent-back-propagation-over-a-deep-architecture.txt
+
+top-5 similar files of
+5719-on-the-limitation-of-spectral-methods-from-the-gaussian-hidden-clique-problem-to-rank-one-perturbations-of-gaussian-tensors.txt:
+5816-evaluating-the-statistical-significance-of-biclusters.txt
+5778-bidirectional-recurrent-convolutional-networks-for-multi-frame-super-resolution.txt
+5848-where-are-they-looking.txt
+5887-statistical-topological-data-analysis-a-kernel-perspective.txt
+5853-the-return-of-the-gating-network-combining-generative-models-and-discriminative-training-in-natural-image-priors.txt
+
+top-5 similar files of
+5996-optimal-ridge-detection-using-coverage-risk.txt:
+5668-variational-information-maximisation-for-intrinsically-motivated-reinforcement-learning.txt
+5642-parallel-multi-dimensional-lstm-with-application-to-fast-biomedical-volumetric-image-segmentation.txt
+5745-distributionally-robust-logistic-regression.txt
+6030-fighting-bandits-with-a-new-kind-of-smoothness.txt
+5834-structured-estimation-with-atomic-norms-general-bounds-and-applications.txt
+
+top-5 similar files of
+5934-finite-time-analysis-of-projected-langevin-monte-carlo.txt:
+5952-synaptic-sampling-a-bayesian-approach-to-neural-network-plasticity-and-rewiring.txt
+5925-on-the-global-linear-convergence-of-frank-wolfe-optimization-variants.txt
+5801-reflection-refraction-and-hamiltonian-monte-carlo.txt
+5998-orthogonal-nmf-through-subspace-exploration.txt
+5736-minimum-weight-perfect-matching-via-blossom-belief-propagation.txt
+
+top-5 similar files of
+5863-a-tractable-approximation-to-optimal-point-process-filtering-application-to-neural-encoding.txt:
+5640-exploring-models-and-data-for-image-question-answering.txt
+5801-reflection-refraction-and-hamiltonian-monte-carlo.txt
+5922-when-are-kalman-filter-restless-bandits-indexable.txt
+5962-convolutional-spike-triggered-covariance-analysis-for-neural-subunit-models.txt
+5653-a-recurrent-latent-variable-model-for-sequential-data.txt
+
+top-5 similar files of
+5735-randomized-block-krylov-methods-for-stronger-and-faster-approximate-singular-value-decomposition.txt:
+6011-column-selection-via-adaptive-sampling.txt
+5714-robust-portfolio-optimization.txt
+6033-online-learning-with-gaussian-payoffs-and-side-observations.txt
+5929-fast-and-memory-optimal-low-rank-matrix-approximation.txt
+5912-bounding-errors-of-expectation-propagation.txt
+
+top-5 similar files of
+5942-scalable-semi-supervised-aggregation-of-classifiers.txt:
+5816-evaluating-the-statistical-significance-of-biclusters.txt
+5844-adaptive-online-learning.txt
+5739-lasso-with-non-linear-measurements-is-equivalent-to-one-with-linear-measurements.txt
+5730-minimax-time-series-prediction.txt
+5774-shepard-convolutional-neural-networks.txt
+
+top-5 similar files of
+5753-probabilistic-line-searches-for-stochastic-optimization.txt:
+5743-solving-random-quadratic-systems-of-equations-is-nearly-as-easy-as-solving-linear-systems.txt
+5634-convolutional-neural-networks-with-intra-layer-recurrent-connections-for-scene-labeling.txt
+5844-adaptive-online-learning.txt
+5715-bayesian-optimization-with-exponential-convergence.txt
+5991-differentially-private-subspace-clustering.txt
+
+top-5 similar files of
+5970-robust-spectral-inference-for-joint-stochastic-matrix-factorization.txt:
+5755-linear-response-methods-for-accurate-covariance-estimates-from-mean-field-variational-bayes.txt
+5760-stochastic-expectation-propagation.txt
+5960-a-gaussian-process-model-of-quasar-spectral-energy-distributions.txt
+5877-fixed-length-poisson-mrf-adding-dependencies-to-the-multinomial.txt
+5808-community-detection-via-measure-space-embedding.txt
+
+top-5 similar files of
+5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints.txt:
+5782-character-level-convolutional-networks-for-text-classification.txt
+5784-learning-both-weights-and-connections-for-efficient-neural-network.txt
+5654-deep-knowledge-tracing.txt
+5660-dependent-multinomial-models-made-easy-stick-breaking-with-the-polya-gamma-augmentation.txt
+5796-learning-continuous-control-policies-by-stochastic-value-gradients.txt
+
+top-5 similar files of
+5661-scalable-adaptation-of-state-complexity-for-nonparametric-hidden-markov-models.txt:
+5830-a-convergent-gradient-descent-algorithm-for-rank-minimization-and-semidefinite-programming-from-random-linear-measurements.txt
+5876-streaming-distributed-variational-inference-for-bayesian-nonparametrics.txt
+5913-local-smoothness-in-variance-reduced-optimization.txt
+5666-variational-dropout-and-the-local-reparameterization-trick.txt
+5717-taming-the-wild-a-unified-analysis-of-hogwild-style-algorithms.txt
+
+top-5 similar files of
+5980-parallel-recursive-best-first-andor-search-for-exact-map-inference-in-graphical-models.txt:
+5920-non-convex-statistical-optimization-for-sparse-tensor-graphical-model.txt
+5981-bounding-the-cost-of-search-based-lifted-inference.txt
+5994-online-f-measure-optimization.txt
+5686-adversarial-prediction-games-for-multivariate-losses.txt
+5697-an-active-learning-framework-using-sparse-graph-codes-for-sparse-polynomials-and-graph-sketching.txt
+
+top-5 similar files of
+5736-minimum-weight-perfect-matching-via-blossom-belief-propagation.txt:
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5934-finite-time-analysis-of-projected-langevin-monte-carlo.txt
+5901-sparse-pca-via-bipartite-matchings.txt
+5835-subsampled-power-iteration-a-unified-algorithm-for-block-models-and-planted-csps.txt
+5732-explore-no-more-improved-high-probability-regret-bounds-for-non-stochastic-bandits.txt
+
+top-5 similar files of
+5718-beyond-convexity-stochastic-quasi-convex-optimization.txt:
+5797-path-sgd-path-normalized-optimization-in-deep-neural-networks.txt
+5961-neural-adaptive-sequential-monte-carlo.txt
+5922-when-are-kalman-filter-restless-bandits-indexable.txt
+5850-training-very-deep-networks.txt
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt
+
+top-5 similar files of
+5684-m-statistic-for-kernel-change-point-detection.txt:
+6007-lifelong-learning-with-non-iid-tasks.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5655-deep-temporal-sigmoid-belief-networks-for-sequence-modeling.txt
+5978-covariance-controlled-adaptive-langevin-thermostat-for-large-scale-bayesian-sampling.txt
+5634-convolutional-neural-networks-with-intra-layer-recurrent-connections-for-scene-labeling.txt
+
+top-5 similar files of
+5892-barrier-frank-wolfe-for-marginal-inference.txt:
+5700-decomposition-bounds-for-marginal-map.txt
+6030-fighting-bandits-with-a-new-kind-of-smoothness.txt
+5925-on-the-global-linear-convergence-of-frank-wolfe-optimization-variants.txt
+5895-kullback-leibler-proximal-variational-inference.txt
+6013-optimal-linear-estimation-under-unknown-nonlinear-transform.txt
+
+top-5 similar files of 5730-minimax-time-series-prediction.txt:
+5924-a-dual-augmented-block-minimization-framework-for-learning-with-limited-memory.txt
+5916-matrix-completion-under-monotonic-single-index-models.txt
+5759-data-generation-as-sequential-decision-making.txt
+5660-dependent-multinomial-models-made-easy-stick-breaking-with-the-polya-gamma-augmentation.txt
+5942-scalable-semi-supervised-aggregation-of-classifiers.txt
+
+top-5 similar files of 5949-semi-supervised-sequence-learning.txt:
+5639-weakly-supervised-disentangling-with-recurrent-transformations-for-3d-view-synthesis.txt
+5849-semi-supervised-convolutional-neural-networks-for-text-categorization-via-region-embedding.txt
+5776-expressing-an-image-stream-with-a-sequence-of-natural-sentences.txt
+5699-gap-safe-screening-rules-for-sparse-multi-task-and-multi-class-models.txt
+5635-grammar-as-a-foreign-language.txt
+
+top-5 similar files of
+5769-biologically-inspired-dynamic-textures-for-probing-motion-perception.txt:
+5778-bidirectional-recurrent-convolutional-networks-for-multi-frame-super-resolution.txt
+5633-texture-synthesis-using-convolutional-neural-networks.txt
+5934-finite-time-analysis-of-projected-langevin-monte-carlo.txt
+5773-deep-generative-image-models-using-a-laplacian-pyramid-of-adversarial-networks.txt
+5881-optimization-monte-carlo-efficient-and-embarrassingly-parallel-likelihood-free-inference.txt
+
+top-5 similar files of
+6001-on-the-optimality-of-classifier-chain-for-multi-label-classification.txt:
+5893-practical-and-optimal-lsh-for-angular-distance.txt
+5778-bidirectional-recurrent-convolutional-networks-for-multi-frame-super-resolution.txt
+5829-honor-hybrid-optimization-for-non-convex-regularized-problems.txt
+5772-learning-stationary-time-series-using-gaussian-processes-with-nonparametric-kernels.txt
+5996-optimal-ridge-detection-using-coverage-risk.txt
+
+top-5 similar files of 5679-learning-with-a-wasserstein-loss.txt:
+5723-adaptive-primal-dual-splitting-methods-for-statistical-learning-and-image-processing.txt
+5968-particle-gibbs-for-infinite-hidden-markov-models.txt
+5758-automatic-variational-inference-in-stan.txt
+5802-planar-ultrametrics-for-image-segmentation.txt
+5883-consistent-multilabel-classification.txt
+
+top-5 similar files of
+5849-semi-supervised-convolutional-neural-networks-for-text-categorization-via-region-embedding.txt:
+5949-semi-supervised-sequence-learning.txt
+5774-shepard-convolutional-neural-networks.txt
+5962-convolutional-spike-triggered-covariance-analysis-for-neural-subunit-models.txt
+5945-teaching-machines-to-read-and-comprehend.txt
+5732-explore-no-more-improved-high-probability-regret-bounds-for-non-stochastic-bandits.txt
+
+top-5 similar files of
+5649-spectral-representations-for-convolutional-neural-networks.txt:
+5636-recursive-training-of-2d-3d-convolutional-networks-for-neuronal-boundary-prediction.txt
+5703-robust-gaussian-graphical-modeling-with-the-trimmed-graphical-lasso.txt
+5772-learning-stationary-time-series-using-gaussian-processes-with-nonparametric-kernels.txt
+5889-softstar-heuristic-guided-probabilistic-inference.txt
+5688-halting-in-random-walk-kernels.txt
+
+top-5 similar files of 5807-policy-evaluation-using-the-return.txt:
+5884-is-approval-voting-optimal-given-approval-votes.txt
+5961-neural-adaptive-sequential-monte-carlo.txt
+5882-inverse-reinforcement-learning-with-locally-consistent-reward-functions.txt
+5877-fixed-length-poisson-mrf-adding-dependencies-to-the-multinomial.txt
+5883-consistent-multilabel-classification.txt
+
+top-5 similar files of
+5672-model-based-relative-entropy-stochastic-search.txt:
+5708-a-class-of-network-models-recoverable-by-spectral-clustering.txt
+5896-learning-large-scale-poisson-dag-models-based-on-overdispersion-scoring.txt
+5642-parallel-multi-dimensional-lstm-with-application-to-fast-biomedical-volumetric-image-segmentation.txt
+5710-smooth-and-strong-map-inference-with-linear-convergence.txt
+5841-information-theoretic-lower-bounds-for-convex-optimization-with-erroneous-oracles.txt
+
+top-5 similar files of
+5796-learning-continuous-control-policies-by-stochastic-value-gradients.txt:
+5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints.txt
+6014-risk-sensitive-and-robust-decision-making-a-cvar-optimization-approach.txt
+5884-is-approval-voting-optimal-given-approval-votes.txt
+5861-learning-wake-sleep-recurrent-attention-models.txt
+5797-path-sgd-path-normalized-optimization-in-deep-neural-networks.txt
+
+top-5 similar files of
+5968-particle-gibbs-for-infinite-hidden-markov-models.txt:
+5667-infinite-factorial-dynamical-model.txt
+6026-revenue-optimization-against-strategic-buyers.txt
+5679-learning-with-a-wasserstein-loss.txt
+6011-column-selection-via-adaptive-sampling.txt
+6035-adaptive-low-complexity-sequential-inference-for-dirichlet-process-mixture-models.txt
+
+top-5 similar files of
+5869-structured-transforms-for-small-footprint-deep-learning.txt:
+5964-embed-to-control-a-locally-linear-latent-dynamics-model-for-control-from-raw-images.txt
+5787-tensorizing-neural-networks.txt
+5978-covariance-controlled-adaptive-langevin-thermostat-for-large-scale-bayesian-sampling.txt
+5965-bayesian-dark-knowledge.txt
+5767-high-dimensional-neural-spike-train-analysis-with-generalized-count-linear-dynamical-systems.txt
+
+top-5 similar files of
+5717-taming-the-wild-a-unified-analysis-of-hogwild-style-algorithms.txt:
+5965-bayesian-dark-knowledge.txt
+5708-a-class-of-network-models-recoverable-by-spectral-clustering.txt
+5757-rapidly-mixing-gibbs-sampling-for-a-class-of-factor-graphs-using-hierarchy-width.txt
+5719-on-the-limitation-of-spectral-methods-from-the-gaussian-hidden-clique-problem-to-rank-one-perturbations-of-gaussian-tensors.txt
+5821-on-variance-reduction-in-stochastic-gradient-descent-and-its-asynchronous-variants.txt
+
+top-5 similar files of 5658-calibrated-structured-prediction.txt:
+5860-on-the-job-learning-with-bayesian-decision-theory.txt
+5965-bayesian-dark-knowledge.txt
+5745-distributionally-robust-logistic-regression.txt
+5798-learning-with-group-invariant-features-a-kernel-perspective.txt
+6032-the-pareto-regret-frontier-for-bandits.txt
+
+top-5 similar files of
+5939-efficient-and-parsimonious-agnostic-active-learning.txt:
+5988-active-learning-from-weak-and-strong-labelers.txt
+5926-quartz-randomized-dual-coordinate-ascent-with-arbitrary-sampling.txt
+5802-planar-ultrametrics-for-image-segmentation.txt
+6027-on-top-k-selection-in-multi-armed-bandits-and-hidden-bipartite-graphs.txt
+5755-linear-response-methods-for-accurate-covariance-estimates-from-mean-field-variational-bayes.txt
+
+top-5 similar files of
+6000-predtron-a-family-of-online-algorithms-for-general-prediction-problems.txt:
+5834-structured-estimation-with-atomic-norms-general-bounds-and-applications.txt
+5843-accelerated-mirror-descent-in-continuous-and-discrete-time.txt
+5719-on-the-limitation-of-spectral-methods-from-the-gaussian-hidden-clique-problem-to-rank-one-perturbations-of-gaussian-tensors.txt
+5951-learning-to-linearize-under-uncertainty.txt
+5777-visalogy-answering-visual-analogy-questions.txt
+
+top-5 similar files of
+5855-a-reduced-dimension-fmri-shared-response-model.txt:
+6032-the-pareto-regret-frontier-for-bandits.txt
+5763-fast-convergence-of-regularized-learning-in-games.txt
+5968-particle-gibbs-for-infinite-hidden-markov-models.txt
+5959-cross-domain-matching-for-bag-of-words-data-via-kernel-embeddings-of-latent-distributions.txt
+5672-model-based-relative-entropy-stochastic-search.txt
+
+top-5 similar files of
+5762-competitive-distribution-estimation-why-is-good-turing-good.txt:
+5696-on-the-convergence-of-stochastic-gradient-mcmc-algorithms-with-high-order-integrators.txt
+6011-column-selection-via-adaptive-sampling.txt
+5853-the-return-of-the-gating-network-combining-generative-models-and-discriminative-training-in-natural-image-priors.txt
+5837-empirical-localization-of-homogeneous-divergences-on-discrete-sample-spaces.txt
+5962-convolutional-spike-triggered-covariance-analysis-for-neural-subunit-models.txt
+
+top-5 similar files of 5741-submodular-hamming-metrics.txt:
+5706-mixed-robustaverage-submodular-partitioning-fast-algorithms-guarantees-and-applications.txt
+5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints.txt
+5881-optimization-monte-carlo-efficient-and-embarrassingly-parallel-likelihood-free-inference.txt
+5961-neural-adaptive-sequential-monte-carlo.txt
+5912-bounding-errors-of-expectation-propagation.txt
+
+top-5 similar files of
+5872-efficient-and-robust-automated-machine-learning.txt:
+5755-linear-response-methods-for-accurate-covariance-estimates-from-mean-field-variational-bayes.txt
+5826-a-universal-primal-dual-convex-optimization-framework.txt
+5779-submodboxes-near-optimal-search-for-a-set-of-diverse-object-proposals.txt
+5939-efficient-and-parsimonious-agnostic-active-learning.txt
+5681-fast-and-accurate-inference-of-plackettluce-models.txt
+
+top-5 similar files of
+5693-sample-complexity-bounds-for-iterative-stochastic-policy-optimization.txt:
+5912-bounding-errors-of-expectation-propagation.txt
+5917-sparse-linear-programming-via-primal-and-dual-augmented-coordinate-descent.txt
+5763-fast-convergence-of-regularized-learning-in-games.txt
+6025-online-learning-for-adversaries-with-memory-price-of-past-mistakes.txt
+5756-latent-bayesian-melding-for-integrating-individual-and-population-models.txt
+
+top-5 similar files of
+5804-parallel-predictive-entropy-search-for-batch-global-optimization-of-expensive-objective-functions.txt:
+5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints.txt
+5774-shepard-convolutional-neural-networks.txt
+5737-super-resolution-off-the-grid.txt
+5702-estimating-mixture-models-via-mixtures-of-polynomials.txt
+6006-learning-structured-densities-via-infinite-dimensional-exponential-families.txt
+
+top-5 similar files of
+5660-dependent-multinomial-models-made-easy-stick-breaking-with-the-polya-gamma-augmentation.txt:
+6031-asynchronous-stochastic-convex-optimization-the-noise-is-in-the-noise-and-sgd-dont-care.txt
+5853-the-return-of-the-gating-network-combining-generative-models-and-discriminative-training-in-natural-image-priors.txt
+5786-deep-poisson-factor-modeling.txt
+5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints.txt
+5763-fast-convergence-of-regularized-learning-in-games.txt
+
+top-5 similar files of
+5794-probabilistic-curve-learning-coulomb-repulsion-and-the-electrostatic-gaussian-process.txt:
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5973-bayesian-manifold-learning-the-locally-linear-latent-variable-model-ll-lvm.txt
+5799-a-hybrid-sampler-for-poisson-kingman-mixture-models.txt
+5929-fast-and-memory-optimal-low-rank-matrix-approximation.txt
+5996-optimal-ridge-detection-using-coverage-risk.txt
+
+top-5 similar files of
+5777-visalogy-answering-visual-analogy-questions.txt:
+5641-are-you-talking-to-a-machine-dataset-and-methods-for-multilingual-image-question.txt
+5776-expressing-an-image-stream-with-a-sequence-of-natural-sentences.txt
+5793-the-population-posterior-and-bayesian-modeling-on-streams.txt
+5763-fast-convergence-of-regularized-learning-in-games.txt
+5686-adversarial-prediction-games-for-multivariate-losses.txt
+
+top-5 similar files of
+5827-sample-complexity-of-episodic-fixed-horizon-reinforcement-learning.txt:
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt
+5763-fast-convergence-of-regularized-learning-in-games.txt
+5659-a-bayesian-framework-for-modeling-confidence-in-perceptual-decision-making.txt
+5694-basis-refinement-strategies-for-linear-value-function-approximation-in-mdps.txt
+5878-human-memory-search-as-initial-visit-emitting-random-walk.txt
+
+top-5 similar files of
+5648-learning-to-transduce-with-unbounded-memory.txt:
+5857-inferring-algorithmic-patterns-with-stack-augmented-recurrent-nets.txt
+5945-teaching-machines-to-read-and-comprehend.txt
+5842-bandit-smooth-convex-optimization-improving-the-bias-variance-tradeoff.txt
+5862-backpropagation-for-energy-efficient-neuromorphic-computing.txt
+5692-bandits-with-unobserved-confounders-a-causal-approach.txt
+
+top-5 similar files of
+5697-an-active-learning-framework-using-sparse-graph-codes-for-sparse-polynomials-and-graph-sketching.txt:
+5737-super-resolution-off-the-grid.txt
+5719-on-the-limitation-of-spectral-methods-from-the-gaussian-hidden-clique-problem-to-rank-one-perturbations-of-gaussian-tensors.txt
+5702-estimating-mixture-models-via-mixtures-of-polynomials.txt
+5973-bayesian-manifold-learning-the-locally-linear-latent-variable-model-ll-lvm.txt
+5837-empirical-localization-of-homogeneous-divergences-on-discrete-sample-spaces.txt
+
+top-5 similar files of
+6021-efficient-compressive-phase-retrieval-with-constrained-sensing-vectors.txt:
+5823-interpolating-convex-and-non-convex-tensor-decompositions-via-the-subspace-norm.txt
+5740-optimal-rates-for-random-fourier-features.txt
+5733-a-nonconvex-optimization-framework-for-low-rank-matrix-estimation.txt
+5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints.txt
+6034-fast-rates-for-exp-concave-empirical-risk-minimization.txt
+
+top-5 similar files of
+5972-a-fast-universal-algorithm-to-learn-parametric-nonlinear-embeddings.txt:
+5807-policy-evaluation-using-the-return.txt
+5913-local-smoothness-in-variance-reduced-optimization.txt
+5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints.txt
+5844-adaptive-online-learning.txt
+5830-a-convergent-gradient-descent-algorithm-for-rank-minimization-and-semidefinite-programming-from-random-linear-measurements.txt
+
+top-5 similar files of 5654-deep-knowledge-tracing.txt:
+5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints.txt
+5739-lasso-with-non-linear-measurements-is-equivalent-to-one-with-linear-measurements.txt
+5708-a-class-of-network-models-recoverable-by-spectral-clustering.txt
+5651-bidirectional-recurrent-neural-networks-as-generative-models.txt
+5646-semi-supervised-factored-logistic-regression-for-high-dimensional-neuroimaging-data.txt
+
+top-5 similar files of
+5897-streaming-min-max-hypergraph-partitioning.txt:
+5645-the-poisson-gamma-belief-network.txt
+5642-parallel-multi-dimensional-lstm-with-application-to-fast-biomedical-volumetric-image-segmentation.txt
+5901-sparse-pca-via-bipartite-matchings.txt
+5708-a-class-of-network-models-recoverable-by-spectral-clustering.txt
+5729-nearly-optimal-private-lasso.txt
+
+top-5 similar files of
+5982-efficient-learning-by-directed-acyclic-graph-for-resource-constrained-prediction.txt:
+5794-probabilistic-curve-learning-coulomb-repulsion-and-the-electrostatic-gaussian-process.txt
+5723-adaptive-primal-dual-splitting-methods-for-statistical-learning-and-image-processing.txt
+5920-non-convex-statistical-optimization-for-sparse-tensor-graphical-model.txt
+5652-recognizing-retinal-ganglion-cells-in-the-dark.txt
+5851-deep-convolutional-inverse-graphics-network.txt
+
+top-5 similar files of
+5826-a-universal-primal-dual-convex-optimization-framework.txt:
+5699-gap-safe-screening-rules-for-sparse-multi-task-and-multi-class-models.txt
+5723-adaptive-primal-dual-splitting-methods-for-statistical-learning-and-image-processing.txt
+5795-preconditioned-spectral-descent-for-deep-learning.txt
+5653-a-recurrent-latent-variable-model-for-sequential-data.txt
+6032-the-pareto-regret-frontier-for-bandits.txt
+
+top-5 similar files of 5787-tensorizing-neural-networks.txt:
+5987-fast-lifted-map-inference-via-partitioning.txt
+5723-adaptive-primal-dual-splitting-methods-for-statistical-learning-and-image-processing.txt
+5711-stopwasting-my-gradients-practical-svrg.txt
+5916-matrix-completion-under-monotonic-single-index-models.txt
+5869-structured-transforms-for-small-footprint-deep-learning.txt
+
+top-5 similar files of
+5819-sgd-algorithms-based-on-incomplete-u-statistics-large-scale-minimization-of-empirical-risk.txt:
+5919-variance-reduced-stochastic-gradient-descent-with-neighbors.txt
+5747-extending-gossip-algorithms-to-distributed-estimation-of-u-statistics.txt
+5695-probabilistic-variational-bounds-for-graphical-models.txt
+5923-policy-gradient-for-coherent-risk-measures.txt
+5738-b-bit-marginal-regression.txt
+
+top-5 similar files of
+5825-semi-proximal-mirror-prox-for-nonsmooth-composite-minimization.txt:
+5728-accelerated-proximal-gradient-methods-for-nonconvex-programming.txt
+5979-time-sensitive-recommendation-from-recurrent-user-activities.txt
+5725-online-gradient-boosting.txt
+5928-a-universal-catalyst-for-first-order-optimization.txt
+5912-bounding-errors-of-expectation-propagation.txt
+
+top-5 similar files of
+5946-saliency-scale-and-information-towards-a-unifying-theory.txt:
+5774-shepard-convolutional-neural-networks.txt
+5750-newton-stein-method-a-second-order-method-for-glms-via-steins-lemma.txt
+5730-minimax-time-series-prediction.txt
+5667-infinite-factorial-dynamical-model.txt
+5797-path-sgd-path-normalized-optimization-in-deep-neural-networks.txt
+
+top-5 similar files of 5850-training-very-deep-networks.txt:
+5955-convolutional-lstm-network-a-machine-learning-approach-for-precipitation-nowcasting.txt
+5635-grammar-as-a-foreign-language.txt
+5718-beyond-convexity-stochastic-quasi-convex-optimization.txt
+5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints.txt
+5806-on-the-accuracy-of-self-normalized-log-linear-models.txt
+
+top-5 similar files of
+5699-gap-safe-screening-rules-for-sparse-multi-task-and-multi-class-models.txt:
+5826-a-universal-primal-dual-convex-optimization-framework.txt
+5949-semi-supervised-sequence-learning.txt
+5838-multi-layer-feature-reduction-for-tree-structured-group-lasso-via-hierarchical-projection.txt
+5938-collaborative-filtering-with-graph-information-consistency-and-scalable-methods.txt
+5794-probabilistic-curve-learning-coulomb-repulsion-and-the-electrostatic-gaussian-process.txt
+
+top-5 similar files of 6016-no-regret-learning-in-bayesian-games.txt:
+5763-fast-convergence-of-regularized-learning-in-games.txt
+5666-variational-dropout-and-the-local-reparameterization-trick.txt
+6026-revenue-optimization-against-strategic-buyers.txt
+5770-large-scale-bayesian-multi-label-learning-via-topic-based-label-embeddings.txt
+5860-on-the-job-learning-with-bayesian-decision-theory.txt
+
+top-5 similar files of
+5870-equilibrated-adaptive-learning-rates-for-non-convex-optimization.txt:
+6014-risk-sensitive-and-robust-decision-making-a-cvar-optimization-approach.txt
+5797-path-sgd-path-normalized-optimization-in-deep-neural-networks.txt
+5665-scalable-inference-for-gaussian-process-models-with-black-box-likelihoods.txt
+5975-discriminative-robust-transformation-learning.txt
+5953-natural-neural-networks.txt
+
+top-5 similar files of
+5967-end-to-end-learning-of-lda-by-mirror-descent-back-propagation-over-a-deep-architecture.txt:
+5866-pointer-networks.txt
+5801-reflection-refraction-and-hamiltonian-monte-carlo.txt
+5877-fixed-length-poisson-mrf-adding-dependencies-to-the-multinomial.txt
+5797-path-sgd-path-normalized-optimization-in-deep-neural-networks.txt
+5772-learning-stationary-time-series-using-gaussian-processes-with-nonparametric-kernels.txt
+
+top-5 similar files of
+5801-reflection-refraction-and-hamiltonian-monte-carlo.txt:
+5830-a-convergent-gradient-descent-algorithm-for-rank-minimization-and-semidefinite-programming-from-random-linear-measurements.txt
+5808-community-detection-via-measure-space-embedding.txt
+5934-finite-time-analysis-of-projected-langevin-monte-carlo.txt
+5941-learning-with-symmetric-label-noise-the-importance-of-being-unhinged.txt
+5967-end-to-end-learning-of-lda-by-mirror-descent-back-propagation-over-a-deep-architecture.txt
+
+top-5 similar files of 5683-learning-with-relaxed-supervision.txt:
+6027-on-top-k-selection-in-multi-armed-bandits-and-hidden-bipartite-graphs.txt
+6033-online-learning-with-gaussian-payoffs-and-side-observations.txt
+5837-empirical-localization-of-homogeneous-divergences-on-discrete-sample-spaces.txt
+5729-nearly-optimal-private-lasso.txt
+5658-calibrated-structured-prediction.txt
+
+top-5 similar files of
+5978-covariance-controlled-adaptive-langevin-thermostat-for-large-scale-bayesian-sampling.txt:
+5715-bayesian-optimization-with-exponential-convergence.txt
+5660-dependent-multinomial-models-made-easy-stick-breaking-with-the-polya-gamma-augmentation.txt
+5934-finite-time-analysis-of-projected-langevin-monte-carlo.txt
+5843-accelerated-mirror-descent-in-continuous-and-discrete-time.txt
+6035-adaptive-low-complexity-sequential-inference-for-dirichlet-process-mixture-models.txt
+
+top-5 similar files of
+5740-optimal-rates-for-random-fourier-features.txt:
+5922-when-are-kalman-filter-restless-bandits-indexable.txt
+6021-efficient-compressive-phase-retrieval-with-constrained-sensing-vectors.txt
+5772-learning-stationary-time-series-using-gaussian-processes-with-nonparametric-kernels.txt
+5943-spherical-random-features-for-polynomial-kernels.txt
+5794-probabilistic-curve-learning-coulomb-repulsion-and-the-electrostatic-gaussian-process.txt
+
+top-5 similar files of
+5788-training-restricted-boltzmann-machine-via-the-thouless-anderson-palmer-free-energy.txt:
+5734-individual-planning-in-infinite-horizon-multiagent-settings-inference-structure-and-scalability.txt
+5699-gap-safe-screening-rules-for-sparse-multi-task-and-multi-class-models.txt
+5655-deep-temporal-sigmoid-belief-networks-for-sequence-modeling.txt
+5795-preconditioned-spectral-descent-for-deep-learning.txt
+5728-accelerated-proximal-gradient-methods-for-nonconvex-programming.txt
+
+top-5 similar files of
+5749-frank-wolfe-bayesian-quadrature-probabilistic-integration-with-theoretical-guarantees.txt:
+5841-information-theoretic-lower-bounds-for-convex-optimization-with-erroneous-oracles.txt
+5853-the-return-of-the-gating-network-combining-generative-models-and-discriminative-training-in-natural-image-priors.txt
+5844-adaptive-online-learning.txt
+5887-statistical-topological-data-analysis-a-kernel-perspective.txt
+5997-fast-distributed-k-center-clustering-with-outliers-on-massive-data.txt
+
+top-5 similar files of
+5778-bidirectional-recurrent-convolutional-networks-for-multi-frame-super-resolution.txt:
+5774-shepard-convolutional-neural-networks.txt
+5719-on-the-limitation-of-spectral-methods-from-the-gaussian-hidden-clique-problem-to-rank-one-perturbations-of-gaussian-tensors.txt
+5769-biologically-inspired-dynamic-textures-for-probing-motion-perception.txt
+5853-the-return-of-the-gating-network-combining-generative-models-and-discriminative-training-in-natural-image-priors.txt
+5653-a-recurrent-latent-variable-model-for-sequential-data.txt
+
+top-5 similar files of
+5930-stochastic-online-greedy-learning-with-semi-bandit-feedbacks.txt:
+5700-decomposition-bounds-for-marginal-map.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+6025-online-learning-for-adversaries-with-memory-price-of-past-mistakes.txt
+5986-parallelizing-mcmc-with-random-partition-trees.txt
+6026-revenue-optimization-against-strategic-buyers.txt
+
+top-5 similar files of
+5668-variational-information-maximisation-for-intrinsically-motivated-reinforcement-learning.txt:
+5996-optimal-ridge-detection-using-coverage-risk.txt
+5774-shepard-convolutional-neural-networks.txt
+5990-a-pseudo-euclidean-iteration-for-optimal-recovery-in-noisy-ica.txt
+5889-softstar-heuristic-guided-probabilistic-inference.txt
+5656-hidden-technical-debt-in-machine-learning-systems.txt
+
+top-5 similar files of
+5865-efficient-exact-gradient-update-for-training-deep-networks-with-very-large-sparse-targets.txt:
+5640-exploring-models-and-data-for-image-question-answering.txt
+5642-parallel-multi-dimensional-lstm-with-application-to-fast-biomedical-volumetric-image-segmentation.txt
+5886-efficient-non-greedy-optimization-of-decision-trees.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+6024-regret-lower-bound-and-optimal-algorithm-in-finite-stochastic-partial-monitoring.txt
+
+top-5 similar files of
+5694-basis-refinement-strategies-for-linear-value-function-approximation-in-mdps.txt:
+5827-sample-complexity-of-episodic-fixed-horizon-reinforcement-learning.txt
+5741-submodular-hamming-metrics.txt
+5852-learning-to-segment-object-candidates.txt
+6030-fighting-bandits-with-a-new-kind-of-smoothness.txt
+5710-smooth-and-strong-map-inference-with-linear-convergence.txt
+
+top-5 similar files of
+5880-a-structural-smoothing-framework-for-robust-graph-comparison.txt:
+5688-halting-in-random-walk-kernels.txt
+5674-expectation-particle-belief-propagation.txt
+5826-a-universal-primal-dual-convex-optimization-framework.txt
+6027-on-top-k-selection-in-multi-armed-bandits-and-hidden-bipartite-graphs.txt
+5996-optimal-ridge-detection-using-coverage-risk.txt
+
+top-5 similar files of 6004-secure-multi-party-differential-privacy.txt:
+5729-nearly-optimal-private-lasso.txt
+5911-nonparametric-von-mises-estimators-for-entropies-divergences-and-mutual-informations.txt
+5841-information-theoretic-lower-bounds-for-convex-optimization-with-erroneous-oracles.txt
+5698-discrete-renyi-classifiers.txt
+5797-path-sgd-path-normalized-optimization-in-deep-neural-networks.txt
+
+top-5 similar files of
+5709-monotone-k-submodular-function-maximization-with-size-constraints.txt:
+5927-a-generalization-of-submodular-cover-via-the-diminishing-return-property-on-the-integer-lattice.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5679-learning-with-a-wasserstein-loss.txt
+5830-a-convergent-gradient-descent-algorithm-for-rank-minimization-and-semidefinite-programming-from-random-linear-measurements.txt
+5930-stochastic-online-greedy-learning-with-semi-bandit-feedbacks.txt
+
+top-5 similar files of
+5940-matrix-completion-with-noisy-side-information.txt:
+5938-collaborative-filtering-with-graph-information-consistency-and-scalable-methods.txt
+5916-matrix-completion-under-monotonic-single-index-models.txt
+5971-space-time-local-embeddings.txt
+5927-a-generalization-of-submodular-cover-via-the-diminishing-return-property-on-the-integer-lattice.txt
+5766-on-the-pseudo-dimension-of-nearly-optimal-auctions.txt
+
+top-5 similar files of
+5650-a-theory-of-decision-making-under-dynamic-context.txt:
+5793-the-population-posterior-and-bayesian-modeling-on-streams.txt
+5639-weakly-supervised-disentangling-with-recurrent-transformations-for-3d-view-synthesis.txt
+5912-bounding-errors-of-expectation-propagation.txt
+6011-column-selection-via-adaptive-sampling.txt
+5705-robust-pca-with-compressed-data.txt
+
+top-5 similar files of
+5639-weakly-supervised-disentangling-with-recurrent-transformations-for-3d-view-synthesis.txt:
+5845-deep-visual-analogy-making.txt
+5851-deep-convolutional-inverse-graphics-network.txt
+5949-semi-supervised-sequence-learning.txt
+5723-adaptive-primal-dual-splitting-methods-for-statistical-learning-and-image-processing.txt
+5635-grammar-as-a-foreign-language.txt
+
+top-5 similar files of
+5917-sparse-linear-programming-via-primal-and-dual-augmented-coordinate-descent.txt:
+5924-a-dual-augmented-block-minimization-framework-for-learning-with-limited-memory.txt
+5693-sample-complexity-bounds-for-iterative-stochastic-policy-optimization.txt
+5798-learning-with-group-invariant-features-a-kernel-perspective.txt
+5644-3d-object-proposals-for-accurate-object-class-detection.txt
+6021-efficient-compressive-phase-retrieval-with-constrained-sensing-vectors.txt
+
+top-5 similar files of
+5637-generative-image-modeling-using-spatial-lstms.txt:
+5999-fast-classification-rates-for-high-dimensional-gaussian-generative-models.txt
+6006-learning-structured-densities-via-infinite-dimensional-exponential-families.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5719-on-the-limitation-of-spectral-methods-from-the-gaussian-hidden-clique-problem-to-rank-one-perturbations-of-gaussian-tensors.txt
+5870-equilibrated-adaptive-learning-rates-for-non-convex-optimization.txt
+
+top-5 similar files of
+6030-fighting-bandits-with-a-new-kind-of-smoothness.txt:
+5732-explore-no-more-improved-high-probability-regret-bounds-for-non-stochastic-bandits.txt
+5758-automatic-variational-inference-in-stan.txt
+5892-barrier-frank-wolfe-for-marginal-inference.txt
+6024-regret-lower-bound-and-optimal-algorithm-in-finite-stochastic-partial-monitoring.txt
+6002-smooth-interactive-submodular-set-cover.txt
+
+top-5 similar files of 5725-online-gradient-boosting.txt:
+5825-semi-proximal-mirror-prox-for-nonsmooth-composite-minimization.txt
+6032-the-pareto-regret-frontier-for-bandits.txt
+5999-fast-classification-rates-for-high-dimensional-gaussian-generative-models.txt
+5975-discriminative-robust-transformation-learning.txt
+5923-policy-gradient-for-coherent-risk-measures.txt
+
+top-5 similar files of
+5984-sample-efficient-path-integral-control-under-uncertainty.txt:
+5994-online-f-measure-optimization.txt
+5764-interactive-control-of-diverse-complex-characters-with-neural-networks.txt
+5693-sample-complexity-bounds-for-iterative-stochastic-policy-optimization.txt
+5854-spatial-transformer-networks.txt
+5922-when-are-kalman-filter-restless-bandits-indexable.txt
+
+top-5 similar files of
+5921-convergence-rates-of-active-learning-for-maximum-likelihood-estimation.txt:
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5988-active-learning-from-weak-and-strong-labelers.txt
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt
+5771-closed-form-estimators-for-high-dimensional-generalized-linear-models.txt
+5962-convolutional-spike-triggered-covariance-analysis-for-neural-subunit-models.txt
+
+top-5 similar files of
+5641-are-you-talking-to-a-machine-dataset-and-methods-for-multilingual-image-question.txt:
+5640-exploring-models-and-data-for-image-question-answering.txt
+5701-anytime-influence-bounds-and-the-explosive-behavior-of-continuous-time-diffusion-networks.txt
+5777-visalogy-answering-visual-analogy-questions.txt
+5846-end-to-end-memory-networks.txt
+5647-binaryconnect-training-deep-neural-networks-with-binary-weights-during-propagations.txt
+
+top-5 similar files of 5667-infinite-factorial-dynamical-model.txt:
+5968-particle-gibbs-for-infinite-hidden-markov-models.txt
+5775-learning-structured-output-representation-using-deep-conditional-generative-models.txt
+5837-empirical-localization-of-homogeneous-divergences-on-discrete-sample-spaces.txt
+5812-matrix-manifold-optimization-for-gaussian-mixtures.txt
+5647-binaryconnect-training-deep-neural-networks-with-binary-weights-during-propagations.txt
+
+top-5 similar files of
+5933-on-the-consistency-theory-of-high-dimensional-variable-screening.txt:
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5745-distributionally-robust-logistic-regression.txt
+5986-parallelizing-mcmc-with-random-partition-trees.txt
+5941-learning-with-symmetric-label-noise-the-importance-of-being-unhinged.txt
+6024-regret-lower-bound-and-optimal-algorithm-in-finite-stochastic-partial-monitoring.txt
+
+top-5 similar files of 6002-smooth-interactive-submodular-set-cover.txt:
+6030-fighting-bandits-with-a-new-kind-of-smoothness.txt
+5922-when-are-kalman-filter-restless-bandits-indexable.txt
+6005-adaptive-stochastic-optimization-from-sets-to-paths.txt
+5774-shepard-convolutional-neural-networks.txt
+5640-exploring-models-and-data-for-image-question-answering.txt
+
+top-5 similar files of
+5751-asynchronous-parallel-stochastic-gradient-for-nonconvex-optimization.txt:
+6031-asynchronous-stochastic-convex-optimization-the-noise-is-in-the-noise-and-sgd-dont-care.txt
+5924-a-dual-augmented-block-minimization-framework-for-learning-with-limited-memory.txt
+5717-taming-the-wild-a-unified-analysis-of-hogwild-style-algorithms.txt
+5686-adversarial-prediction-games-for-multivariate-losses.txt
+5638-faster-r-cnn-towards-real-time-object-detection-with-region-proposal-networks.txt
+
+top-5 similar files of 5852-learning-to-segment-object-candidates.txt:
+5638-faster-r-cnn-towards-real-time-object-detection-with-region-proposal-networks.txt
+5644-3d-object-proposals-for-accurate-object-class-detection.txt
+5998-orthogonal-nmf-through-subspace-exploration.txt
+6026-revenue-optimization-against-strategic-buyers.txt
+5964-embed-to-control-a-locally-linear-latent-dynamics-model-for-control-from-raw-images.txt
+
+top-5 similar files of
+5902-weighted-theta-functions-and-embeddings-with-applications-to-max-cut-clustering-and-summarization.txt:
+5712-spectral-norm-regularization-of-orthonormal-representations-for-graph-transduction.txt
+5762-competitive-distribution-estimation-why-is-good-turing-good.txt
+5737-super-resolution-off-the-grid.txt
+5812-matrix-manifold-optimization-for-gaussian-mixtures.txt
+5807-policy-evaluation-using-the-return.txt
+
+top-5 similar files of
+5652-recognizing-retinal-ganglion-cells-in-the-dark.txt:
+6006-learning-structured-densities-via-infinite-dimensional-exponential-families.txt
+6024-regret-lower-bound-and-optimal-algorithm-in-finite-stochastic-partial-monitoring.txt
+5879-spectral-learning-of-large-structured-hmms-for-comparative-epigenomics.txt
+6015-learning-with-incremental-iterative-regularization.txt
+5962-convolutional-spike-triggered-covariance-analysis-for-neural-subunit-models.txt
+
+top-5 similar files of
+5656-hidden-technical-debt-in-machine-learning-systems.txt:
+5701-anytime-influence-bounds-and-the-explosive-behavior-of-continuous-time-diffusion-networks.txt
+5786-deep-poisson-factor-modeling.txt
+5668-variational-information-maximisation-for-intrinsically-motivated-reinforcement-learning.txt
+5728-accelerated-proximal-gradient-methods-for-nonconvex-programming.txt
+5778-bidirectional-recurrent-convolutional-networks-for-multi-frame-super-resolution.txt
+
+top-5 similar files of
+5904-segregated-graphs-and-marginals-of-chain-graph-models.txt:
+6027-on-top-k-selection-in-multi-armed-bandits-and-hidden-bipartite-graphs.txt
+5806-on-the-accuracy-of-self-normalized-log-linear-models.txt
+5852-learning-to-segment-object-candidates.txt
+5756-latent-bayesian-melding-for-integrating-individual-and-population-models.txt
+5690-online-prediction-at-the-limit-of-zero-temperature.txt
+
+top-5 similar files of
+5829-honor-hybrid-optimization-for-non-convex-regularized-problems.txt:
+5728-accelerated-proximal-gradient-methods-for-nonconvex-programming.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5718-beyond-convexity-stochastic-quasi-convex-optimization.txt
+5996-optimal-ridge-detection-using-coverage-risk.txt
+5956-scheduled-sampling-for-sequence-prediction-with-recurrent-neural-networks.txt
+
+top-5 similar files of
+5955-convolutional-lstm-network-a-machine-learning-approach-for-precipitation-nowcasting.txt:
+5850-training-very-deep-networks.txt
+5642-parallel-multi-dimensional-lstm-with-application-to-fast-biomedical-volumetric-image-segmentation.txt
+5679-learning-with-a-wasserstein-loss.txt
+5793-the-population-posterior-and-bayesian-modeling-on-streams.txt
+5770-large-scale-bayesian-multi-label-learning-via-topic-based-label-embeddings.txt
+
+top-5 similar files of
+6026-revenue-optimization-against-strategic-buyers.txt:
+6024-regret-lower-bound-and-optimal-algorithm-in-finite-stochastic-partial-monitoring.txt
+5968-particle-gibbs-for-infinite-hidden-markov-models.txt
+5852-learning-to-segment-object-candidates.txt
+6003-tractable-bayesian-network-structure-learning-with-bounded-vertex-cover-number.txt
+5862-backpropagation-for-energy-efficient-neuromorphic-computing.txt
+
+top-5 similar files of
+5646-semi-supervised-factored-logistic-regression-for-high-dimensional-neuroimaging-data.txt:
+5702-estimating-mixture-models-via-mixtures-of-polynomials.txt
+5967-end-to-end-learning-of-lda-by-mirror-descent-back-propagation-over-a-deep-architecture.txt
+5654-deep-knowledge-tracing.txt
+5842-bandit-smooth-convex-optimization-improving-the-bias-variance-tradeoff.txt
+5634-convolutional-neural-networks-with-intra-layer-recurrent-connections-for-scene-labeling.txt
+
+top-5 similar files of
+5759-data-generation-as-sequential-decision-making.txt:
+5730-minimax-time-series-prediction.txt
+5717-taming-the-wild-a-unified-analysis-of-hogwild-style-algorithms.txt
+5796-learning-continuous-control-policies-by-stochastic-value-gradients.txt
+5648-learning-to-transduce-with-unbounded-memory.txt
+5755-linear-response-methods-for-accurate-covariance-estimates-from-mean-field-variational-bayes.txt
+
+top-5 similar files of 5822-subset-selection-by-pareto-optimization.txt:
+5752-distributed-submodular-cover-succinctly-summarizing-massive-data.txt
+6025-online-learning-for-adversaries-with-memory-price-of-past-mistakes.txt
+5734-individual-planning-in-infinite-horizon-multiagent-settings-inference-structure-and-scalability.txt
+5878-human-memory-search-as-initial-visit-emitting-random-walk.txt
+5953-natural-neural-networks.txt
+
+top-5 similar files of
+5808-community-detection-via-measure-space-embedding.txt:
+5801-reflection-refraction-and-hamiltonian-monte-carlo.txt
+5841-information-theoretic-lower-bounds-for-convex-optimization-with-erroneous-oracles.txt
+5636-recursive-training-of-2d-3d-convolutional-networks-for-neuronal-boundary-prediction.txt
+5975-discriminative-robust-transformation-learning.txt
+5983-estimating-jaccard-index-with-missing-observations-a-matrix-calibration-approach.txt
+
+top-5 similar files of
+6014-risk-sensitive-and-robust-decision-making-a-cvar-optimization-approach.txt:
+5923-policy-gradient-for-coherent-risk-measures.txt
+5870-equilibrated-adaptive-learning-rates-for-non-convex-optimization.txt
+5796-learning-continuous-control-policies-by-stochastic-value-gradients.txt
+5801-reflection-refraction-and-hamiltonian-monte-carlo.txt
+5737-super-resolution-off-the-grid.txt
+
+top-5 similar files of
+5706-mixed-robustaverage-submodular-partitioning-fast-algorithms-guarantees-and-applications.txt:
+5741-submodular-hamming-metrics.txt
+5705-robust-pca-with-compressed-data.txt
+5862-backpropagation-for-energy-efficient-neuromorphic-computing.txt
+5763-fast-convergence-of-regularized-learning-in-games.txt
+5635-grammar-as-a-foreign-language.txt
+
+top-5 similar files of
+5791-deeply-learning-the-messages-in-message-passing-inference.txt:
+5975-discriminative-robust-transformation-learning.txt
+5669-copula-variational-inference.txt
+5690-online-prediction-at-the-limit-of-zero-temperature.txt
+5932-exactness-of-approximate-map-inference-in-continuous-mrfs.txt
+5787-tensorizing-neural-networks.txt
+
+top-5 similar files of
+5890-gradient-free-hamiltonian-monte-carlo-with-efficient-kernel-exponential-families.txt:
+6006-learning-structured-densities-via-infinite-dimensional-exponential-families.txt
+5639-weakly-supervised-disentangling-with-recurrent-transformations-for-3d-view-synthesis.txt
+5793-the-population-posterior-and-bayesian-modeling-on-streams.txt
+6017-sparse-and-low-rank-tensor-decomposition.txt
+6035-adaptive-low-complexity-sequential-inference-for-dirichlet-process-mixture-models.txt
+
+top-5 similar files of
+5907-maximum-likelihood-learning-with-arbitrary-treewidth-via-fast-mixing-parameter-sets.txt:
+5795-preconditioned-spectral-descent-for-deep-learning.txt
+5959-cross-domain-matching-for-bag-of-words-data-via-kernel-embeddings-of-latent-distributions.txt
+5986-parallelizing-mcmc-with-random-partition-trees.txt
+5676-tractable-learning-for-complex-probability-queries.txt
+5815-fast-bidirectional-probability-estimation-in-markov-models.txt
+
+top-5 similar files of
+5768-measuring-sample-quality-with-steins-method.txt:
+5726-regularization-free-estimation-in-trace-regression-with-symmetric-positive-semidefinite-matrices.txt
+6015-learning-with-incremental-iterative-regularization.txt
+5763-fast-convergence-of-regularized-learning-in-games.txt
+5830-a-convergent-gradient-descent-algorithm-for-rank-minimization-and-semidefinite-programming-from-random-linear-measurements.txt
+5798-learning-with-group-invariant-features-a-kernel-perspective.txt
+
+top-5 similar files of 5994-online-f-measure-optimization.txt:
+5883-consistent-multilabel-classification.txt
+5903-online-rank-elicitation-for-plackett-luce-a-dueling-bandits-approach.txt
+6030-fighting-bandits-with-a-new-kind-of-smoothness.txt
+5696-on-the-convergence-of-stochastic-gradient-mcmc-algorithms-with-high-order-integrators.txt
+5976-max-margin-majority-voting-for-learning-from-crowds.txt
+
+top-5 similar files of
+6022-unified-view-of-matrix-completion-under-general-structural-constraints.txt:
+5834-structured-estimation-with-atomic-norms-general-bounds-and-applications.txt
+5935-beyond-sub-gaussian-measurements-high-dimensional-structured-estimation-with-sub-exponential-designs.txt
+5714-robust-portfolio-optimization.txt
+5733-a-nonconvex-optimization-framework-for-low-rank-matrix-estimation.txt
+5931-linear-multi-resource-allocation-with-semi-bandit-feedback.txt
+
+top-5 similar files of
+5790-unlocking-neural-population-non-stationarities-using-hierarchical-dynamics-models.txt:
+5973-bayesian-manifold-learning-the-locally-linear-latent-variable-model-ll-lvm.txt
+5767-high-dimensional-neural-spike-train-analysis-with-generalized-count-linear-dynamical-systems.txt
+5965-bayesian-dark-knowledge.txt
+5780-galileo-perceiving-physical-object-properties-by-integrating-a-physics-engine-with-deep-learning.txt
+5679-learning-with-a-wasserstein-loss.txt
+
+top-5 similar files of
+5675-embedding-inference-for-structured-multilabel-prediction.txt:
+5719-on-the-limitation-of-spectral-methods-from-the-gaussian-hidden-clique-problem-to-rank-one-perturbations-of-gaussian-tensors.txt
+5876-streaming-distributed-variational-inference-for-bayesian-nonparametrics.txt
+5923-policy-gradient-for-coherent-risk-measures.txt
+5651-bidirectional-recurrent-neural-networks-as-generative-models.txt
+5842-bandit-smooth-convex-optimization-improving-the-bias-variance-tradeoff.txt
+
+top-5 similar files of
+5924-a-dual-augmented-block-minimization-framework-for-learning-with-limited-memory.txt:
+5917-sparse-linear-programming-via-primal-and-dual-augmented-coordinate-descent.txt
+5730-minimax-time-series-prediction.txt
+5723-adaptive-primal-dual-splitting-methods-for-statistical-learning-and-image-processing.txt
+5647-binaryconnect-training-deep-neural-networks-with-binary-weights-during-propagations.txt
+5763-fast-convergence-of-regularized-learning-in-games.txt
+
+top-5 similar files of
+5784-learning-both-weights-and-connections-for-efficient-neural-network.txt:
+5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints.txt
+5647-binaryconnect-training-deep-neural-networks-with-binary-weights-during-propagations.txt
+5995-a-market-framework-for-eliciting-private-data.txt
+5664-hessian-free-optimization-for-learning-deep-multidimensional-recurrent-neural-networks.txt
+5997-fast-distributed-k-center-clustering-with-outliers-on-massive-data.txt
+
+top-5 similar files of 5883-consistent-multilabel-classification.txt:
+5994-online-f-measure-optimization.txt
+5732-explore-no-more-improved-high-probability-regret-bounds-for-non-stochastic-bandits.txt
+5911-nonparametric-von-mises-estimators-for-entropies-divergences-and-mutual-informations.txt
+5745-distributionally-robust-logistic-regression.txt
+5679-learning-with-a-wasserstein-loss.txt
+
+top-5 similar files of
+5838-multi-layer-feature-reduction-for-tree-structured-group-lasso-via-hierarchical-projection.txt:
+5699-gap-safe-screening-rules-for-sparse-multi-task-and-multi-class-models.txt
+5739-lasso-with-non-linear-measurements-is-equivalent-to-one-with-linear-measurements.txt
+5778-bidirectional-recurrent-convolutional-networks-for-multi-frame-super-resolution.txt
+5834-structured-estimation-with-atomic-norms-general-bounds-and-applications.txt
+5806-on-the-accuracy-of-self-normalized-log-linear-models.txt
+
+top-5 similar files of 5951-learning-to-linearize-under-uncertainty.txt:
+5866-pointer-networks.txt
+5851-deep-convolutional-inverse-graphics-network.txt
+5927-a-generalization-of-submodular-cover-via-the-diminishing-return-property-on-the-integer-lattice.txt
+5778-bidirectional-recurrent-convolutional-networks-for-multi-frame-super-resolution.txt
+5828-private-graphon-estimation-for-sparse-graphs.txt
+
+top-5 similar files of
+5712-spectral-norm-regularization-of-orthonormal-representations-for-graph-transduction.txt:
+5834-structured-estimation-with-atomic-norms-general-bounds-and-applications.txt
+5902-weighted-theta-functions-and-embeddings-with-applications-to-max-cut-clustering-and-summarization.txt
+5679-learning-with-a-wasserstein-loss.txt
+5930-stochastic-online-greedy-learning-with-semi-bandit-feedbacks.txt
+5881-optimization-monte-carlo-efficient-and-embarrassingly-parallel-likelihood-free-inference.txt
+
+top-5 similar files of 5854-spatial-transformer-networks.txt:
+5798-learning-with-group-invariant-features-a-kernel-perspective.txt
+6032-the-pareto-regret-frontier-for-bandits.txt
+5774-shepard-convolutional-neural-networks.txt
+5771-closed-form-estimators-for-high-dimensional-generalized-linear-models.txt
+5640-exploring-models-and-data-for-image-question-answering.txt
+
+top-5 similar files of
+5889-softstar-heuristic-guided-probabilistic-inference.txt:
+5764-interactive-control-of-diverse-complex-characters-with-neural-networks.txt
+5686-adversarial-prediction-games-for-multivariate-losses.txt
+5882-inverse-reinforcement-learning-with-locally-consistent-reward-functions.txt
+5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints.txt
+5984-sample-efficient-path-integral-control-under-uncertainty.txt
+
+top-5 similar files of
+5713-differentially-private-learning-of-structured-discrete-distributions.txt:
+5799-a-hybrid-sampler-for-poisson-kingman-mixture-models.txt
+5729-nearly-optimal-private-lasso.txt
+5839-optimal-testing-for-properties-of-distributions.txt
+5634-convolutional-neural-networks-with-intra-layer-recurrent-connections-for-scene-labeling.txt
+5948-enforcing-balance-allows-local-supervised-learning-in-spiking-recurrent-networks.txt
+
+top-5 similar files of
+5770-large-scale-bayesian-multi-label-learning-via-topic-based-label-embeddings.txt:
+5660-dependent-multinomial-models-made-easy-stick-breaking-with-the-polya-gamma-augmentation.txt
+5955-convolutional-lstm-network-a-machine-learning-approach-for-precipitation-nowcasting.txt
+6016-no-regret-learning-in-bayesian-games.txt
+5845-deep-visual-analogy-making.txt
+5796-learning-continuous-control-policies-by-stochastic-value-gradients.txt
+
+top-5 similar files of 6011-column-selection-via-adaptive-sampling.txt:
+5774-shepard-convolutional-neural-networks.txt
+5735-randomized-block-krylov-methods-for-stronger-and-faster-approximate-singular-value-decomposition.txt
+5762-competitive-distribution-estimation-why-is-good-turing-good.txt
+5968-particle-gibbs-for-infinite-hidden-markov-models.txt
+5666-variational-dropout-and-the-local-reparameterization-trick.txt
+
+top-5 similar files of
+6035-adaptive-low-complexity-sequential-inference-for-dirichlet-process-mixture-models.txt:
+5876-streaming-distributed-variational-inference-for-bayesian-nonparametrics.txt
+5844-adaptive-online-learning.txt
+5895-kullback-leibler-proximal-variational-inference.txt
+5877-fixed-length-poisson-mrf-adding-dependencies-to-the-multinomial.txt
+5968-particle-gibbs-for-infinite-hidden-markov-models.txt
+
+top-5 similar files of 5866-pointer-networks.txt:
+5635-grammar-as-a-foreign-language.txt
+5951-learning-to-linearize-under-uncertainty.txt
+5841-information-theoretic-lower-bounds-for-convex-optimization-with-erroneous-oracles.txt
+5848-where-are-they-looking.txt
+5938-collaborative-filtering-with-graph-information-consistency-and-scalable-methods.txt
+
+top-5 similar files of
+5677-double-or-nothing-multiplicative-incentive-mechanisms-for-crowdsourcing.txt:
+5847-attention-based-models-for-speech-recognition.txt
+5783-winner-take-all-autoencoders.txt
+5975-discriminative-robust-transformation-learning.txt
+5801-reflection-refraction-and-hamiltonian-monte-carlo.txt
+5774-shepard-convolutional-neural-networks.txt
+
+top-5 similar files of
+5816-evaluating-the-statistical-significance-of-biclusters.txt:
+5719-on-the-limitation-of-spectral-methods-from-the-gaussian-hidden-clique-problem-to-rank-one-perturbations-of-gaussian-tensors.txt
+5942-scalable-semi-supervised-aggregation-of-classifiers.txt
+5927-a-generalization-of-submodular-cover-via-the-diminishing-return-property-on-the-integer-lattice.txt
+5747-extending-gossip-algorithms-to-distributed-estimation-of-u-statistics.txt
+5800-tree-guided-mcmc-inference-for-normalized-random-measure-mixture-models.txt
+
+top-5 similar files of
+5805-large-scale-probabilistic-predictors-with-and-without-guarantees-of-validity.txt:
+5737-super-resolution-off-the-grid.txt
+6034-fast-rates-for-exp-concave-empirical-risk-minimization.txt
+5836-learning-theory-and-algorithms-for-forecasting-non-stationary-time-series.txt
+5922-when-are-kalman-filter-restless-bandits-indexable.txt
+5819-sgd-algorithms-based-on-incomplete-u-statistics-large-scale-minimization-of-empirical-risk.txt
+
+top-5 similar files of 5961-neural-adaptive-sequential-monte-carlo.txt:
+5760-stochastic-expectation-propagation.txt
+5653-a-recurrent-latent-variable-model-for-sequential-data.txt
+5807-policy-evaluation-using-the-return.txt
+5718-beyond-convexity-stochastic-quasi-convex-optimization.txt
+5817-regularization-path-of-cross-validation-error-lower-bounds.txt
+
+top-5 similar files of
+5969-sparse-local-embeddings-for-extreme-multi-label-classification.txt:
+5965-bayesian-dark-knowledge.txt
+5774-shepard-convolutional-neural-networks.txt
+6010-robust-regression-via-hard-thresholding.txt
+5995-a-market-framework-for-eliciting-private-data.txt
+5949-semi-supervised-sequence-learning.txt
+
+top-5 similar files of 5674-expectation-particle-belief-propagation.txt:
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt
+5912-bounding-errors-of-expectation-propagation.txt
+5880-a-structural-smoothing-framework-for-robust-graph-comparison.txt
+5929-fast-and-memory-optimal-low-rank-matrix-approximation.txt
+5742-top-k-multiclass-svm.txt
+
+top-5 similar files of
+5797-path-sgd-path-normalized-optimization-in-deep-neural-networks.txt:
+5718-beyond-convexity-stochastic-quasi-convex-optimization.txt
+5895-kullback-leibler-proximal-variational-inference.txt
+5823-interpolating-convex-and-non-convex-tensor-decompositions-via-the-subspace-norm.txt
+5647-binaryconnect-training-deep-neural-networks-with-binary-weights-during-propagations.txt
+5870-equilibrated-adaptive-learning-rates-for-non-convex-optimization.txt
+
+top-5 similar files of
+5835-subsampled-power-iteration-a-unified-algorithm-for-block-models-and-planted-csps.txt:
+5913-local-smoothness-in-variance-reduced-optimization.txt
+5660-dependent-multinomial-models-made-easy-stick-breaking-with-the-polya-gamma-augmentation.txt
+5906-recovering-communities-in-the-general-stochastic-block-model-without-knowing-the-parameters.txt
+5866-pointer-networks.txt
+5824-fast-provable-algorithms-for-isotonic-regression-in-all-l\_p-norms.txt
+
+top-5 similar files of
+5754-coevolve-a-joint-point-process-model-for-information-diffusion-and-network-co-evolution.txt:
+5979-time-sensitive-recommendation-from-recurrent-user-activities.txt
+5809-the-consistency-of-common-neighbors-for-link-prediction-in-stochastic-blockmodels.txt
+5701-anytime-influence-bounds-and-the-explosive-behavior-of-continuous-time-diffusion-networks.txt
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+
+top-5 similar files of
+5947-semi-supervised-learning-with-ladder-networks.txt:
+5651-bidirectional-recurrent-neural-networks-as-generative-models.txt
+5853-the-return-of-the-gating-network-combining-generative-models-and-discriminative-training-in-natural-image-priors.txt
+5934-finite-time-analysis-of-projected-langevin-monte-carlo.txt
+5693-sample-complexity-bounds-for-iterative-stochastic-policy-optimization.txt
+5783-winner-take-all-autoencoders.txt
+
+top-5 similar files of
+5931-linear-multi-resource-allocation-with-semi-bandit-feedback.txt:
+6032-the-pareto-regret-frontier-for-bandits.txt
+6007-lifelong-learning-with-non-iid-tasks.txt
+5722-combinatorial-cascading-bandits.txt
+5851-deep-convolutional-inverse-graphics-network.txt
+5922-when-are-kalman-filter-restless-bandits-indexable.txt
+
+top-5 similar files of
+5956-scheduled-sampling-for-sequence-prediction-with-recurrent-neural-networks.txt:
+5635-grammar-as-a-foreign-language.txt
+5829-honor-hybrid-optimization-for-non-convex-regularized-problems.txt
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt
+6020-mixing-time-estimation-in-reversible-markov-chains-from-a-single-sample-path.txt
+5930-stochastic-online-greedy-learning-with-semi-bandit-feedbacks.txt
+
+top-5 similar files of
+5806-on-the-accuracy-of-self-normalized-log-linear-models.txt:
+5957-mind-the-gap-a-generative-approach-to-interpretable-feature-selection-and-extraction.txt
+5921-convergence-rates-of-active-learning-for-maximum-likelihood-estimation.txt
+5743-solving-random-quadratic-systems-of-equations-is-nearly-as-easy-as-solving-linear-systems.txt
+5850-training-very-deep-networks.txt
+5904-segregated-graphs-and-marginals-of-chain-graph-models.txt
+
+top-5 similar files of
+5859-action-conditional-video-prediction-using-deep-networks-in-atari-games.txt:
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5651-bidirectional-recurrent-neural-networks-as-generative-models.txt
+5845-deep-visual-analogy-making.txt
+5837-empirical-localization-of-homogeneous-divergences-on-discrete-sample-spaces.txt
+5639-weakly-supervised-disentangling-with-recurrent-transformations-for-3d-view-synthesis.txt
+
+top-5 similar files of
+5938-collaborative-filtering-with-graph-information-consistency-and-scalable-methods.txt:
+5940-matrix-completion-with-noisy-side-information.txt
+5866-pointer-networks.txt
+5962-convolutional-spike-triggered-covariance-analysis-for-neural-subunit-models.txt
+5699-gap-safe-screening-rules-for-sparse-multi-task-and-multi-class-models.txt
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt
+
+top-5 similar files of
+5695-probabilistic-variational-bounds-for-graphical-models.txt:
+5700-decomposition-bounds-for-marginal-map.txt
+5843-accelerated-mirror-descent-in-continuous-and-discrete-time.txt
+5819-sgd-algorithms-based-on-incomplete-u-statistics-large-scale-minimization-of-empirical-risk.txt
+5801-reflection-refraction-and-hamiltonian-monte-carlo.txt
+5666-variational-dropout-and-the-local-reparameterization-trick.txt
+
+top-5 similar files of
+5998-orthogonal-nmf-through-subspace-exploration.txt:
+5901-sparse-pca-via-bipartite-matchings.txt
+5934-finite-time-analysis-of-projected-langevin-monte-carlo.txt
+5852-learning-to-segment-object-candidates.txt
+5929-fast-and-memory-optimal-low-rank-matrix-approximation.txt
+5679-learning-with-a-wasserstein-loss.txt
+
+top-5 similar files of
+5920-non-convex-statistical-optimization-for-sparse-tensor-graphical-model.txt:
+6006-learning-structured-densities-via-infinite-dimensional-exponential-families.txt
+5980-parallel-recursive-best-first-andor-search-for-exact-map-inference-in-graphical-models.txt
+6020-mixing-time-estimation-in-reversible-markov-chains-from-a-single-sample-path.txt
+5743-solving-random-quadratic-systems-of-equations-is-nearly-as-easy-as-solving-linear-systems.txt
+5669-copula-variational-inference.txt
+
+top-5 similar files of
+5893-practical-and-optimal-lsh-for-angular-distance.txt:
+6001-on-the-optimality-of-classifier-chain-for-multi-label-classification.txt
+5842-bandit-smooth-convex-optimization-improving-the-bias-variance-tradeoff.txt
+5856-attractor-network-dynamics-enable-preplay-and-rapid-path-planning-in-mazelike-environments.txt
+5806-on-the-accuracy-of-self-normalized-log-linear-models.txt
+5879-spectral-learning-of-large-structured-hmms-for-comparative-epigenomics.txt
+
+top-5 similar files of 5953-natural-neural-networks.txt:
+5774-shepard-convolutional-neural-networks.txt
+5912-bounding-errors-of-expectation-propagation.txt
+5797-path-sgd-path-normalized-optimization-in-deep-neural-networks.txt
+5848-where-are-they-looking.txt
+5870-equilibrated-adaptive-learning-rates-for-non-convex-optimization.txt
+
+top-5 similar files of
+5710-smooth-and-strong-map-inference-with-linear-convergence.txt:
+5774-shepard-convolutional-neural-networks.txt
+5700-decomposition-bounds-for-marginal-map.txt
+5635-grammar-as-a-foreign-language.txt
+5671-rethinking-lda-moment-matching-for-discrete-ica.txt
+6026-revenue-optimization-against-strategic-buyers.txt
+
+top-5 similar files of
+5655-deep-temporal-sigmoid-belief-networks-for-sequence-modeling.txt:
+5786-deep-poisson-factor-modeling.txt
+5778-bidirectional-recurrent-convolutional-networks-for-multi-frame-super-resolution.txt
+5678-local-expectation-gradients-for-black-box-variational-inference.txt
+5653-a-recurrent-latent-variable-model-for-sequential-data.txt
+6033-online-learning-with-gaussian-payoffs-and-side-observations.txt
+
+top-5 similar files of
+5995-a-market-framework-for-eliciting-private-data.txt:
+5784-learning-both-weights-and-connections-for-efficient-neural-network.txt
+5772-learning-stationary-time-series-using-gaussian-processes-with-nonparametric-kernels.txt
+5840-market-scoring-rules-act-as-opinion-pools-for-risk-averse-agents.txt
+6030-fighting-bandits-with-a-new-kind-of-smoothness.txt
+5912-bounding-errors-of-expectation-propagation.txt
+
+top-5 similar files of
+5659-a-bayesian-framework-for-modeling-confidence-in-perceptual-decision-making.txt:
+5848-where-are-they-looking.txt 5635-grammar-as-a-foreign-language.txt
+5695-probabilistic-variational-bounds-for-graphical-models.txt
+5905-approximating-sparse-pca-from-incomplete-data.txt
+5827-sample-complexity-of-episodic-fixed-horizon-reinforcement-learning.txt
+
+top-5 similar files of
+5952-synaptic-sampling-a-bayesian-approach-to-neural-network-plasticity-and-rewiring.txt:
+5934-finite-time-analysis-of-projected-langevin-monte-carlo.txt
+5811-sample-complexity-of-learning-mahalanobis-distance-metrics.txt
+5636-recursive-training-of-2d-3d-convolutional-networks-for-neuronal-boundary-prediction.txt
+5718-beyond-convexity-stochastic-quasi-convex-optimization.txt
+6003-tractable-bayesian-network-structure-learning-with-bounded-vertex-cover-number.txt
+
+top-5 similar files of
+5879-spectral-learning-of-large-structured-hmms-for-comparative-epigenomics.txt:
+5988-active-learning-from-weak-and-strong-labelers.txt
+5922-when-are-kalman-filter-restless-bandits-indexable.txt
+5831-combinatorial-bandits-revisited.txt
+5701-anytime-influence-bounds-and-the-explosive-behavior-of-continuous-time-diffusion-networks.txt
+5729-nearly-optimal-private-lasso.txt
+
+top-5 similar files of 5958-max-margin-deep-generative-models.txt:
+5976-max-margin-majority-voting-for-learning-from-crowds.txt
+5775-learning-structured-output-representation-using-deep-conditional-generative-models.txt
+5676-tractable-learning-for-complex-probability-queries.txt
+5815-fast-bidirectional-probability-estimation-in-markov-models.txt
+6029-cornering-stationary-and-restless-mixing-bandits-with-remix-ucb.txt
+
+top-5 similar files of
+5948-enforcing-balance-allows-local-supervised-learning-in-spiking-recurrent-networks.txt:
+5669-copula-variational-inference.txt
+5856-attractor-network-dynamics-enable-preplay-and-rapid-path-planning-in-mazelike-environments.txt
+6034-fast-rates-for-exp-concave-empirical-risk-minimization.txt
+5713-differentially-private-learning-of-structured-discrete-distributions.txt
+5951-learning-to-linearize-under-uncertainty.txt
+
+top-5 similar files of
+5721-black-box-optimization-of-noisy-functions-with-unknown-smoothness.txt:
+5715-bayesian-optimization-with-exponential-convergence.txt
+6032-the-pareto-regret-frontier-for-bandits.txt
+5669-copula-variational-inference.txt 5725-online-gradient-boosting.txt
+5933-on-the-consistency-theory-of-high-dimensional-variable-screening.txt
+
+top-5 similar files of
+5841-information-theoretic-lower-bounds-for-convex-optimization-with-erroneous-oracles.txt:
+5866-pointer-networks.txt
+5808-community-detection-via-measure-space-embedding.txt
+5749-frank-wolfe-bayesian-quadrature-probabilistic-integration-with-theoretical-guarantees.txt
+5921-convergence-rates-of-active-learning-for-maximum-likelihood-estimation.txt
+5705-robust-pca-with-compressed-data.txt
+
+top-5 similar files of
+5800-tree-guided-mcmc-inference-for-normalized-random-measure-mixture-models.txt:
+5707-subspace-clustering-with-irrelevant-features-via-robust-dantzig-selector.txt
+5799-a-hybrid-sampler-for-poisson-kingman-mixture-models.txt
+5771-closed-form-estimators-for-high-dimensional-generalized-linear-models.txt
+5976-max-margin-majority-voting-for-learning-from-crowds.txt
+5715-bayesian-optimization-with-exponential-convergence.txt
+
+top-5 similar files of 6007-lifelong-learning-with-non-iid-tasks.txt:
+5931-linear-multi-resource-allocation-with-semi-bandit-feedback.txt
+5669-copula-variational-inference.txt
+5700-decomposition-bounds-for-marginal-map.txt
+5636-recursive-training-of-2d-3d-convolutional-networks-for-neuronal-boundary-prediction.txt
+5702-estimating-mixture-models-via-mixtures-of-polynomials.txt
+
+top-5 similar files of
+5644-3d-object-proposals-for-accurate-object-class-detection.txt:
+5852-learning-to-segment-object-candidates.txt
+5737-super-resolution-off-the-grid.txt
+5960-a-gaussian-process-model-of-quasar-spectral-energy-distributions.txt
+5638-faster-r-cnn-towards-real-time-object-detection-with-region-proposal-networks.txt
+5686-adversarial-prediction-games-for-multivariate-losses.txt
+
+top-5 similar files of 5888-variational-consensus-monte-carlo.txt:
+5702-estimating-mixture-models-via-mixtures-of-polynomials.txt
+6013-optimal-linear-estimation-under-unknown-nonlinear-transform.txt
+6031-asynchronous-stochastic-convex-optimization-the-noise-is-in-the-noise-and-sgd-dont-care.txt
+5875-mcmc-for-variationally-sparse-gaussian-processes.txt
+5880-a-structural-smoothing-framework-for-robust-graph-comparison.txt
+
+top-5 similar files of
+5894-principal-differences-analysis-interpretable-characterization-of-differences-between-distributions.txt:
+5693-sample-complexity-bounds-for-iterative-stochastic-policy-optimization.txt
+5824-fast-provable-algorithms-for-isotonic-regression-in-all-l\_p-norms.txt
+5738-b-bit-marginal-regression.txt
+5660-dependent-multinomial-models-made-easy-stick-breaking-with-the-polya-gamma-augmentation.txt
+5852-learning-to-segment-object-candidates.txt
+
+top-5 similar files of
+5708-a-class-of-network-models-recoverable-by-spectral-clustering.txt:
+5809-the-consistency-of-common-neighbors-for-link-prediction-in-stochastic-blockmodels.txt
+5672-model-based-relative-entropy-stochastic-search.txt
+5717-taming-the-wild-a-unified-analysis-of-hogwild-style-algorithms.txt
+5864-color-constancy-by-learning-to-predict-chromaticity-from-luminance.txt
+6024-regret-lower-bound-and-optimal-algorithm-in-finite-stochastic-partial-monitoring.txt
+
+top-5 similar files of 5742-top-k-multiclass-svm.txt:
+5898-efficient-output-kernel-learning-for-multiple-tasks.txt
+5975-discriminative-robust-transformation-learning.txt
+5922-when-are-kalman-filter-restless-bandits-indexable.txt
+5674-expectation-particle-belief-propagation.txt
+5639-weakly-supervised-disentangling-with-recurrent-transformations-for-3d-view-synthesis.txt
+
+top-5 similar files of 5669-copula-variational-inference.txt:
+5755-linear-response-methods-for-accurate-covariance-estimates-from-mean-field-variational-bayes.txt
+5793-the-population-posterior-and-bayesian-modeling-on-streams.txt
+5948-enforcing-balance-allows-local-supervised-learning-in-spiking-recurrent-networks.txt
+6007-lifelong-learning-with-non-iid-tasks.txt
+5678-local-expectation-gradients-for-black-box-variational-inference.txt
+
+top-5 similar files of 5966-gp-kernels-for-cross-spectrum-analysis.txt:
+5772-learning-stationary-time-series-using-gaussian-processes-with-nonparametric-kernels.txt
+5959-cross-domain-matching-for-bag-of-words-data-via-kernel-embeddings-of-latent-distributions.txt
+5898-efficient-output-kernel-learning-for-multiple-tasks.txt
+5934-finite-time-analysis-of-projected-langevin-monte-carlo.txt
+5922-when-are-kalman-filter-restless-bandits-indexable.txt
+
+top-5 similar files of
+5640-exploring-models-and-data-for-image-question-answering.txt:
+5641-are-you-talking-to-a-machine-dataset-and-methods-for-multilingual-image-question.txt
+5945-teaching-machines-to-read-and-comprehend.txt
+5865-efficient-exact-gradient-update-for-training-deep-networks-with-very-large-sparse-targets.txt
+5784-learning-both-weights-and-connections-for-efficient-neural-network.txt
+5726-regularization-free-estimation-in-trace-regression-with-symmetric-positive-semidefinite-matrices.txt
+
+top-5 similar files of
+5964-embed-to-control-a-locally-linear-latent-dynamics-model-for-control-from-raw-images.txt:
+5869-structured-transforms-for-small-footprint-deep-learning.txt
+5973-bayesian-manifold-learning-the-locally-linear-latent-variable-model-ll-lvm.txt
+5852-learning-to-segment-object-candidates.txt
+5685-fast-two-sample-testing-with-analytic-representations-of-probability-measures.txt
+5666-variational-dropout-and-the-local-reparameterization-trick.txt
+
+top-5 similar files of
+5991-differentially-private-subspace-clustering.txt:
+5707-subspace-clustering-with-irrelevant-features-via-robust-dantzig-selector.txt
+5821-on-variance-reduction-in-stochastic-gradient-descent-and-its-asynchronous-variants.txt
+5999-fast-classification-rates-for-high-dimensional-gaussian-generative-models.txt
+5825-semi-proximal-mirror-prox-for-nonsmooth-composite-minimization.txt
+5988-active-learning-from-weak-and-strong-labelers.txt
+
+top-5 similar files of
+5895-kullback-leibler-proximal-variational-inference.txt:
+5665-scalable-inference-for-gaussian-process-models-with-black-box-likelihoods.txt
+5797-path-sgd-path-normalized-optimization-in-deep-neural-networks.txt
+6035-adaptive-low-complexity-sequential-inference-for-dirichlet-process-mixture-models.txt
+5871-bayesian-active-model-selection-with-an-application-to-automated-audiometry.txt
+5723-adaptive-primal-dual-splitting-methods-for-statistical-learning-and-image-processing.txt
+
+top-5 similar files of
+5851-deep-convolutional-inverse-graphics-network.txt:
+5639-weakly-supervised-disentangling-with-recurrent-transformations-for-3d-view-synthesis.txt
+5951-learning-to-linearize-under-uncertainty.txt
+5931-linear-multi-resource-allocation-with-semi-bandit-feedback.txt
+5957-mind-the-gap-a-generative-approach-to-interpretable-feature-selection-and-extraction.txt
+5710-smooth-and-strong-map-inference-with-linear-convergence.txt
+
+top-5 similar files of
+5896-learning-large-scale-poisson-dag-models-based-on-overdispersion-scoring.txt:
+5672-model-based-relative-entropy-stochastic-search.txt
+6006-learning-structured-densities-via-infinite-dimensional-exponential-families.txt
+5866-pointer-networks.txt
+6003-tractable-bayesian-network-structure-learning-with-bounded-vertex-cover-number.txt
+5784-learning-both-weights-and-connections-for-efficient-neural-network.txt
+
+top-5 similar files of 5950-skip-thought-vectors.txt:
+5635-grammar-as-a-foreign-language.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5640-exploring-models-and-data-for-image-question-answering.txt
+6031-asynchronous-stochastic-convex-optimization-the-noise-is-in-the-noise-and-sgd-dont-care.txt
+5674-expectation-particle-belief-propagation.txt
+
+top-5 similar files of
+6033-online-learning-with-gaussian-payoffs-and-side-observations.txt:
+6032-the-pareto-regret-frontier-for-bandits.txt
+5831-combinatorial-bandits-revisited.txt
+5701-anytime-influence-bounds-and-the-explosive-behavior-of-continuous-time-diffusion-networks.txt
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt
+5828-private-graphon-estimation-for-sparse-graphs.txt
+
+top-5 similar files of
+5795-preconditioned-spectral-descent-for-deep-learning.txt:
+5826-a-universal-primal-dual-convex-optimization-framework.txt
+5719-on-the-limitation-of-spectral-methods-from-the-gaussian-hidden-clique-problem-to-rank-one-perturbations-of-gaussian-tensors.txt
+5634-convolutional-neural-networks-with-intra-layer-recurrent-connections-for-scene-labeling.txt
+5907-maximum-likelihood-learning-with-arbitrary-treewidth-via-fast-mixing-parameter-sets.txt
+6011-column-selection-via-adaptive-sampling.txt
+
+top-5 similar files of
+5771-closed-form-estimators-for-high-dimensional-generalized-linear-models.txt:
+5723-adaptive-primal-dual-splitting-methods-for-statistical-learning-and-image-processing.txt
+5703-robust-gaussian-graphical-modeling-with-the-trimmed-graphical-lasso.txt
+5921-convergence-rates-of-active-learning-for-maximum-likelihood-estimation.txt
+5962-convolutional-spike-triggered-covariance-analysis-for-neural-subunit-models.txt
+5999-fast-classification-rates-for-high-dimensional-gaussian-generative-models.txt
+
+top-5 similar files of
+5891-a-complete-recipe-for-stochastic-gradient-mcmc.txt:
+5801-reflection-refraction-and-hamiltonian-monte-carlo.txt
+5965-bayesian-dark-knowledge.txt
+6020-mixing-time-estimation-in-reversible-markov-chains-from-a-single-sample-path.txt
+5686-adversarial-prediction-games-for-multivariate-losses.txt
+5955-convolutional-lstm-network-a-machine-learning-approach-for-precipitation-nowcasting.txt
+
+top-5 similar files of
+5977-m-best-diverse-labelings-for-submodular-energies-and-beyond.txt:
+6032-the-pareto-regret-frontier-for-bandits.txt
+5717-taming-the-wild-a-unified-analysis-of-hogwild-style-algorithms.txt
+5722-combinatorial-cascading-bandits.txt
+5856-attractor-network-dynamics-enable-preplay-and-rapid-path-planning-in-mazelike-environments.txt
+5872-efficient-and-robust-automated-machine-learning.txt
+
+top-5 similar files of
+5633-texture-synthesis-using-convolutional-neural-networks.txt:
+5773-deep-generative-image-models-using-a-laplacian-pyramid-of-adversarial-networks.txt
+5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints.txt
+5769-biologically-inspired-dynamic-textures-for-probing-motion-perception.txt
+5962-convolutional-spike-triggered-covariance-analysis-for-neural-subunit-models.txt
+5636-recursive-training-of-2d-3d-convolutional-networks-for-neuronal-boundary-prediction.txt
+
+top-5 similar files of 5900-lifted-inference-rules-with-constraints.txt:
+5691-lifted-symmetry-detection-and-breaking-for-map-inference.txt
+5987-fast-lifted-map-inference-via-partitioning.txt
+5934-finite-time-analysis-of-projected-langevin-monte-carlo.txt
+5732-explore-no-more-improved-high-probability-regret-bounds-for-non-stochastic-bandits.txt
+5709-monotone-k-submodular-function-maximization-with-size-constraints.txt
+
+top-5 similar files of
+5959-cross-domain-matching-for-bag-of-words-data-via-kernel-embeddings-of-latent-distributions.txt:
+5966-gp-kernels-for-cross-spectrum-analysis.txt
+5862-backpropagation-for-energy-efficient-neuromorphic-computing.txt
+5907-maximum-likelihood-learning-with-arbitrary-treewidth-via-fast-mixing-parameter-sets.txt
+5929-fast-and-memory-optimal-low-rank-matrix-approximation.txt
+6030-fighting-bandits-with-a-new-kind-of-smoothness.txt
+
+top-5 similar files of
+5780-galileo-perceiving-physical-object-properties-by-integrating-a-physics-engine-with-deep-learning.txt:
+5960-a-gaussian-process-model-of-quasar-spectral-energy-distributions.txt
+5688-halting-in-random-walk-kernels.txt
+5785-unsupervised-learning-by-program-synthesis.txt
+5654-deep-knowledge-tracing.txt
+5771-closed-form-estimators-for-high-dimensional-generalized-linear-models.txt
+
+top-5 similar files of
+6015-learning-with-incremental-iterative-regularization.txt:
+5936-less-is-more-nystrom-computational-regularization.txt
+5833-online-learning-with-adversarial-delays.txt
+5768-measuring-sample-quality-with-steins-method.txt
+5843-accelerated-mirror-descent-in-continuous-and-discrete-time.txt
+5996-optimal-ridge-detection-using-coverage-risk.txt
+
+top-5 similar files of
+5663-learning-spatiotemporal-trajectories-from-manifold-valued-longitudinal-data.txt:
+5737-super-resolution-off-the-grid.txt
+5647-binaryconnect-training-deep-neural-networks-with-binary-weights-during-propagations.txt
+5801-reflection-refraction-and-hamiltonian-monte-carlo.txt
+6026-revenue-optimization-against-strategic-buyers.txt
+5971-space-time-local-embeddings.txt
+
+top-5 similar files of 5965-bayesian-dark-knowledge.txt:
+5717-taming-the-wild-a-unified-analysis-of-hogwild-style-algorithms.txt
+5929-fast-and-memory-optimal-low-rank-matrix-approximation.txt
+5670-fast-second-order-stochastic-backpropagation-for-variational-inference.txt
+5658-calibrated-structured-prediction.txt
+5969-sparse-local-embeddings-for-extreme-multi-label-classification.txt
+
+top-5 similar files of
+5867-precision-recall-gain-curves-pr-analysis-done-right.txt:
+6006-learning-structured-densities-via-infinite-dimensional-exponential-families.txt
+5893-practical-and-optimal-lsh-for-angular-distance.txt
+5942-scalable-semi-supervised-aggregation-of-classifiers.txt
+5973-bayesian-manifold-learning-the-locally-linear-latent-variable-model-ll-lvm.txt
+5935-beyond-sub-gaussian-measurements-high-dimensional-structured-estimation-with-sub-exponential-designs.txt
+
+top-5 similar files of
+5830-a-convergent-gradient-descent-algorithm-for-rank-minimization-and-semidefinite-programming-from-random-linear-measurements.txt:
+5737-super-resolution-off-the-grid.txt
+5801-reflection-refraction-and-hamiltonian-monte-carlo.txt
+5733-a-nonconvex-optimization-framework-for-low-rank-matrix-estimation.txt
+5843-accelerated-mirror-descent-in-continuous-and-discrete-time.txt
+5661-scalable-adaptation-of-state-complexity-for-nonparametric-hidden-markov-models.txt
+
+top-5 similar files of
+5910-regret-based-pruning-in-extensive-form-games.txt:
+5642-parallel-multi-dimensional-lstm-with-application-to-fast-biomedical-volumetric-image-segmentation.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5917-sparse-linear-programming-via-primal-and-dual-augmented-coordinate-descent.txt
+5730-minimax-time-series-prediction.txt
+5703-robust-gaussian-graphical-modeling-with-the-trimmed-graphical-lasso.txt
+
+top-5 similar files of 5760-stochastic-expectation-propagation.txt:
+5961-neural-adaptive-sequential-monte-carlo.txt
+5772-learning-stationary-time-series-using-gaussian-processes-with-nonparametric-kernels.txt
+5830-a-convergent-gradient-descent-algorithm-for-rank-minimization-and-semidefinite-programming-from-random-linear-measurements.txt
+5912-bounding-errors-of-expectation-propagation.txt
+5845-deep-visual-analogy-making.txt
+
+top-5 similar files of
+5761-deep-learning-with-elastic-averaging-sgd.txt:
+5717-taming-the-wild-a-unified-analysis-of-hogwild-style-algorithms.txt
+5794-probabilistic-curve-learning-coulomb-repulsion-and-the-electrostatic-gaussian-process.txt
+5798-learning-with-group-invariant-features-a-kernel-perspective.txt
+6013-optimal-linear-estimation-under-unknown-nonlinear-transform.txt
+6006-learning-structured-densities-via-infinite-dimensional-exponential-families.txt
+
+top-5 similar files of 5848-where-are-they-looking.txt:
+5781-learning-visual-biases-from-human-imagination.txt
+5866-pointer-networks.txt
+5719-on-the-limitation-of-spectral-methods-from-the-gaussian-hidden-clique-problem-to-rank-one-perturbations-of-gaussian-tensors.txt
+5642-parallel-multi-dimensional-lstm-with-application-to-fast-biomedical-volumetric-image-segmentation.txt
+5953-natural-neural-networks.txt
+
+top-5 similar files of
+5720-regularized-em-algorithms-a-unified-framework-and-statistical-guarantees.txt:
+5771-closed-form-estimators-for-high-dimensional-generalized-linear-models.txt
+5653-a-recurrent-latent-variable-model-for-sequential-data.txt
+5913-local-smoothness-in-variance-reduced-optimization.txt
+5812-matrix-manifold-optimization-for-gaussian-mixtures.txt
+5985-efficient-thompson-sampling-for-online-matrix-factorization-recommendation.txt
+
+top-5 similar files of
+6008-algorithms-with-logarithmic-or-sublinear-regret-for-constrained-contextual-bandits.txt:
+5985-efficient-thompson-sampling-for-online-matrix-factorization-recommendation.txt
+5850-training-very-deep-networks.txt
+5930-stochastic-online-greedy-learning-with-semi-bandit-feedbacks.txt
+5774-shepard-convolutional-neural-networks.txt
+5949-semi-supervised-sequence-learning.txt
+
+top-5 similar files of
+5881-optimization-monte-carlo-efficient-and-embarrassingly-parallel-likelihood-free-inference.txt:
+5817-regularization-path-of-cross-validation-error-lower-bounds.txt
+5733-a-nonconvex-optimization-framework-for-low-rank-matrix-estimation.txt
+5875-mcmc-for-variationally-sparse-gaussian-processes.txt
+5983-estimating-jaccard-index-with-missing-observations-a-matrix-calibration-approach.txt
+5712-spectral-norm-regularization-of-orthonormal-representations-for-graph-transduction.txt
+
+top-5 similar files of
+5884-is-approval-voting-optimal-given-approval-votes.txt:
+5853-the-return-of-the-gating-network-combining-generative-models-and-discriminative-training-in-natural-image-priors.txt
+5807-policy-evaluation-using-the-return.txt
+5796-learning-continuous-control-policies-by-stochastic-value-gradients.txt
+5718-beyond-convexity-stochastic-quasi-convex-optimization.txt
+5733-a-nonconvex-optimization-framework-for-low-rank-matrix-estimation.txt
+
+top-5 similar files of
+6013-optimal-linear-estimation-under-unknown-nonlinear-transform.txt:
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5914-high-dimensional-em-algorithm-statistical-optimization-and-asymptotic-normality.txt
+5844-adaptive-online-learning.txt
+5888-variational-consensus-monte-carlo.txt
+5720-regularized-em-algorithms-a-unified-framework-and-statistical-guarantees.txt
+
+top-5 similar files of
+5746-on-some-provably-correct-cases-of-variational-inference-for-topic-models.txt:
+5635-grammar-as-a-foreign-language.txt
+5793-the-population-posterior-and-bayesian-modeling-on-streams.txt
+6035-adaptive-low-complexity-sequential-inference-for-dirichlet-process-mixture-models.txt
+5809-the-consistency-of-common-neighbors-for-link-prediction-in-stochastic-blockmodels.txt
+5930-stochastic-online-greedy-learning-with-semi-bandit-feedbacks.txt
+
+top-5 similar files of 5722-combinatorial-cascading-bandits.txt:
+5931-linear-multi-resource-allocation-with-semi-bandit-feedback.txt
+5885-a-normative-theory-of-adaptive-dimensionality-reduction-in-neural-networks.txt
+5836-learning-theory-and-algorithms-for-forecasting-non-stationary-time-series.txt
+5877-fixed-length-poisson-mrf-adding-dependencies-to-the-multinomial.txt
+5942-scalable-semi-supervised-aggregation-of-classifiers.txt
+
+top-5 similar files of
+5798-learning-with-group-invariant-features-a-kernel-perspective.txt:
+5854-spatial-transformer-networks.txt
+5737-super-resolution-off-the-grid.txt
+5917-sparse-linear-programming-via-primal-and-dual-augmented-coordinate-descent.txt
+5920-non-convex-statistical-optimization-for-sparse-tensor-graphical-model.txt
+6015-learning-with-incremental-iterative-regularization.txt
+
+top-5 similar files of
+6034-fast-rates-for-exp-concave-empirical-risk-minimization.txt:
+5763-fast-convergence-of-regularized-learning-in-games.txt
+5805-large-scale-probabilistic-predictors-with-and-without-guarantees-of-validity.txt
+6025-online-learning-for-adversaries-with-memory-price-of-past-mistakes.txt
+6019-algorithmic-stability-and-uniform-generalization.txt
+6027-on-top-k-selection-in-multi-armed-bandits-and-hidden-bipartite-graphs.txt
+
+top-5 similar files of
+6017-sparse-and-low-rank-tensor-decomposition.txt:
+6030-fighting-bandits-with-a-new-kind-of-smoothness.txt
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt
+5871-bayesian-active-model-selection-with-an-application-to-automated-audiometry.txt
+5853-the-return-of-the-gating-network-combining-generative-models-and-discriminative-training-in-natural-image-priors.txt
+5651-bidirectional-recurrent-neural-networks-as-generative-models.txt
+
+top-5 similar files of
+5823-interpolating-convex-and-non-convex-tensor-decompositions-via-the-subspace-norm.txt:
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5774-shepard-convolutional-neural-networks.txt
+6021-efficient-compressive-phase-retrieval-with-constrained-sensing-vectors.txt
+5705-robust-pca-with-compressed-data.txt
+5797-path-sgd-path-normalized-optimization-in-deep-neural-networks.txt
+
+top-5 similar files of
+5903-online-rank-elicitation-for-plackett-luce-a-dueling-bandits-approach.txt:
+5994-online-f-measure-optimization.txt 6023-copeland-dueling-bandits.txt
+5681-fast-and-accurate-inference-of-plackettluce-models.txt
+5709-monotone-k-submodular-function-maximization-with-size-constraints.txt
+5916-matrix-completion-under-monotonic-single-index-models.txt
+
+top-5 similar files of
+6031-asynchronous-stochastic-convex-optimization-the-noise-is-in-the-noise-and-sgd-dont-care.txt:
+5660-dependent-multinomial-models-made-easy-stick-breaking-with-the-polya-gamma-augmentation.txt
+5751-asynchronous-parallel-stochastic-gradient-for-nonconvex-optimization.txt
+6030-fighting-bandits-with-a-new-kind-of-smoothness.txt
+5926-quartz-randomized-dual-coordinate-ascent-with-arbitrary-sampling.txt
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt
+
+top-5 similar files of 5833-online-learning-with-adversarial-delays.txt:
+5842-bandit-smooth-convex-optimization-improving-the-bias-variance-tradeoff.txt
+6015-learning-with-incremental-iterative-regularization.txt
+5645-the-poisson-gamma-belief-network.txt
+5745-distributionally-robust-logistic-regression.txt
+5731-communication-complexity-of-distributed-convex-learning-and-optimization.txt
+
+top-5 similar files of 5774-shepard-convolutional-neural-networks.txt:
+5823-interpolating-convex-and-non-convex-tensor-decompositions-via-the-subspace-norm.txt
+5778-bidirectional-recurrent-convolutional-networks-for-multi-frame-super-resolution.txt
+5744-sampling-from-probabilistic-submodular-models.txt
+5728-accelerated-proximal-gradient-methods-for-nonconvex-programming.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+
+top-5 similar files of
+5666-variational-dropout-and-the-local-reparameterization-trick.txt:
+6016-no-regret-learning-in-bayesian-games.txt
+6011-column-selection-via-adaptive-sampling.txt
+5870-equilibrated-adaptive-learning-rates-for-non-convex-optimization.txt
+5964-embed-to-control-a-locally-linear-latent-dynamics-model-for-control-from-raw-images.txt
+5944-fast-and-guaranteed-tensor-decomposition-via-sketching.txt
+
+top-5 similar files of 5786-deep-poisson-factor-modeling.txt:
+5655-deep-temporal-sigmoid-belief-networks-for-sequence-modeling.txt
+5660-dependent-multinomial-models-made-easy-stick-breaking-with-the-polya-gamma-augmentation.txt
+5696-on-the-convergence-of-stochastic-gradient-mcmc-algorithms-with-high-order-integrators.txt
+5645-the-poisson-gamma-belief-network.txt
+5665-scalable-inference-for-gaussian-process-models-with-black-box-likelihoods.txt
+
+top-5 similar files of 5989-learnability-of-influence-in-networks.txt:
+5921-convergence-rates-of-active-learning-for-maximum-likelihood-estimation.txt
+6030-fighting-bandits-with-a-new-kind-of-smoothness.txt
+5983-estimating-jaccard-index-with-missing-observations-a-matrix-calibration-approach.txt
+5702-estimating-mixture-models-via-mixtures-of-polynomials.txt
+5639-weakly-supervised-disentangling-with-recurrent-transformations-for-3d-view-synthesis.txt
+
+top-5 similar files of 5844-adaptive-online-learning.txt:
+5707-subspace-clustering-with-irrelevant-features-via-robust-dantzig-selector.txt
+6035-adaptive-low-complexity-sequential-inference-for-dirichlet-process-mixture-models.txt
+5942-scalable-semi-supervised-aggregation-of-classifiers.txt
+6034-fast-rates-for-exp-concave-empirical-risk-minimization.txt
+6013-optimal-linear-estimation-under-unknown-nonlinear-transform.txt
+
+top-5 similar files of
+5937-logarithmic-time-online-multiclass-prediction.txt:
+5922-when-are-kalman-filter-restless-bandits-indexable.txt
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt
+5764-interactive-control-of-diverse-complex-characters-with-neural-networks.txt
+5870-equilibrated-adaptive-learning-rates-for-non-convex-optimization.txt
+6032-the-pareto-regret-frontier-for-bandits.txt
+
+top-5 similar files of
+5925-on-the-global-linear-convergence-of-frank-wolfe-optimization-variants.txt:
+5934-finite-time-analysis-of-projected-langevin-monte-carlo.txt
+5892-barrier-frank-wolfe-for-marginal-inference.txt
+5960-a-gaussian-process-model-of-quasar-spectral-energy-distributions.txt
+5965-bayesian-dark-knowledge.txt 5729-nearly-optimal-private-lasso.txt
+
+top-5 similar files of
+5840-market-scoring-rules-act-as-opinion-pools-for-risk-averse-agents.txt:
+5995-a-market-framework-for-eliciting-private-data.txt
+5837-empirical-localization-of-homogeneous-divergences-on-discrete-sample-spaces.txt
+5805-large-scale-probabilistic-predictors-with-and-without-guarantees-of-validity.txt
+6020-mixing-time-estimation-in-reversible-markov-chains-from-a-single-sample-path.txt
+5751-asynchronous-parallel-stochastic-gradient-for-nonconvex-optimization.txt
+
+top-5 similar files of
+5957-mind-the-gap-a-generative-approach-to-interpretable-feature-selection-and-extraction.txt:
+5806-on-the-accuracy-of-self-normalized-log-linear-models.txt
+5851-deep-convolutional-inverse-graphics-network.txt
+5707-subspace-clustering-with-irrelevant-features-via-robust-dantzig-selector.txt
+5786-deep-poisson-factor-modeling.txt
+5764-interactive-control-of-diverse-complex-characters-with-neural-networks.txt
+
+top-5 similar files of
+5932-exactness-of-approximate-map-inference-in-continuous-mrfs.txt:
+5648-learning-to-transduce-with-unbounded-memory.txt
+5791-deeply-learning-the-messages-in-message-passing-inference.txt
+5936-less-is-more-nystrom-computational-regularization.txt
+6018-analysis-of-robust-pca-via-local-incoherence.txt
+6034-fast-rates-for-exp-concave-empirical-risk-minimization.txt
+
+top-5 similar files of 6010-robust-regression-via-hard-thresholding.txt:
+5969-sparse-local-embeddings-for-extreme-multi-label-classification.txt
+6029-cornering-stationary-and-restless-mixing-bandits-with-remix-ucb.txt
+5999-fast-classification-rates-for-high-dimensional-gaussian-generative-models.txt
+5821-on-variance-reduction-in-stochastic-gradient-descent-and-its-asynchronous-variants.txt
+5793-the-population-posterior-and-bayesian-modeling-on-streams.txt
+
+top-5 similar files of
+5976-max-margin-majority-voting-for-learning-from-crowds.txt:
+5958-max-margin-deep-generative-models.txt
+5994-online-f-measure-optimization.txt
+5800-tree-guided-mcmc-inference-for-normalized-random-measure-mixture-models.txt
+5843-accelerated-mirror-descent-in-continuous-and-discrete-time.txt
+5942-scalable-semi-supervised-aggregation-of-classifiers.txt
+
+top-5 similar files of
+5843-accelerated-mirror-descent-in-continuous-and-discrete-time.txt:
+5723-adaptive-primal-dual-splitting-methods-for-statistical-learning-and-image-processing.txt
+5695-probabilistic-variational-bounds-for-graphical-models.txt
+6015-learning-with-incremental-iterative-regularization.txt
+5830-a-convergent-gradient-descent-algorithm-for-rank-minimization-and-semidefinite-programming-from-random-linear-measurements.txt
+5837-empirical-localization-of-homogeneous-divergences-on-discrete-sample-spaces.txt
+
+top-5 similar files of
+5929-fast-and-memory-optimal-low-rank-matrix-approximation.txt:
+5831-combinatorial-bandits-revisited.txt
+5823-interpolating-convex-and-non-convex-tensor-decompositions-via-the-subspace-norm.txt
+5965-bayesian-dark-knowledge.txt
+5834-structured-estimation-with-atomic-norms-general-bounds-and-applications.txt
+5998-orthogonal-nmf-through-subspace-exploration.txt
+
+top-5 similar files of
+5918-convergence-rates-of-sub-sampled-newton-methods.txt:
+5750-newton-stein-method-a-second-order-method-for-glms-via-steins-lemma.txt
+5705-robust-pca-with-compressed-data.txt
+5794-probabilistic-curve-learning-coulomb-repulsion-and-the-electrostatic-gaussian-process.txt
+5919-variance-reduced-stochastic-gradient-descent-with-neighbors.txt
+5664-hessian-free-optimization-for-learning-deep-multidimensional-recurrent-neural-networks.txt
+
+top-5 similar files of
+5781-learning-visual-biases-from-human-imagination.txt:
+5848-where-are-they-looking.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5913-local-smoothness-in-variance-reduced-optimization.txt
+5942-scalable-semi-supervised-aggregation-of-classifiers.txt
+5799-a-hybrid-sampler-for-poisson-kingman-mixture-models.txt
+
+top-5 similar files of
+5739-lasso-with-non-linear-measurements-is-equivalent-to-one-with-linear-measurements.txt:
+5784-learning-both-weights-and-connections-for-efficient-neural-network.txt
+5654-deep-knowledge-tracing.txt
+5719-on-the-limitation-of-spectral-methods-from-the-gaussian-hidden-clique-problem-to-rank-one-perturbations-of-gaussian-tensors.txt
+5930-stochastic-online-greedy-learning-with-semi-bandit-feedbacks.txt
+5942-scalable-semi-supervised-aggregation-of-classifiers.txt
+
+top-5 similar files of
+5916-matrix-completion-under-monotonic-single-index-models.txt:
+5730-minimax-time-series-prediction.txt
+5986-parallelizing-mcmc-with-random-partition-trees.txt
+5787-tensorizing-neural-networks.txt
+5940-matrix-completion-with-noisy-side-information.txt
+5903-online-rank-elicitation-for-plackett-luce-a-dueling-bandits-approach.txt
+
+top-5 similar files of
+5702-estimating-mixture-models-via-mixtures-of-polynomials.txt:
+5688-halting-in-random-walk-kernels.txt
+5824-fast-provable-algorithms-for-isotonic-regression-in-all-l\_p-norms.txt
+5773-deep-generative-image-models-using-a-laplacian-pyramid-of-adversarial-networks.txt
+5705-robust-pca-with-compressed-data.txt
+5888-variational-consensus-monte-carlo.txt
+
+top-5 similar files of
+5789-the-brain-uses-reliability-of-stimulus-information-when-making-perceptual-decisions.txt:
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt
+5900-lifted-inference-rules-with-constraints.txt
+6021-efficient-compressive-phase-retrieval-with-constrained-sensing-vectors.txt
+5681-fast-and-accurate-inference-of-plackettluce-models.txt
+5971-space-time-local-embeddings.txt
+
+top-5 similar files of
+5634-convolutional-neural-networks-with-intra-layer-recurrent-connections-for-scene-labeling.txt:
+5975-discriminative-robust-transformation-learning.txt
+5757-rapidly-mixing-gibbs-sampling-for-a-class-of-factor-graphs-using-hierarchy-width.txt
+5795-preconditioned-spectral-descent-for-deep-learning.txt
+5836-learning-theory-and-algorithms-for-forecasting-non-stationary-time-series.txt
+5778-bidirectional-recurrent-convolutional-networks-for-multi-frame-super-resolution.txt
+
+top-5 similar files of 5831-combinatorial-bandits-revisited.txt:
+6033-online-learning-with-gaussian-payoffs-and-side-observations.txt
+5929-fast-and-memory-optimal-low-rank-matrix-approximation.txt
+5728-accelerated-proximal-gradient-methods-for-nonconvex-programming.txt
+6029-cornering-stationary-and-restless-mixing-bandits-with-remix-ucb.txt
+6024-regret-lower-bound-and-optimal-algorithm-in-finite-stochastic-partial-monitoring.txt
+
+top-5 similar files of
+5680-principal-geodesic-analysis-for-probability-measures-under-the-optimal-transport-metric.txt:
+5906-recovering-communities-in-the-general-stochastic-block-model-without-knowing-the-parameters.txt
+5962-convolutional-spike-triggered-covariance-analysis-for-neural-subunit-models.txt
+5784-learning-both-weights-and-connections-for-efficient-neural-network.txt
+5901-sparse-pca-via-bipartite-matchings.txt
+5729-nearly-optimal-private-lasso.txt
+
+top-5 similar files of
+5983-estimating-jaccard-index-with-missing-observations-a-matrix-calibration-approach.txt:
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5881-optimization-monte-carlo-efficient-and-embarrassingly-parallel-likelihood-free-inference.txt
+5774-shepard-convolutional-neural-networks.txt
+5808-community-detection-via-measure-space-embedding.txt
+
+top-5 similar files of
+5842-bandit-smooth-convex-optimization-improving-the-bias-variance-tradeoff.txt:
+5648-learning-to-transduce-with-unbounded-memory.txt
+5732-explore-no-more-improved-high-probability-regret-bounds-for-non-stochastic-bandits.txt
+5833-online-learning-with-adversarial-delays.txt
+5681-fast-and-accurate-inference-of-plackettluce-models.txt
+6025-online-learning-for-adversaries-with-memory-price-of-past-mistakes.txt
+
+top-5 similar files of
+5678-local-expectation-gradients-for-black-box-variational-inference.txt:
+5899-gradient-estimation-using-stochastic-computation-graphs.txt
+5669-copula-variational-inference.txt
+5655-deep-temporal-sigmoid-belief-networks-for-sequence-modeling.txt
+5670-fast-second-order-stochastic-backpropagation-for-variational-inference.txt
+5870-equilibrated-adaptive-learning-rates-for-non-convex-optimization.txt
+
+top-5 similar files of
+5926-quartz-randomized-dual-coordinate-ascent-with-arbitrary-sampling.txt:
+5913-local-smoothness-in-variance-reduced-optimization.txt
+5939-efficient-and-parsimonious-agnostic-active-learning.txt
+5653-a-recurrent-latent-variable-model-for-sequential-data.txt
+6031-asynchronous-stochastic-convex-optimization-the-noise-is-in-the-noise-and-sgd-dont-care.txt
+5800-tree-guided-mcmc-inference-for-normalized-random-measure-mixture-models.txt
+
+top-5 similar files of 5783-winner-take-all-autoencoders.txt:
+5899-gradient-estimation-using-stochastic-computation-graphs.txt
+5677-double-or-nothing-multiplicative-incentive-mechanisms-for-crowdsourcing.txt
+5898-efficient-output-kernel-learning-for-multiple-tasks.txt
+5653-a-recurrent-latent-variable-model-for-sequential-data.txt
+5985-efficient-thompson-sampling-for-online-matrix-factorization-recommendation.txt
+
+top-5 similar files of 5698-discrete-renyi-classifiers.txt:
+5642-parallel-multi-dimensional-lstm-with-application-to-fast-biomedical-volumetric-image-segmentation.txt
+5708-a-class-of-network-models-recoverable-by-spectral-clustering.txt
+6004-secure-multi-party-differential-privacy.txt
+5660-dependent-multinomial-models-made-easy-stick-breaking-with-the-polya-gamma-augmentation.txt
+5640-exploring-models-and-data-for-image-question-answering.txt
+
+top-5 similar files of
+5676-tractable-learning-for-complex-probability-queries.txt:
+5887-statistical-topological-data-analysis-a-kernel-perspective.txt
+5635-grammar-as-a-foreign-language.txt
+5958-max-margin-deep-generative-models.txt
+5960-a-gaussian-process-model-of-quasar-spectral-energy-distributions.txt
+5907-maximum-likelihood-learning-with-arbitrary-treewidth-via-fast-mixing-parameter-sets.txt
+
+top-5 similar files of
+5860-on-the-job-learning-with-bayesian-decision-theory.txt:
+5658-calibrated-structured-prediction.txt
+6016-no-regret-learning-in-bayesian-games.txt
+5942-scalable-semi-supervised-aggregation-of-classifiers.txt
+5639-weakly-supervised-disentangling-with-recurrent-transformations-for-3d-view-synthesis.txt
+5697-an-active-learning-framework-using-sparse-graph-codes-for-sparse-polynomials-and-graph-sketching.txt
+
+top-5 similar files of
+5979-time-sensitive-recommendation-from-recurrent-user-activities.txt:
+5754-coevolve-a-joint-point-process-model-for-information-diffusion-and-network-co-evolution.txt
+5825-semi-proximal-mirror-prox-for-nonsmooth-composite-minimization.txt
+5818-collaboratively-learning-preferences-from-ordinal-data.txt
+5913-local-smoothness-in-variance-reduced-optimization.txt
+5722-combinatorial-cascading-bandits.txt
+
+top-5 similar files of
+5766-on-the-pseudo-dimension-of-nearly-optimal-auctions.txt:
+5864-color-constancy-by-learning-to-predict-chromaticity-from-luminance.txt
+5926-quartz-randomized-dual-coordinate-ascent-with-arbitrary-sampling.txt
+5718-beyond-convexity-stochastic-quasi-convex-optimization.txt
+5828-private-graphon-estimation-for-sparse-graphs.txt
+5850-training-very-deep-networks.txt
+
+top-5 similar files of
+5681-fast-and-accurate-inference-of-plackettluce-models.txt:
+5842-bandit-smooth-convex-optimization-improving-the-bias-variance-tradeoff.txt
+5903-online-rank-elicitation-for-plackett-luce-a-dueling-bandits-approach.txt
+5763-fast-convergence-of-regularized-learning-in-games.txt
+5884-is-approval-voting-optimal-given-approval-votes.txt
+6013-optimal-linear-estimation-under-unknown-nonlinear-transform.txt
+
+top-5 similar files of 5688-halting-in-random-walk-kernels.txt:
+5880-a-structural-smoothing-framework-for-robust-graph-comparison.txt
+5702-estimating-mixture-models-via-mixtures-of-polynomials.txt
+5919-variance-reduced-stochastic-gradient-descent-with-neighbors.txt
+5780-galileo-perceiving-physical-object-properties-by-integrating-a-physics-engine-with-deep-learning.txt
+5802-planar-ultrametrics-for-image-segmentation.txt
+
+top-5 similar files of
+5899-gradient-estimation-using-stochastic-computation-graphs.txt:
+5678-local-expectation-gradients-for-black-box-variational-inference.txt
+5682-backshift-learning-causal-cyclic-graphs-from-unknown-shift-interventions.txt
+6030-fighting-bandits-with-a-new-kind-of-smoothness.txt
+5783-winner-take-all-autoencoders.txt
+5914-high-dimensional-em-algorithm-statistical-optimization-and-asymptotic-normality.txt
+
+top-5 similar files of
+5732-explore-no-more-improved-high-probability-regret-bounds-for-non-stochastic-bandits.txt:
+6030-fighting-bandits-with-a-new-kind-of-smoothness.txt
+5883-consistent-multilabel-classification.txt
+5842-bandit-smooth-convex-optimization-improving-the-bias-variance-tradeoff.txt
+5723-adaptive-primal-dual-splitting-methods-for-statistical-learning-and-image-processing.txt
+5815-fast-bidirectional-probability-estimation-in-markov-models.txt
+
+top-5 similar files of
+5975-discriminative-robust-transformation-learning.txt:
+5811-sample-complexity-of-learning-mahalanobis-distance-metrics.txt
+5634-convolutional-neural-networks-with-intra-layer-recurrent-connections-for-scene-labeling.txt
+5742-top-k-multiclass-svm.txt
+5870-equilibrated-adaptive-learning-rates-for-non-convex-optimization.txt
+5725-online-gradient-boosting.txt
+
+top-5 similar files of
+5898-efficient-output-kernel-learning-for-multiple-tasks.txt:
+5742-top-k-multiclass-svm.txt 5783-winner-take-all-autoencoders.txt
+5966-gp-kernels-for-cross-spectrum-analysis.txt
+5802-planar-ultrametrics-for-image-segmentation.txt
+5784-learning-both-weights-and-connections-for-efficient-neural-network.txt
+
+top-5 similar files of
+5906-recovering-communities-in-the-general-stochastic-block-model-without-knowing-the-parameters.txt:
+5835-subsampled-power-iteration-a-unified-algorithm-for-block-models-and-planted-csps.txt
+5680-principal-geodesic-analysis-for-probability-measures-under-the-optimal-transport-metric.txt
+5823-interpolating-convex-and-non-convex-tensor-decompositions-via-the-subspace-norm.txt
+5854-spatial-transformer-networks.txt
+5752-distributed-submodular-cover-succinctly-summarizing-massive-data.txt
+
+top-5 similar files of
+5837-empirical-localization-of-homogeneous-divergences-on-discrete-sample-spaces.txt:
+5922-when-are-kalman-filter-restless-bandits-indexable.txt
+5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints.txt
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt
+5843-accelerated-mirror-descent-in-continuous-and-discrete-time.txt
+5762-competitive-distribution-estimation-why-is-good-turing-good.txt
+
+top-5 similar files of
+5763-fast-convergence-of-regularized-learning-in-games.txt:
+6016-no-regret-learning-in-bayesian-games.txt
+6034-fast-rates-for-exp-concave-empirical-risk-minimization.txt
+5681-fast-and-accurate-inference-of-plackettluce-models.txt
+5660-dependent-multinomial-models-made-easy-stick-breaking-with-the-polya-gamma-augmentation.txt
+6025-online-learning-for-adversaries-with-memory-price-of-past-mistakes.txt
+
+top-5 similar files of
+5664-hessian-free-optimization-for-learning-deep-multidimensional-recurrent-neural-networks.txt:
+5784-learning-both-weights-and-connections-for-efficient-neural-network.txt
+5642-parallel-multi-dimensional-lstm-with-application-to-fast-biomedical-volumetric-image-segmentation.txt
+5826-a-universal-primal-dual-convex-optimization-framework.txt
+6006-learning-structured-densities-via-infinite-dimensional-exponential-families.txt
+5679-learning-with-a-wasserstein-loss.txt
+
+top-5 similar files of
+5993-generalization-in-adaptive-data-analysis-and-holdout-reuse.txt:
+5665-scalable-inference-for-gaussian-process-models-with-black-box-likelihoods.txt
+5996-optimal-ridge-detection-using-coverage-risk.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5933-on-the-consistency-theory-of-high-dimensional-variable-screening.txt
+5773-deep-generative-image-models-using-a-laplacian-pyramid-of-adversarial-networks.txt
+
+top-5 similar files of
+5960-a-gaussian-process-model-of-quasar-spectral-energy-distributions.txt:
+5737-super-resolution-off-the-grid.txt
+5780-galileo-perceiving-physical-object-properties-by-integrating-a-physics-engine-with-deep-learning.txt
+5644-3d-object-proposals-for-accurate-object-class-detection.txt
+5913-local-smoothness-in-variance-reduced-optimization.txt
+5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints.txt
+
+top-5 similar files of 5846-end-to-end-memory-networks.txt:
+5635-grammar-as-a-foreign-language.txt
+5773-deep-generative-image-models-using-a-laplacian-pyramid-of-adversarial-networks.txt
+5737-super-resolution-off-the-grid.txt
+5641-are-you-talking-to-a-machine-dataset-and-methods-for-multilingual-image-question.txt
+5634-convolutional-neural-networks-with-intra-layer-recurrent-connections-for-scene-labeling.txt
+
+top-5 similar files of
+5773-deep-generative-image-models-using-a-laplacian-pyramid-of-adversarial-networks.txt:
+5633-texture-synthesis-using-convolutional-neural-networks.txt
+5734-individual-planning-in-infinite-horizon-multiagent-settings-inference-structure-and-scalability.txt
+5737-super-resolution-off-the-grid.txt
+5846-end-to-end-memory-networks.txt
+5702-estimating-mixture-models-via-mixtures-of-polynomials.txt
+
+top-5 similar files of
+5915-associative-memory-via-a-sparse-recovery-model.txt:
+5696-on-the-convergence-of-stochastic-gradient-mcmc-algorithms-with-high-order-integrators.txt
+5841-information-theoretic-lower-bounds-for-convex-optimization-with-erroneous-oracles.txt
+5653-a-recurrent-latent-variable-model-for-sequential-data.txt
+5704-matrix-completion-from-fewer-entries-spectral-detectability-and-rank-estimation.txt
+5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints.txt
+
+top-5 similar files of
+5728-accelerated-proximal-gradient-methods-for-nonconvex-programming.txt:
+5829-honor-hybrid-optimization-for-non-convex-regularized-problems.txt
+5774-shepard-convolutional-neural-networks.txt
+5825-semi-proximal-mirror-prox-for-nonsmooth-composite-minimization.txt
+5831-combinatorial-bandits-revisited.txt
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt
+
+top-5 similar files of
+6019-algorithmic-stability-and-uniform-generalization.txt:
+5719-on-the-limitation-of-spectral-methods-from-the-gaussian-hidden-clique-problem-to-rank-one-perturbations-of-gaussian-tensors.txt
+6034-fast-rates-for-exp-concave-empirical-risk-minimization.txt
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt
+5870-equilibrated-adaptive-learning-rates-for-non-convex-optimization.txt
+6032-the-pareto-regret-frontier-for-bandits.txt
+
+top-5 similar files of
+5973-bayesian-manifold-learning-the-locally-linear-latent-variable-model-ll-lvm.txt:
+5790-unlocking-neural-population-non-stationarities-using-hierarchical-dynamics-models.txt
+5794-probabilistic-curve-learning-coulomb-repulsion-and-the-electrostatic-gaussian-process.txt
+5687-regressive-virtual-metric-learning.txt
+5665-scalable-inference-for-gaussian-process-models-with-black-box-likelihoods.txt
+5686-adversarial-prediction-games-for-multivariate-losses.txt
+
+top-5 similar files of 5635-grammar-as-a-foreign-language.txt:
+5866-pointer-networks.txt 5950-skip-thought-vectors.txt
+5746-on-some-provably-correct-cases-of-variational-inference-for-topic-models.txt
+5949-semi-supervised-sequence-learning.txt
+5846-end-to-end-memory-networks.txt
+
+top-5 similar files of
+5793-the-population-posterior-and-bayesian-modeling-on-streams.txt:
+5758-automatic-variational-inference-in-stan.txt
+6006-learning-structured-densities-via-infinite-dimensional-exponential-families.txt
+5669-copula-variational-inference.txt
+5811-sample-complexity-of-learning-mahalanobis-distance-metrics.txt
+5746-on-some-provably-correct-cases-of-variational-inference-for-topic-models.txt
+
+top-5 similar files of
+5911-nonparametric-von-mises-estimators-for-entropies-divergences-and-mutual-informations.txt:
+5883-consistent-multilabel-classification.txt
+6004-secure-multi-party-differential-privacy.txt
+5723-adaptive-primal-dual-splitting-methods-for-statistical-learning-and-image-processing.txt
+5782-character-level-convolutional-networks-for-text-classification.txt
+5714-robust-portfolio-optimization.txt
+
+top-5 similar files of
+5873-a-framework-for-individualizing-predictions-of-disease-trajectories-by-exploiting-multi-resolution-structure.txt:
+5767-high-dimensional-neural-spike-train-analysis-with-generalized-count-linear-dynamical-systems.txt
+5653-a-recurrent-latent-variable-model-for-sequential-data.txt
+5703-robust-gaussian-graphical-modeling-with-the-trimmed-graphical-lasso.txt
+5782-character-level-convolutional-networks-for-text-classification.txt
+5762-competitive-distribution-estimation-why-is-good-turing-good.txt
+
+top-5 similar files of
+5836-learning-theory-and-algorithms-for-forecasting-non-stationary-time-series.txt:
+6026-revenue-optimization-against-strategic-buyers.txt
+5634-convolutional-neural-networks-with-intra-layer-recurrent-connections-for-scene-labeling.txt
+5722-combinatorial-cascading-bandits.txt
+5805-large-scale-probabilistic-predictors-with-and-without-guarantees-of-validity.txt
+6012-multi-class-svms-from-tighter-data-dependent-generalization-bounds-to-novel-algorithms.txt
+
+top-5 similar files of 5971-space-time-local-embeddings.txt:
+5861-learning-wake-sleep-recurrent-attention-models.txt
+5962-convolutional-spike-triggered-covariance-analysis-for-neural-subunit-models.txt
+5663-learning-spatiotemporal-trajectories-from-manifold-valued-longitudinal-data.txt
+5794-probabilistic-curve-learning-coulomb-repulsion-and-the-electrostatic-gaussian-process.txt
+5940-matrix-completion-with-noisy-side-information.txt
+
+top-5 similar files of
+5748-the-self-normalized-estimator-for-counterfactual-learning.txt:
+6034-fast-rates-for-exp-concave-empirical-risk-minimization.txt
+5674-expectation-particle-belief-propagation.txt
+5772-learning-stationary-time-series-using-gaussian-processes-with-nonparametric-kernels.txt
+5961-neural-adaptive-sequential-monte-carlo.txt
+6024-regret-lower-bound-and-optimal-algorithm-in-finite-stochastic-partial-monitoring.txt
+
+top-5 similar files of 5737-super-resolution-off-the-grid.txt:
+5663-learning-spatiotemporal-trajectories-from-manifold-valued-longitudinal-data.txt
+5830-a-convergent-gradient-descent-algorithm-for-rank-minimization-and-semidefinite-programming-from-random-linear-measurements.txt
+5960-a-gaussian-process-model-of-quasar-spectral-energy-distributions.txt
+5805-large-scale-probabilistic-predictors-with-and-without-guarantees-of-validity.txt
+5644-3d-object-proposals-for-accurate-object-class-detection.txt
+
+top-5 similar files of
+6024-regret-lower-bound-and-optimal-algorithm-in-finite-stochastic-partial-monitoring.txt:
+6026-revenue-optimization-against-strategic-buyers.txt
+5987-fast-lifted-map-inference-via-partitioning.txt
+6030-fighting-bandits-with-a-new-kind-of-smoothness.txt
+5831-combinatorial-bandits-revisited.txt
+5708-a-class-of-network-models-recoverable-by-spectral-clustering.txt
+
+top-5 similar files of
+5752-distributed-submodular-cover-succinctly-summarizing-massive-data.txt:
+5997-fast-distributed-k-center-clustering-with-outliers-on-massive-data.txt
+5822-subset-selection-by-pareto-optimization.txt
+5906-recovering-communities-in-the-general-stochastic-block-model-without-knowing-the-parameters.txt
+6026-revenue-optimization-against-strategic-buyers.txt
+5953-natural-neural-networks.txt
+
+top-5 similar files of
+5974-local-causal-discovery-of-direct-causes-and-effects.txt:
+5959-cross-domain-matching-for-bag-of-words-data-via-kernel-embeddings-of-latent-distributions.txt
+5718-beyond-convexity-stochastic-quasi-convex-optimization.txt
+5763-fast-convergence-of-regularized-learning-in-games.txt
+5831-combinatorial-bandits-revisited.txt
+5904-segregated-graphs-and-marginals-of-chain-graph-models.txt
+
+top-5 similar files of 5689-rate-agnostic-causal-structure-learning.txt:
+6006-learning-structured-densities-via-infinite-dimensional-exponential-families.txt
+5938-collaborative-filtering-with-graph-information-consistency-and-scalable-methods.txt
+5737-super-resolution-off-the-grid.txt
+5778-bidirectional-recurrent-convolutional-networks-for-multi-frame-super-resolution.txt
+5881-optimization-monte-carlo-efficient-and-embarrassingly-parallel-likelihood-free-inference.txt
+
+top-5 similar files of
+5764-interactive-control-of-diverse-complex-characters-with-neural-networks.txt:
+5782-character-level-convolutional-networks-for-text-classification.txt
+5889-softstar-heuristic-guided-probabilistic-inference.txt
+5638-faster-r-cnn-towards-real-time-object-detection-with-region-proposal-networks.txt
+5745-distributionally-robust-logistic-regression.txt
+6032-the-pareto-regret-frontier-for-bandits.txt
+
+top-5 similar files of
+5809-the-consistency-of-common-neighbors-for-link-prediction-in-stochastic-blockmodels.txt:
+5708-a-class-of-network-models-recoverable-by-spectral-clustering.txt
+5754-coevolve-a-joint-point-process-model-for-information-diffusion-and-network-co-evolution.txt
+6032-the-pareto-regret-frontier-for-bandits.txt
+6009-from-random-walks-to-distances-on-unweighted-graphs.txt
+5774-shepard-convolutional-neural-networks.txt
+
+top-5 similar files of 5963-rectified-factor-networks.txt:
+5716-fast-randomized-kernel-ridge-regression-with-statistical-guarantees.txt
+5997-fast-distributed-k-center-clustering-with-outliers-on-massive-data.txt
+5853-the-return-of-the-gating-network-combining-generative-models-and-discriminative-training-in-natural-image-priors.txt
+6030-fighting-bandits-with-a-new-kind-of-smoothness.txt
+5850-training-very-deep-networks.txt
+
+top-5 similar files of
+5638-faster-r-cnn-towards-real-time-object-detection-with-region-proposal-networks.txt:
+5852-learning-to-segment-object-candidates.txt
+5764-interactive-control-of-diverse-complex-characters-with-neural-networks.txt
+5644-3d-object-proposals-for-accurate-object-class-detection.txt
+6034-fast-rates-for-exp-concave-empirical-risk-minimization.txt
+5862-backpropagation-for-energy-efficient-neuromorphic-computing.txt
+
+top-5 similar files of
+5876-streaming-distributed-variational-inference-for-bayesian-nonparametrics.txt:
+6035-adaptive-low-complexity-sequential-inference-for-dirichlet-process-mixture-models.txt
+5661-scalable-adaptation-of-state-complexity-for-nonparametric-hidden-markov-models.txt
+6029-cornering-stationary-and-restless-mixing-bandits-with-remix-ucb.txt
+5959-cross-domain-matching-for-bag-of-words-data-via-kernel-embeddings-of-latent-distributions.txt
+5897-streaming-min-max-hypergraph-partitioning.txt
+
+top-5 similar files of 5832-on-elicitation-complexity.txt:
+5842-bandit-smooth-convex-optimization-improving-the-bias-variance-tradeoff.txt
+5912-bounding-errors-of-expectation-propagation.txt
+6030-fighting-bandits-with-a-new-kind-of-smoothness.txt
+5874-gaussian-process-random-fields.txt
+5723-adaptive-primal-dual-splitting-methods-for-statistical-learning-and-image-processing.txt
+
+top-5 similar files of
+5815-fast-bidirectional-probability-estimation-in-markov-models.txt:
+5811-sample-complexity-of-learning-mahalanobis-distance-metrics.txt
+5732-explore-no-more-improved-high-probability-regret-bounds-for-non-stochastic-bandits.txt
+6021-efficient-compressive-phase-retrieval-with-constrained-sensing-vectors.txt
+5885-a-normative-theory-of-adaptive-dimensionality-reduction-in-neural-networks.txt
+5700-decomposition-bounds-for-marginal-map.txt
+
+top-5 similar files of
+5936-less-is-more-nystrom-computational-regularization.txt:
+6015-learning-with-incremental-iterative-regularization.txt
+5726-regularization-free-estimation-in-trace-regression-with-symmetric-positive-semidefinite-matrices.txt
+6032-the-pareto-regret-frontier-for-bandits.txt
+5932-exactness-of-approximate-map-inference-in-continuous-mrfs.txt
+5708-a-class-of-network-models-recoverable-by-spectral-clustering.txt
+
+top-5 similar files of
+5941-learning-with-symmetric-label-noise-the-importance-of-being-unhinged.txt:
+5801-reflection-refraction-and-hamiltonian-monte-carlo.txt
+5933-on-the-consistency-theory-of-high-dimensional-variable-screening.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5798-learning-with-group-invariant-features-a-kernel-perspective.txt
+5690-online-prediction-at-the-limit-of-zero-temperature.txt
+
+top-5 similar files of
+6003-tractable-bayesian-network-structure-learning-with-bounded-vertex-cover-number.txt:
+6026-revenue-optimization-against-strategic-buyers.txt
+5737-super-resolution-off-the-grid.txt
+5896-learning-large-scale-poisson-dag-models-based-on-overdispersion-scoring.txt
+5717-taming-the-wild-a-unified-analysis-of-hogwild-style-algorithms.txt
+5952-synaptic-sampling-a-bayesian-approach-to-neural-network-plasticity-and-rewiring.txt
+
+top-5 similar files of
+5723-adaptive-primal-dual-splitting-methods-for-statistical-learning-and-image-processing.txt:
+5771-closed-form-estimators-for-high-dimensional-generalized-linear-models.txt
+5843-accelerated-mirror-descent-in-continuous-and-discrete-time.txt
+5679-learning-with-a-wasserstein-loss.txt
+5826-a-universal-primal-dual-convex-optimization-framework.txt
+5924-a-dual-augmented-block-minimization-framework-for-learning-with-limited-memory.txt
+
+top-5 similar files of
+5912-bounding-errors-of-expectation-propagation.txt:
+5834-structured-estimation-with-atomic-norms-general-bounds-and-applications.txt
+5864-color-constancy-by-learning-to-predict-chromaticity-from-luminance.txt
+5693-sample-complexity-bounds-for-iterative-stochastic-policy-optimization.txt
+5674-expectation-particle-belief-propagation.txt
+5953-natural-neural-networks.txt
+
+top-5 similar files of
+5935-beyond-sub-gaussian-measurements-high-dimensional-structured-estimation-with-sub-exponential-designs.txt:
+5834-structured-estimation-with-atomic-norms-general-bounds-and-applications.txt
+5729-nearly-optimal-private-lasso.txt
+5703-robust-gaussian-graphical-modeling-with-the-trimmed-graphical-lasso.txt
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt
+6022-unified-view-of-matrix-completion-under-general-structural-constraints.txt
+
+top-5 similar files of
+5726-regularization-free-estimation-in-trace-regression-with-symmetric-positive-semidefinite-matrices.txt:
+5738-b-bit-marginal-regression.txt
+5703-robust-gaussian-graphical-modeling-with-the-trimmed-graphical-lasso.txt
+5768-measuring-sample-quality-with-steins-method.txt
+5640-exploring-models-and-data-for-image-question-answering.txt
+5879-spectral-learning-of-large-structured-hmms-for-comparative-epigenomics.txt
+
+top-5 similar files of
+5985-efficient-thompson-sampling-for-online-matrix-factorization-recommendation.txt:
+5720-regularized-em-algorithms-a-unified-framework-and-statistical-guarantees.txt
+6008-algorithms-with-logarithmic-or-sublinear-regret-for-constrained-contextual-bandits.txt
+6033-online-learning-with-gaussian-payoffs-and-side-observations.txt
+5922-when-are-kalman-filter-restless-bandits-indexable.txt
+5783-winner-take-all-autoencoders.txt
+
+top-5 similar files of
+6027-on-top-k-selection-in-multi-armed-bandits-and-hidden-bipartite-graphs.txt:
+6034-fast-rates-for-exp-concave-empirical-risk-minimization.txt
+5999-fast-classification-rates-for-high-dimensional-gaussian-generative-models.txt
+5904-segregated-graphs-and-marginals-of-chain-graph-models.txt
+5683-learning-with-relaxed-supervision.txt
+5939-efficient-and-parsimonious-agnostic-active-learning.txt
+
+top-5 similar files of 5901-sparse-pca-via-bipartite-matchings.txt:
+5998-orthogonal-nmf-through-subspace-exploration.txt
+5905-approximating-sparse-pca-from-incomplete-data.txt
+5736-minimum-weight-perfect-matching-via-blossom-belief-propagation.txt
+5994-online-f-measure-optimization.txt
+5795-preconditioned-spectral-descent-for-deep-learning.txt
+
+top-5 similar files of
+5962-convolutional-spike-triggered-covariance-analysis-for-neural-subunit-models.txt:
+5938-collaborative-filtering-with-graph-information-consistency-and-scalable-methods.txt
+5771-closed-form-estimators-for-high-dimensional-generalized-linear-models.txt
+5921-convergence-rates-of-active-learning-for-maximum-likelihood-estimation.txt
+5943-spherical-random-features-for-polynomial-kernels.txt
+6034-fast-rates-for-exp-concave-empirical-risk-minimization.txt
+
+top-5 similar files of
+5913-local-smoothness-in-variance-reduced-optimization.txt:
+5926-quartz-randomized-dual-coordinate-ascent-with-arbitrary-sampling.txt
+5835-subsampled-power-iteration-a-unified-algorithm-for-block-models-and-planted-csps.txt
+5949-semi-supervised-sequence-learning.txt
+5960-a-gaussian-process-model-of-quasar-spectral-energy-distributions.txt
+6020-mixing-time-estimation-in-reversible-markov-chains-from-a-single-sample-path.txt
+
+top-5 similar files of
+5651-bidirectional-recurrent-neural-networks-as-generative-models.txt:
+5947-semi-supervised-learning-with-ladder-networks.txt
+5707-subspace-clustering-with-irrelevant-features-via-robust-dantzig-selector.txt
+5654-deep-knowledge-tracing.txt
+5859-action-conditional-video-prediction-using-deep-networks-in-atari-games.txt
+5730-minimax-time-series-prediction.txt
+
+top-5 similar files of
+5885-a-normative-theory-of-adaptive-dimensionality-reduction-in-neural-networks.txt:
+5722-combinatorial-cascading-bandits.txt
+5815-fast-bidirectional-probability-estimation-in-markov-models.txt
+5971-space-time-local-embeddings.txt
+5798-learning-with-group-invariant-features-a-kernel-perspective.txt
+5685-fast-two-sample-testing-with-analytic-representations-of-probability-measures.txt
+
+top-5 similar files of
+5690-online-prediction-at-the-limit-of-zero-temperature.txt:
+6032-the-pareto-regret-frontier-for-bandits.txt
+5949-semi-supervised-sequence-learning.txt
+5941-learning-with-symmetric-label-noise-the-importance-of-being-unhinged.txt
+5791-deeply-learning-the-messages-in-message-passing-inference.txt
+5678-local-expectation-gradients-for-black-box-variational-inference.txt
+
+top-5 similar files of 6032-the-pareto-regret-frontier-for-bandits.txt:
+5931-linear-multi-resource-allocation-with-semi-bandit-feedback.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+6033-online-learning-with-gaussian-payoffs-and-side-observations.txt
+5818-collaboratively-learning-preferences-from-ordinal-data.txt
+5809-the-consistency-of-common-neighbors-for-link-prediction-in-stochastic-blockmodels.txt
+
+top-5 similar files of
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt:
+5734-individual-planning-in-infinite-horizon-multiagent-settings-inference-structure-and-scalability.txt
+5921-convergence-rates-of-active-learning-for-maximum-likelihood-estimation.txt
+5674-expectation-particle-belief-propagation.txt
+5728-accelerated-proximal-gradient-methods-for-nonconvex-programming.txt
+5789-the-brain-uses-reliability-of-stimulus-information-when-making-perceptual-decisions.txt
+
+top-5 similar files of
+5811-sample-complexity-of-learning-mahalanobis-distance-metrics.txt:
+5975-discriminative-robust-transformation-learning.txt
+5793-the-population-posterior-and-bayesian-modeling-on-streams.txt
+5815-fast-bidirectional-probability-estimation-in-markov-models.txt
+5952-synaptic-sampling-a-bayesian-approach-to-neural-network-plasticity-and-rewiring.txt
+5960-a-gaussian-process-model-of-quasar-spectral-energy-distributions.txt
+
+top-5 similar files of
+5927-a-generalization-of-submodular-cover-via-the-diminishing-return-property-on-the-integer-lattice.txt:
+5709-monotone-k-submodular-function-maximization-with-size-constraints.txt
+5951-learning-to-linearize-under-uncertainty.txt
+5801-reflection-refraction-and-hamiltonian-monte-carlo.txt
+5816-evaluating-the-statistical-significance-of-biclusters.txt
+5763-fast-convergence-of-regularized-learning-in-games.txt
+
+top-5 similar files of
+5824-fast-provable-algorithms-for-isotonic-regression-in-all-l\_p-norms.txt:
+6012-multi-class-svms-from-tighter-data-dependent-generalization-bounds-to-novel-algorithms.txt
+5775-learning-structured-output-representation-using-deep-conditional-generative-models.txt
+5702-estimating-mixture-models-via-mixtures-of-polynomials.txt
+6025-online-learning-for-adversaries-with-memory-price-of-past-mistakes.txt
+5861-learning-wake-sleep-recurrent-attention-models.txt
+
+top-5 similar files of 5687-regressive-virtual-metric-learning.txt:
+5973-bayesian-manifold-learning-the-locally-linear-latent-variable-model-ll-lvm.txt
+6024-regret-lower-bound-and-optimal-algorithm-in-finite-stochastic-partial-monitoring.txt
+5648-learning-to-transduce-with-unbounded-memory.txt
+5975-discriminative-robust-transformation-learning.txt
+5768-measuring-sample-quality-with-steins-method.txt
+
+top-5 similar files of
+5862-backpropagation-for-energy-efficient-neuromorphic-computing.txt:
+5642-parallel-multi-dimensional-lstm-with-application-to-fast-biomedical-volumetric-image-segmentation.txt
+5919-variance-reduced-stochastic-gradient-descent-with-neighbors.txt
+5774-shepard-convolutional-neural-networks.txt
+6026-revenue-optimization-against-strategic-buyers.txt
+5959-cross-domain-matching-for-bag-of-words-data-via-kernel-embeddings-of-latent-distributions.txt
+
+top-5 similar files of 5700-decomposition-bounds-for-marginal-map.txt:
+5695-probabilistic-variational-bounds-for-graphical-models.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5892-barrier-frank-wolfe-for-marginal-inference.txt
+5930-stochastic-online-greedy-learning-with-semi-bandit-feedbacks.txt
+5710-smooth-and-strong-map-inference-with-linear-convergence.txt
+
+top-5 similar files of
+5990-a-pseudo-euclidean-iteration-for-optimal-recovery-in-noisy-ica.txt:
+5912-bounding-errors-of-expectation-propagation.txt
+5668-variational-information-maximisation-for-intrinsically-motivated-reinforcement-learning.txt
+5862-backpropagation-for-energy-efficient-neuromorphic-computing.txt
+6006-learning-structured-densities-via-infinite-dimensional-exponential-families.txt
+5845-deep-visual-analogy-making.txt
+
+top-5 similar files of
+5755-linear-response-methods-for-accurate-covariance-estimates-from-mean-field-variational-bayes.txt:
+5669-copula-variational-inference.txt
+5872-efficient-and-robust-automated-machine-learning.txt
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt
+5939-efficient-and-parsimonious-agnostic-active-learning.txt
+5874-gaussian-process-random-fields.txt
+
+top-5 similar files of
+5923-policy-gradient-for-coherent-risk-measures.txt:
+6014-risk-sensitive-and-robust-decision-making-a-cvar-optimization-approach.txt
+5819-sgd-algorithms-based-on-incomplete-u-statistics-large-scale-minimization-of-empirical-risk.txt
+5823-interpolating-convex-and-non-convex-tensor-decompositions-via-the-subspace-norm.txt
+5725-online-gradient-boosting.txt
+5812-matrix-manifold-optimization-for-gaussian-mixtures.txt
+
+top-5 similar files of
+5857-inferring-algorithmic-patterns-with-stack-augmented-recurrent-nets.txt:
+5648-learning-to-transduce-with-unbounded-memory.txt
+5847-attention-based-models-for-speech-recognition.txt
+5886-efficient-non-greedy-optimization-of-decision-trees.txt
+5774-shepard-convolutional-neural-networks.txt
+5719-on-the-limitation-of-spectral-methods-from-the-gaussian-hidden-clique-problem-to-rank-one-perturbations-of-gaussian-tensors.txt
+
+top-5 similar files of
+5657-statistical-model-criticism-using-kernel-two-sample-tests.txt:
+5801-reflection-refraction-and-hamiltonian-monte-carlo.txt
+6026-revenue-optimization-against-strategic-buyers.txt
+5654-deep-knowledge-tracing.txt
+5861-learning-wake-sleep-recurrent-attention-models.txt
+6003-tractable-bayesian-network-structure-learning-with-bounded-vertex-cover-number.txt
+
+top-5 similar files of
+5691-lifted-symmetry-detection-and-breaking-for-map-inference.txt:
+5900-lifted-inference-rules-with-constraints.txt
+5794-probabilistic-curve-learning-coulomb-repulsion-and-the-electrostatic-gaussian-process.txt
+5960-a-gaussian-process-model-of-quasar-spectral-energy-distributions.txt
+5955-convolutional-lstm-network-a-machine-learning-approach-for-precipitation-nowcasting.txt
+6033-online-learning-with-gaussian-payoffs-and-side-observations.txt
+
+top-5 similar files of
+5673-supervised-learning-for-dynamical-system-learning.txt:
+5734-individual-planning-in-infinite-horizon-multiagent-settings-inference-structure-and-scalability.txt
+5702-estimating-mixture-models-via-mixtures-of-polynomials.txt
+5921-convergence-rates-of-active-learning-for-maximum-likelihood-estimation.txt
+5762-competitive-distribution-estimation-why-is-good-turing-good.txt
+5879-spectral-learning-of-large-structured-hmms-for-comparative-epigenomics.txt
+
+top-5 similar files of
+5868-next-a-system-for-real-world-development-evaluation-and-application-of-active-learning.txt:
+5921-convergence-rates-of-active-learning-for-maximum-likelihood-estimation.txt
+5655-deep-temporal-sigmoid-belief-networks-for-sequence-modeling.txt
+5916-matrix-completion-under-monotonic-single-index-models.txt
+5834-structured-estimation-with-atomic-norms-general-bounds-and-applications.txt
+6023-copeland-dueling-bandits.txt
+
+top-5 similar files of
+5909-learning-causal-graphs-with-small-interventions.txt:
+5642-parallel-multi-dimensional-lstm-with-application-to-fast-biomedical-volumetric-image-segmentation.txt
+5856-attractor-network-dynamics-enable-preplay-and-rapid-path-planning-in-mazelike-environments.txt
+5927-a-generalization-of-submodular-cover-via-the-diminishing-return-property-on-the-integer-lattice.txt
+5870-equilibrated-adaptive-learning-rates-for-non-convex-optimization.txt
+6003-tractable-bayesian-network-structure-learning-with-bounded-vertex-cover-number.txt
+
+top-5 similar files of
+5727-convergence-analysis-of-prediction-markets-via-randomized-subspace-descent.txt:
+5922-when-are-kalman-filter-restless-bandits-indexable.txt
+5833-online-learning-with-adversarial-delays.txt
+5925-on-the-global-linear-convergence-of-frank-wolfe-optimization-variants.txt
+5960-a-gaussian-process-model-of-quasar-spectral-energy-distributions.txt
+5995-a-market-framework-for-eliciting-private-data.txt
+
+top-5 similar files of
+5986-parallelizing-mcmc-with-random-partition-trees.txt:
+5930-stochastic-online-greedy-learning-with-semi-bandit-feedbacks.txt
+5933-on-the-consistency-theory-of-high-dimensional-variable-screening.txt
+5916-matrix-completion-under-monotonic-single-index-models.txt
+5642-parallel-multi-dimensional-lstm-with-application-to-fast-biomedical-volumetric-image-segmentation.txt
+5640-exploring-models-and-data-for-image-question-answering.txt
+
+top-5 similar files of
+5792-efficient-learning-of-continuous-time-hidden-markov-models-for-disease-progression.txt:
+5774-shepard-convolutional-neural-networks.txt
+5968-particle-gibbs-for-infinite-hidden-markov-models.txt
+5928-a-universal-catalyst-for-first-order-optimization.txt
+5686-adversarial-prediction-games-for-multivariate-losses.txt
+5846-end-to-end-memory-networks.txt
+
+top-5 similar files of
+5757-rapidly-mixing-gibbs-sampling-for-a-class-of-factor-graphs-using-hierarchy-width.txt:
+5634-convolutional-neural-networks-with-intra-layer-recurrent-connections-for-scene-labeling.txt
+5717-taming-the-wild-a-unified-analysis-of-hogwild-style-algorithms.txt
+5968-particle-gibbs-for-infinite-hidden-markov-models.txt
+5922-when-are-kalman-filter-restless-bandits-indexable.txt
+5852-learning-to-segment-object-candidates.txt
+
+top-5 similar files of
+5858-decoupled-deep-neural-network-for-semi-supervised-semantic-segmentation.txt:
+5851-deep-convolutional-inverse-graphics-network.txt
+5688-halting-in-random-walk-kernels.txt
+5708-a-class-of-network-models-recoverable-by-spectral-clustering.txt
+5735-randomized-block-krylov-methods-for-stronger-and-faster-approximate-singular-value-decomposition.txt
+5638-faster-r-cnn-towards-real-time-object-detection-with-region-proposal-networks.txt
+
+top-5 similar files of
+5642-parallel-multi-dimensional-lstm-with-application-to-fast-biomedical-volumetric-image-segmentation.txt:
+5636-recursive-training-of-2d-3d-convolutional-networks-for-neuronal-boundary-prediction.txt
+5862-backpropagation-for-energy-efficient-neuromorphic-computing.txt
+5910-regret-based-pruning-in-extensive-form-games.txt
+5996-optimal-ridge-detection-using-coverage-risk.txt
+5848-where-are-they-looking.txt
+
+top-5 similar files of
+5704-matrix-completion-from-fewer-entries-spectral-detectability-and-rank-estimation.txt:
+5775-learning-structured-output-representation-using-deep-conditional-generative-models.txt
+5830-a-convergent-gradient-descent-algorithm-for-rank-minimization-and-semidefinite-programming-from-random-linear-measurements.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5712-spectral-norm-regularization-of-orthonormal-representations-for-graph-transduction.txt
+5906-recovering-communities-in-the-general-stochastic-block-model-without-knowing-the-parameters.txt
+
+top-5 similar files of
+5945-teaching-machines-to-read-and-comprehend.txt:
+5648-learning-to-transduce-with-unbounded-memory.txt
+5640-exploring-models-and-data-for-image-question-answering.txt
+5919-variance-reduced-stochastic-gradient-descent-with-neighbors.txt
+6030-fighting-bandits-with-a-new-kind-of-smoothness.txt
+5843-accelerated-mirror-descent-in-continuous-and-discrete-time.txt
+
+top-5 similar files of
+5856-attractor-network-dynamics-enable-preplay-and-rapid-path-planning-in-mazelike-environments.txt:
+5801-reflection-refraction-and-hamiltonian-monte-carlo.txt
+6006-learning-structured-densities-via-infinite-dimensional-exponential-families.txt
+5948-enforcing-balance-allows-local-supervised-learning-in-spiking-recurrent-networks.txt
+5962-convolutional-spike-triggered-covariance-analysis-for-neural-subunit-models.txt
+5966-gp-kernels-for-cross-spectrum-analysis.txt
+
+top-5 similar files of
+5853-the-return-of-the-gating-network-combining-generative-models-and-discriminative-training-in-natural-image-priors.txt:
+5884-is-approval-voting-optimal-given-approval-votes.txt
+5660-dependent-multinomial-models-made-easy-stick-breaking-with-the-polya-gamma-augmentation.txt
+6032-the-pareto-regret-frontier-for-bandits.txt
+5778-bidirectional-recurrent-convolutional-networks-for-multi-frame-super-resolution.txt
+5719-on-the-limitation-of-spectral-methods-from-the-gaussian-hidden-clique-problem-to-rank-one-perturbations-of-gaussian-tensors.txt
+
+top-5 similar files of
+5813-scale-up-nonlinear-component-analysis-with-doubly-stochastic-gradients.txt:
+5874-gaussian-process-random-fields.txt
+5807-policy-evaluation-using-the-return.txt
+5703-robust-gaussian-graphical-modeling-with-the-trimmed-graphical-lasso.txt
+5827-sample-complexity-of-episodic-fixed-horizon-reinforcement-learning.txt
+5635-grammar-as-a-foreign-language.txt
+
+top-5 similar files of
+5981-bounding-the-cost-of-search-based-lifted-inference.txt:
+5980-parallel-recursive-best-first-andor-search-for-exact-map-inference-in-graphical-models.txt
+5987-fast-lifted-map-inference-via-partitioning.txt
+5922-when-are-kalman-filter-restless-bandits-indexable.txt
+5674-expectation-particle-belief-propagation.txt
+5708-a-class-of-network-models-recoverable-by-spectral-clustering.txt
+
+top-5 similar files of
+5682-backshift-learning-causal-cyclic-graphs-from-unknown-shift-interventions.txt:
+5899-gradient-estimation-using-stochastic-computation-graphs.txt
+5685-fast-two-sample-testing-with-analytic-representations-of-probability-measures.txt
+5836-learning-theory-and-algorithms-for-forecasting-non-stationary-time-series.txt
+5807-policy-evaluation-using-the-return.txt
+5922-when-are-kalman-filter-restless-bandits-indexable.txt
+
+top-5 similar files of
+5782-character-level-convolutional-networks-for-text-classification.txt:
+5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints.txt
+5764-interactive-control-of-diverse-complex-characters-with-neural-networks.txt
+5949-semi-supervised-sequence-learning.txt
+5911-nonparametric-von-mises-estimators-for-entropies-divergences-and-mutual-informations.txt
+5953-natural-neural-networks.txt
+
+top-5 similar files of
+6009-from-random-walks-to-distances-on-unweighted-graphs.txt:
+5701-anytime-influence-bounds-and-the-explosive-behavior-of-continuous-time-diffusion-networks.txt
+5809-the-consistency-of-common-neighbors-for-link-prediction-in-stochastic-blockmodels.txt
+5798-learning-with-group-invariant-features-a-kernel-perspective.txt
+5705-robust-pca-with-compressed-data.txt
+5651-bidirectional-recurrent-neural-networks-as-generative-models.txt
+
+top-5 similar files of
+5743-solving-random-quadratic-systems-of-equations-is-nearly-as-easy-as-solving-linear-systems.txt:
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5753-probabilistic-line-searches-for-stochastic-optimization.txt
+5920-non-convex-statistical-optimization-for-sparse-tensor-graphical-model.txt
+5806-on-the-accuracy-of-self-normalized-log-linear-models.txt
+5824-fast-provable-algorithms-for-isotonic-regression-in-all-l\_p-norms.txt
+
+top-5 similar files of
+5776-expressing-an-image-stream-with-a-sequence-of-natural-sentences.txt:
+5949-semi-supervised-sequence-learning.txt
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt
+5636-recursive-training-of-2d-3d-convolutional-networks-for-neuronal-boundary-prediction.txt
+5777-visalogy-answering-visual-analogy-questions.txt
+5942-scalable-semi-supervised-aggregation-of-classifiers.txt
+
+top-5 similar files of 5705-robust-pca-with-compressed-data.txt:
+5707-subspace-clustering-with-irrelevant-features-via-robust-dantzig-selector.txt
+5918-convergence-rates-of-sub-sampled-newton-methods.txt
+5823-interpolating-convex-and-non-convex-tensor-decompositions-via-the-subspace-norm.txt
+5702-estimating-mixture-models-via-mixtures-of-polynomials.txt
+5841-information-theoretic-lower-bounds-for-convex-optimization-with-erroneous-oracles.txt
+
+top-5 similar files of
+5636-recursive-training-of-2d-3d-convolutional-networks-for-neuronal-boundary-prediction.txt:
+5642-parallel-multi-dimensional-lstm-with-application-to-fast-biomedical-volumetric-image-segmentation.txt
+5649-spectral-representations-for-convolutional-neural-networks.txt
+5808-community-detection-via-measure-space-embedding.txt
+6007-lifelong-learning-with-non-iid-tasks.txt
+5776-expressing-an-image-stream-with-a-sequence-of-natural-sentences.txt
+
+top-5 similar files of
+5767-high-dimensional-neural-spike-train-analysis-with-generalized-count-linear-dynamical-systems.txt:
+5790-unlocking-neural-population-non-stationarities-using-hierarchical-dynamics-models.txt
+5707-subspace-clustering-with-irrelevant-features-via-robust-dantzig-selector.txt
+5642-parallel-multi-dimensional-lstm-with-application-to-fast-biomedical-volumetric-image-segmentation.txt
+5873-a-framework-for-individualizing-predictions-of-disease-trajectories-by-exploiting-multi-resolution-structure.txt
+5818-collaboratively-learning-preferences-from-ordinal-data.txt
+
+top-5 similar files of
+5928-a-universal-catalyst-for-first-order-optimization.txt:
+5825-semi-proximal-mirror-prox-for-nonsmooth-composite-minimization.txt
+5861-learning-wake-sleep-recurrent-attention-models.txt
+5711-stopwasting-my-gradients-practical-svrg.txt
+5709-monotone-k-submodular-function-maximization-with-size-constraints.txt
+6024-regret-lower-bound-and-optimal-algorithm-in-finite-stochastic-partial-monitoring.txt
+
+top-5 similar files of
+5878-human-memory-search-as-initial-visit-emitting-random-walk.txt:
+5924-a-dual-augmented-block-minimization-framework-for-learning-with-limited-memory.txt
+5633-texture-synthesis-using-convolutional-neural-networks.txt
+5822-subset-selection-by-pareto-optimization.txt
+5827-sample-complexity-of-episodic-fixed-horizon-reinforcement-learning.txt
+5893-practical-and-optimal-lsh-for-angular-distance.txt
+
+top-5 similar files of
+6012-multi-class-svms-from-tighter-data-dependent-generalization-bounds-to-novel-algorithms.txt:
+5824-fast-provable-algorithms-for-isotonic-regression-in-all-l\_p-norms.txt
+5801-reflection-refraction-and-hamiltonian-monte-carlo.txt
+5836-learning-theory-and-algorithms-for-forecasting-non-stationary-time-series.txt
+6034-fast-rates-for-exp-concave-empirical-risk-minimization.txt
+5919-variance-reduced-stochastic-gradient-descent-with-neighbors.txt
+
+top-5 similar files of
+6020-mixing-time-estimation-in-reversible-markov-chains-from-a-single-sample-path.txt:
+5920-non-convex-statistical-optimization-for-sparse-tensor-graphical-model.txt
+5913-local-smoothness-in-variance-reduced-optimization.txt
+5924-a-dual-augmented-block-minimization-framework-for-learning-with-limited-memory.txt
+5715-bayesian-optimization-with-exponential-convergence.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+
+top-5 similar files of
+5696-on-the-convergence-of-stochastic-gradient-mcmc-algorithms-with-high-order-integrators.txt:
+5762-competitive-distribution-estimation-why-is-good-turing-good.txt
+5786-deep-poisson-factor-modeling.txt
+5994-online-f-measure-optimization.txt
+5719-on-the-limitation-of-spectral-methods-from-the-gaussian-hidden-clique-problem-to-rank-one-perturbations-of-gaussian-tensors.txt
+5978-covariance-controlled-adaptive-langevin-thermostat-for-large-scale-bayesian-sampling.txt
+
+top-5 similar files of
+5799-a-hybrid-sampler-for-poisson-kingman-mixture-models.txt:
+5800-tree-guided-mcmc-inference-for-normalized-random-measure-mixture-models.txt
+5794-probabilistic-curve-learning-coulomb-repulsion-and-the-electrostatic-gaussian-process.txt
+5685-fast-two-sample-testing-with-analytic-representations-of-probability-measures.txt
+5968-particle-gibbs-for-infinite-hidden-markov-models.txt
+5713-differentially-private-learning-of-structured-discrete-distributions.txt
+
+top-5 similar files of
+5744-sampling-from-probabilistic-submodular-models.txt:
+5774-shepard-convolutional-neural-networks.txt
+5697-an-active-learning-framework-using-sparse-graph-codes-for-sparse-polynomials-and-graph-sketching.txt
+5951-learning-to-linearize-under-uncertainty.txt
+6020-mixing-time-estimation-in-reversible-markov-chains-from-a-single-sample-path.txt
+5892-barrier-frank-wolfe-for-marginal-inference.txt
+
+top-5 similar files of
+5653-a-recurrent-latent-variable-model-for-sequential-data.txt:
+5961-neural-adaptive-sequential-monte-carlo.txt
+5720-regularized-em-algorithms-a-unified-framework-and-statistical-guarantees.txt
+5778-bidirectional-recurrent-convolutional-networks-for-multi-frame-super-resolution.txt
+5847-attention-based-models-for-speech-recognition.txt
+5826-a-universal-primal-dual-convex-optimization-framework.txt
+
+top-5 similar files of
+5802-planar-ultrametrics-for-image-segmentation.txt:
+5866-pointer-networks.txt
+5939-efficient-and-parsimonious-agnostic-active-learning.txt
+5679-learning-with-a-wasserstein-loss.txt
+5688-halting-in-random-walk-kernels.txt
+5992-compressive-spectral-embedding-sidestepping-the-svd.txt
+
+top-5 similar files of
+5701-anytime-influence-bounds-and-the-explosive-behavior-of-continuous-time-diffusion-networks.txt:
+6033-online-learning-with-gaussian-payoffs-and-side-observations.txt
+5656-hidden-technical-debt-in-machine-learning-systems.txt
+5754-coevolve-a-joint-point-process-model-for-information-diffusion-and-network-co-evolution.txt
+6009-from-random-walks-to-distances-on-unweighted-graphs.txt
+5641-are-you-talking-to-a-machine-dataset-and-methods-for-multilingual-image-question.txt
+
+top-5 similar files of 5738-b-bit-marginal-regression.txt:
+5726-regularization-free-estimation-in-trace-regression-with-symmetric-positive-semidefinite-matrices.txt
+5819-sgd-algorithms-based-on-incomplete-u-statistics-large-scale-minimization-of-empirical-risk.txt
+5934-finite-time-analysis-of-projected-langevin-monte-carlo.txt
+6021-efficient-compressive-phase-retrieval-with-constrained-sensing-vectors.txt
+5739-lasso-with-non-linear-measurements-is-equivalent-to-one-with-linear-measurements.txt
+
+top-5 similar files of
+5731-communication-complexity-of-distributed-convex-learning-and-optimization.txt:
+5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints.txt
+5833-online-learning-with-adversarial-delays.txt
+5798-learning-with-group-invariant-features-a-kernel-perspective.txt
+5842-bandit-smooth-convex-optimization-improving-the-bias-variance-tradeoff.txt
+5729-nearly-optimal-private-lasso.txt
+
+top-5 similar files of
+5715-bayesian-optimization-with-exponential-convergence.txt:
+5978-covariance-controlled-adaptive-langevin-thermostat-for-large-scale-bayesian-sampling.txt
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt
+5721-black-box-optimization-of-noisy-functions-with-unknown-smoothness.txt
+5817-regularization-path-of-cross-validation-error-lower-bounds.txt
+6020-mixing-time-estimation-in-reversible-markov-chains-from-a-single-sample-path.txt
+
+top-5 similar files of
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt:
+5921-convergence-rates-of-active-learning-for-maximum-likelihood-estimation.txt
+6013-optimal-linear-estimation-under-unknown-nonlinear-transform.txt
+5823-interpolating-convex-and-non-convex-tensor-decompositions-via-the-subspace-norm.txt
+6032-the-pareto-regret-frontier-for-bandits.txt
+5709-monotone-k-submodular-function-maximization-with-size-constraints.txt
+
+top-5 similar files of
+6018-analysis-of-robust-pca-via-local-incoherence.txt:
+5644-3d-object-proposals-for-accurate-object-class-detection.txt
+5647-binaryconnect-training-deep-neural-networks-with-binary-weights-during-propagations.txt
+5737-super-resolution-off-the-grid.txt
+5932-exactness-of-approximate-map-inference-in-continuous-mrfs.txt
+5807-policy-evaluation-using-the-return.txt
+
+top-5 similar files of 5729-nearly-optimal-private-lasso.txt:
+5935-beyond-sub-gaussian-measurements-high-dimensional-structured-estimation-with-sub-exponential-designs.txt
+5758-automatic-variational-inference-in-stan.txt
+6004-secure-multi-party-differential-privacy.txt
+5914-high-dimensional-em-algorithm-statistical-optimization-and-asymptotic-normality.txt
+5714-robust-portfolio-optimization.txt
+
+top-5 similar files of 5714-robust-portfolio-optimization.txt:
+5735-randomized-block-krylov-methods-for-stronger-and-faster-approximate-singular-value-decomposition.txt
+5875-mcmc-for-variationally-sparse-gaussian-processes.txt
+5729-nearly-optimal-private-lasso.txt
+5831-combinatorial-bandits-revisited.txt
+6022-unified-view-of-matrix-completion-under-general-structural-constraints.txt
+
+top-5 similar files of
+5779-submodboxes-near-optimal-search-for-a-set-of-diverse-object-proposals.txt:
+5644-3d-object-proposals-for-accurate-object-class-detection.txt
+5659-a-bayesian-framework-for-modeling-confidence-in-perceptual-decision-making.txt
+5872-efficient-and-robust-automated-machine-learning.txt
+5924-a-dual-augmented-block-minimization-framework-for-learning-with-limited-memory.txt
+5889-softstar-heuristic-guided-probabilistic-inference.txt
+
+top-5 similar files of 5758-automatic-variational-inference-in-stan.txt:
+5793-the-population-posterior-and-bayesian-modeling-on-streams.txt
+6030-fighting-bandits-with-a-new-kind-of-smoothness.txt
+5729-nearly-optimal-private-lasso.txt
+5679-learning-with-a-wasserstein-loss.txt
+5719-on-the-limitation-of-spectral-methods-from-the-gaussian-hidden-clique-problem-to-rank-one-perturbations-of-gaussian-tensors.txt
+
+top-5 similar files of 5845-deep-visual-analogy-making.txt:
+5639-weakly-supervised-disentangling-with-recurrent-transformations-for-3d-view-synthesis.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5775-learning-structured-output-representation-using-deep-conditional-generative-models.txt
+5778-bidirectional-recurrent-convolutional-networks-for-multi-frame-super-resolution.txt
+5859-action-conditional-video-prediction-using-deep-networks-in-atari-games.txt
+
+top-5 similar files of
+5871-bayesian-active-model-selection-with-an-application-to-automated-audiometry.txt:
+5895-kullback-leibler-proximal-variational-inference.txt
+6017-sparse-and-low-rank-tensor-decomposition.txt
+5953-natural-neural-networks.txt
+5636-recursive-training-of-2d-3d-convolutional-networks-for-neuronal-boundary-prediction.txt
+5794-probabilistic-curve-learning-coulomb-repulsion-and-the-electrostatic-gaussian-process.txt
+
+top-5 similar files of
+5692-bandits-with-unobserved-confounders-a-causal-approach.txt:
+5648-learning-to-transduce-with-unbounded-memory.txt
+6030-fighting-bandits-with-a-new-kind-of-smoothness.txt
+5921-convergence-rates-of-active-learning-for-maximum-likelihood-estimation.txt
+5851-deep-convolutional-inverse-graphics-network.txt
+5639-weakly-supervised-disentangling-with-recurrent-transformations-for-3d-view-synthesis.txt
+
+top-5 similar files of
+6029-cornering-stationary-and-restless-mixing-bandits-with-remix-ucb.txt:
+5831-combinatorial-bandits-revisited.txt
+5934-finite-time-analysis-of-projected-langevin-monte-carlo.txt
+5876-streaming-distributed-variational-inference-for-bayesian-nonparametrics.txt
+5837-empirical-localization-of-homogeneous-divergences-on-discrete-sample-spaces.txt
+6010-robust-regression-via-hard-thresholding.txt
+
+top-5 similar files of
+5812-matrix-manifold-optimization-for-gaussian-mixtures.txt:
+5720-regularized-em-algorithms-a-unified-framework-and-statistical-guarantees.txt
+5702-estimating-mixture-models-via-mixtures-of-polynomials.txt
+5923-policy-gradient-for-coherent-risk-measures.txt
+5842-bandit-smooth-convex-optimization-improving-the-bias-variance-tradeoff.txt
+5853-the-return-of-the-gating-network-combining-generative-models-and-discriminative-training-in-natural-image-priors.txt
+
+top-5 similar files of
+5886-efficient-non-greedy-optimization-of-decision-trees.txt:
+6030-fighting-bandits-with-a-new-kind-of-smoothness.txt
+5865-efficient-exact-gradient-update-for-training-deep-networks-with-very-large-sparse-targets.txt
+5857-inferring-algorithmic-patterns-with-stack-augmented-recurrent-nets.txt
+5669-copula-variational-inference.txt
+5870-equilibrated-adaptive-learning-rates-for-non-convex-optimization.txt
+
+top-5 similar files of
+5775-learning-structured-output-representation-using-deep-conditional-generative-models.txt:
+5647-binaryconnect-training-deep-neural-networks-with-binary-weights-during-propagations.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5824-fast-provable-algorithms-for-isotonic-regression-in-all-l\_p-norms.txt
+5667-infinite-factorial-dynamical-model.txt
+5845-deep-visual-analogy-making.txt
+
+top-5 similar files of
+5733-a-nonconvex-optimization-framework-for-low-rank-matrix-estimation.txt:
+5914-high-dimensional-em-algorithm-statistical-optimization-and-asymptotic-normality.txt
+5830-a-convergent-gradient-descent-algorithm-for-rank-minimization-and-semidefinite-programming-from-random-linear-measurements.txt
+5881-optimization-monte-carlo-efficient-and-embarrassingly-parallel-likelihood-free-inference.txt
+6021-efficient-compressive-phase-retrieval-with-constrained-sensing-vectors.txt
+6022-unified-view-of-matrix-completion-under-general-structural-constraints.txt
+
+top-5 similar files of
+6025-online-learning-for-adversaries-with-memory-price-of-past-mistakes.txt:
+5842-bandit-smooth-convex-optimization-improving-the-bias-variance-tradeoff.txt
+5763-fast-convergence-of-regularized-learning-in-games.txt
+5930-stochastic-online-greedy-learning-with-semi-bandit-feedbacks.txt
+6034-fast-rates-for-exp-concave-empirical-risk-minimization.txt
+5924-a-dual-augmented-block-minimization-framework-for-learning-with-limited-memory.txt
+
+top-5 similar files of
+5724-sum-of-squares-lower-bounds-for-sparse-pca.txt:
+5801-reflection-refraction-and-hamiltonian-monte-carlo.txt
+5870-equilibrated-adaptive-learning-rates-for-non-convex-optimization.txt
+5825-semi-proximal-mirror-prox-for-nonsmooth-composite-minimization.txt
+5769-biologically-inspired-dynamic-textures-for-probing-motion-perception.txt
+5773-deep-generative-image-models-using-a-laplacian-pyramid-of-adversarial-networks.txt
+
+top-5 similar files of
+5992-compressive-spectral-embedding-sidestepping-the-svd.txt:
+5802-planar-ultrametrics-for-image-segmentation.txt
+5667-infinite-factorial-dynamical-model.txt
+5942-scalable-semi-supervised-aggregation-of-classifiers.txt
+6026-revenue-optimization-against-strategic-buyers.txt
+5737-super-resolution-off-the-grid.txt
+
+top-5 similar files of
+5944-fast-and-guaranteed-tensor-decomposition-via-sketching.txt:
+5959-cross-domain-matching-for-bag-of-words-data-via-kernel-embeddings-of-latent-distributions.txt
+5666-variational-dropout-and-the-local-reparameterization-trick.txt
+5879-spectral-learning-of-large-structured-hmms-for-comparative-epigenomics.txt
+5709-monotone-k-submodular-function-maximization-with-size-constraints.txt
+5642-parallel-multi-dimensional-lstm-with-application-to-fast-biomedical-volumetric-image-segmentation.txt
+
+top-5 similar files of
+5686-adversarial-prediction-games-for-multivariate-losses.txt:
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5973-bayesian-manifold-learning-the-locally-linear-latent-variable-model-ll-lvm.txt
+5644-3d-object-proposals-for-accurate-object-class-detection.txt
+5669-copula-variational-inference.txt
+5889-softstar-heuristic-guided-probabilistic-inference.txt
+
+top-5 similar files of
+5839-optimal-testing-for-properties-of-distributions.txt:
+5713-differentially-private-learning-of-structured-discrete-distributions.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5678-local-expectation-gradients-for-black-box-variational-inference.txt
+5861-learning-wake-sleep-recurrent-attention-models.txt
+5801-reflection-refraction-and-hamiltonian-monte-carlo.txt
+
+top-5 similar files of
+5877-fixed-length-poisson-mrf-adding-dependencies-to-the-multinomial.txt:
+5967-end-to-end-learning-of-lda-by-mirror-descent-back-propagation-over-a-deep-architecture.txt
+5807-policy-evaluation-using-the-return.txt
+6035-adaptive-low-complexity-sequential-inference-for-dirichlet-process-mixture-models.txt
+5919-variance-reduced-stochastic-gradient-descent-with-neighbors.txt
+5722-combinatorial-cascading-bandits.txt
+
+top-5 similar files of
+5999-fast-classification-rates-for-high-dimensional-gaussian-generative-models.txt:
+5771-closed-form-estimators-for-high-dimensional-generalized-linear-models.txt
+5725-online-gradient-boosting.txt
+6027-on-top-k-selection-in-multi-armed-bandits-and-hidden-bipartite-graphs.txt
+5763-fast-convergence-of-regularized-learning-in-games.txt
+5943-spherical-random-features-for-polynomial-kernels.txt
+
+top-5 similar files of 5645-the-poisson-gamma-belief-network.txt:
+5786-deep-poisson-factor-modeling.txt
+5897-streaming-min-max-hypergraph-partitioning.txt
+5833-online-learning-with-adversarial-delays.txt
+5778-bidirectional-recurrent-convolutional-networks-for-multi-frame-super-resolution.txt
+5823-interpolating-convex-and-non-convex-tensor-decompositions-via-the-subspace-norm.txt
+
+top-5 similar files of
+5828-private-graphon-estimation-for-sparse-graphs.txt:
+6033-online-learning-with-gaussian-payoffs-and-side-observations.txt
+5951-learning-to-linearize-under-uncertainty.txt
+5701-anytime-influence-bounds-and-the-explosive-behavior-of-continuous-time-diffusion-networks.txt
+6021-efficient-compressive-phase-retrieval-with-constrained-sensing-vectors.txt
+5715-bayesian-optimization-with-exponential-convergence.txt
+
+top-5 similar files of 5711-stopwasting-my-gradients-practical-svrg.txt:
+5807-policy-evaluation-using-the-return.txt
+5787-tensorizing-neural-networks.txt
+5928-a-universal-catalyst-for-first-order-optimization.txt
+5810-inference-for-determinantal-point-processes-without-spectral-knowledge.txt
+5848-where-are-they-looking.txt
+
+top-5 similar files of
+5671-rethinking-lda-moment-matching-for-discrete-ica.txt:
+5660-dependent-multinomial-models-made-easy-stick-breaking-with-the-polya-gamma-augmentation.txt
+5642-parallel-multi-dimensional-lstm-with-application-to-fast-biomedical-volumetric-image-segmentation.txt
+5996-optimal-ridge-detection-using-coverage-risk.txt
+5710-smooth-and-strong-map-inference-with-linear-convergence.txt
+5800-tree-guided-mcmc-inference-for-normalized-random-measure-mixture-models.txt
+
+top-5 similar files of
+5914-high-dimensional-em-algorithm-statistical-optimization-and-asymptotic-normality.txt:
+6013-optimal-linear-estimation-under-unknown-nonlinear-transform.txt
+5733-a-nonconvex-optimization-framework-for-low-rank-matrix-estimation.txt
+5745-distributionally-robust-logistic-regression.txt
+5820-alternating-minimization-for-regression-problems-with-vector-valued-outputs.txt
+5734-individual-planning-in-infinite-horizon-multiagent-settings-inference-structure-and-scalability.txt
+
+top-5 similar files of
+5997-fast-distributed-k-center-clustering-with-outliers-on-massive-data.txt:
+5752-distributed-submodular-cover-succinctly-summarizing-massive-data.txt
+5784-learning-both-weights-and-connections-for-efficient-neural-network.txt
+5793-the-population-posterior-and-bayesian-modeling-on-streams.txt
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt
+5720-regularized-em-algorithms-a-unified-framework-and-statistical-guarantees.txt
+
+top-5 similar files of
+5817-regularization-path-of-cross-validation-error-lower-bounds.txt:
+5823-interpolating-convex-and-non-convex-tensor-decompositions-via-the-subspace-norm.txt
+5881-optimization-monte-carlo-efficient-and-embarrassingly-parallel-likelihood-free-inference.txt
+5797-path-sgd-path-normalized-optimization-in-deep-neural-networks.txt
+5715-bayesian-optimization-with-exponential-convergence.txt
+5961-neural-adaptive-sequential-monte-carlo.txt
+
+top-5 similar files of
+5834-structured-estimation-with-atomic-norms-general-bounds-and-applications.txt:
+5935-beyond-sub-gaussian-measurements-high-dimensional-structured-estimation-with-sub-exponential-designs.txt
+6022-unified-view-of-matrix-completion-under-general-structural-constraints.txt
+5712-spectral-norm-regularization-of-orthonormal-representations-for-graph-transduction.txt
+5912-bounding-errors-of-expectation-propagation.txt
+5842-bandit-smooth-convex-optimization-improving-the-bias-variance-tradeoff.txt
+
+top-5 similar files of
+5919-variance-reduced-stochastic-gradient-descent-with-neighbors.txt:
+5819-sgd-algorithms-based-on-incomplete-u-statistics-large-scale-minimization-of-empirical-risk.txt
+5821-on-variance-reduction-in-stochastic-gradient-descent-and-its-asynchronous-variants.txt
+5862-backpropagation-for-energy-efficient-neuromorphic-computing.txt
+5688-halting-in-random-walk-kernels.txt
+5945-teaching-machines-to-read-and-comprehend.txt
+
+top-5 similar files of
+5905-approximating-sparse-pca-from-incomplete-data.txt:
+5901-sparse-pca-via-bipartite-matchings.txt
+5659-a-bayesian-framework-for-modeling-confidence-in-perceptual-decision-making.txt
+5655-deep-temporal-sigmoid-belief-networks-for-sequence-modeling.txt
+5864-color-constancy-by-learning-to-predict-chromaticity-from-luminance.txt
+6028-improved-iteration-complexity-bounds-of-cyclic-block-coordinate-descent-for-convex-problems.txt
+
+top-5 similar files of
+5685-fast-two-sample-testing-with-analytic-representations-of-probability-measures.txt:
+5799-a-hybrid-sampler-for-poisson-kingman-mixture-models.txt
+5719-on-the-limitation-of-spectral-methods-from-the-gaussian-hidden-clique-problem-to-rank-one-perturbations-of-gaussian-tensors.txt
+5964-embed-to-control-a-locally-linear-latent-dynamics-model-for-control-from-raw-images.txt
+5682-backshift-learning-causal-cyclic-graphs-from-unknown-shift-interventions.txt
+5636-recursive-training-of-2d-3d-convolutional-networks-for-neuronal-boundary-prediction.txt
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

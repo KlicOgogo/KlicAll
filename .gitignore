@@ -3,6 +3,7 @@
 *.zip
 *.class
 *~
+*.csv
 .idea/
 out/
 target/

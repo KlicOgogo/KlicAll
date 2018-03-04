@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/andrejka/Dropbox/Github/KlicAll/Cpp/CLionProjects/SaSM/Lab1/brvg.h
+vector
+-
+random
+-
+algorithm
+-
+cmath
+-
+
+/home/andrejka/Dropbox/Github/KlicAll/Cpp/CLionProjects/SaSM/Lab2/ddg.h
+vector
+-
+random
+-
+cmath
+-
+algorithm
+-
+unordered_map
+-
+../Lab1/brvg.h
+/home/andrejka/Dropbox/Github/KlicAll/Cpp/CLionProjects/SaSM/Lab1/brvg.h
+
+/home/andrejka/Dropbox/Github/KlicAll/Cpp/CLionProjects/SaSM/Lab2/main.cpp
+iostream
+-
+ddg.h
+/home/andrejka/Dropbox/Github/KlicAll/Cpp/CLionProjects/SaSM/Lab2/ddg.h
+

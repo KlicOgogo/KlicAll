@@ -1,0 +1,3 @@
+/home/andrejka/Dropbox/Github/KlicAll/Cpp/CLionProjects/SaSM/Lab2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/andrejka/Dropbox/Github/KlicAll/Cpp/CLionProjects/SaSM/Lab2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/andrejka/Dropbox/Github/KlicAll/Cpp/CLionProjects/SaSM/Lab2/cmake-build-debug/CMakeFiles/Lab2.dir
