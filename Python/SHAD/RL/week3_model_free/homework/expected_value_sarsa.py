@@ -37,13 +37,14 @@ class EVSarsaAgent():
       - self.discount (discount rate aka gamma)
 
   """
-  def __init__(self,alpha,epsilon,discount,getLegalActions):
+  def __init__(self,alpha,epsilon,discount,getLegalActions, tau=1.):
     "We initialize agent and Q-values here."
     self.getLegalActions= getLegalActions
     self._qValues = defaultdict(lambda:defaultdict(lambda:0))
     self.alpha = alpha
     self.epsilon = epsilon
     self.discount = discount
+    self.tau = tau
     
   def getQValue(self, state, action):
     """
@@ -65,7 +66,7 @@ class EVSarsaAgent():
       This should be equal to expected action q-value over action probabilities defined
       by epsilon-greedy policy with current epsilon.
     """
-    
+    tau = self.tau
     possibleActions = self.getLegalActions(state)
     #If there are no legal actions, return 0.0
     if len(possibleActions) == 0:
@@ -74,8 +75,12 @@ class EVSarsaAgent():
     #You'll need this to estimate action probabilities
     epsilon = self.epsilon
     
-    value = <Your Code Here>
-    return value
+    values = np.array([self.getQValue(state, action) for action in possibleActions])
+    pi = np.ones(values.shape[0]) * epsilon / values.shape[0]
+    pi[np.argmax([self.getQValue(state, a) for a in possibleActions])] += 1 - epsilon
+    #pi_exp = np.exp(values / tau)
+    #pi = pi_exp / np.sum(pi_exp)
+    return np.sum(values * pi)
     
   def getPolicy(self, state):
     """

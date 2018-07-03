@@ -1,30 +1,21 @@
-"""
-Q-learning
-This file contains the same q-learning agent you implemented in the previous assignment.
-The only difference is that it doesn't need any other files with it, so you can use it as a standalone moule.
+# qlearningAgents.py
+# ------------------
+## based on http://inst.eecs.berkeley.edu/~cs188/sp09/pacman.html
 
-Here's an example:
->>>from qlearning import QLearningAgent
-
->>>agent = QLearningAgent(alpha=0.5,epsilon=0.25,discount=0.99,
-                       getLegalActions = lambda s: actions_from_that_state)
->>>action = agent.getAction(state)
->>>agent.update(state,action, next_state,reward)
->>>agent.epsilon *= 0.99
-"""
-
-import random,math
+import random, math
 
 import numpy as np
 from collections import defaultdict
 
+    
 class QLearningAgent():
   """
     Q-Learning Agent
 
-    The two main methods are 
-    - self.getAction(state) - returns agent's action in that state
-    - self.update(state,action,nextState,reward) - returns agent's next action
+    Instance variables you have access to
+      - self.epsilon (exploration prob)
+      - self.alpha (learning rate)
+      - self.discount (discount rate aka gamma)
 
     Functions you should use
       - self.getLegalActions(state)
@@ -71,7 +62,8 @@ class QLearningAgent():
     	return 0.0
 
     "*** YOUR CODE HERE ***"
-    return <compute state value>
+    vals = [self.getQValue(state, action) for action in possibleActions]
+    return np.max(np.array(vals))
     
   def getPolicy(self, state):
     """
@@ -87,8 +79,8 @@ class QLearningAgent():
     best_action = None
 
     "*** YOUR CODE HERE ***"
-    best_action = <your code>
-    return best_action
+    vals = [self.getQValue(state, action) for action in possibleActions]
+    return possibleActions[np.argmax(np.array(vals))]
 
   def getAction(self, state):
     """
@@ -112,10 +104,10 @@ class QLearningAgent():
 
     #agent parameters:
     epsilon = self.epsilon
-
+    if random.random() <= epsilon:
+        return random.choice(possibleActions)
     "*** YOUR CODE HERE ***"
-    
-    return <put agent's action here>
+    return self.getPolicy(state)
 
   def update(self, state, action, nextState, reward):
     """
@@ -131,11 +123,12 @@ class QLearningAgent():
     learning_rate = self.alpha
     
     "*** YOUR CODE HERE ***"    
-    reference_qvalue = <the "correct state value", uses reward and the value of next state>
+    reference_qvalue = reward + gamma * self.getValue(nextState)
     
     updated_qvalue = (1-learning_rate) * self.getQValue(state,action) + learning_rate * reference_qvalue
     self.setQValue(state,action,updated_qvalue)
 
 
 #---------------------#end of your code#---------------------#
+
 

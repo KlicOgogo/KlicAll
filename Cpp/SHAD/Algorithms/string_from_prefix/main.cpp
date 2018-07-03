@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-std::vector<int> string_from_correct_prefix(std::vector<int> prefix) {
+std::vector<int> string_from_correct_prefix(const std::vector<int>& prefix) {
     std::vector<int> string(prefix.size());
     int last_unique_character = 0;
     for (int i = 1; i < prefix.size(); i++) {
@@ -14,7 +14,7 @@ std::vector<int> string_from_correct_prefix(std::vector<int> prefix) {
     return string;
 }
 
-std::vector<int> prefix_func(std::vector<int> string) {
+std::vector<int> prefix_func(const std::vector<int>& string) {
     std::vector<int> prefix(string.size());
     for (int i = 1; i < string.size(); i++) {
         int border_length = prefix[i-1];
@@ -28,7 +28,7 @@ std::vector<int> prefix_func(std::vector<int> string) {
     return prefix;
 }
 
-bool is_correct_prefix(std::vector<int> prefix) {
+bool is_correct_prefix(const std::vector<int>& prefix) {
     if (prefix[0] != 0) {
         return false;
     }
@@ -47,7 +47,7 @@ bool is_correct_prefix(std::vector<int> prefix) {
     return true;
 }
 
-std::vector<int> string_from_prefix(std::vector<int> prefix) {
+std::vector<int> string_from_prefix(const std::vector<int>& prefix) {
     if (!is_correct_prefix(prefix)) {
         return std::vector<int>(1, -1);
     } else {

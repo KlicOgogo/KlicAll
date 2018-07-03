@@ -14,7 +14,7 @@ struct trie_node {
                  last_char(-1), terminal() {}
 };
 
-trie_node* build_trie(std::vector<std::string> pattern) {
+trie_node* build_trie(const std::vector<std::string>& pattern) {
     trie_node* root = new trie_node();
     for (int i = 0; i < pattern.size(); i++) {
         trie_node* cur = root;
@@ -81,7 +81,7 @@ void count_terminal_indices(trie_node* root) {
     }
 }
 
-trie_node* init_automation(std::vector<std::string> pattern) {
+trie_node* init_automation(const std::vector<std::string>& pattern) {
     trie_node *root = build_trie(pattern);
     add_suffix_links(root);
     count_terminal_indices(root);
@@ -106,7 +106,7 @@ trie_node* advance(trie_node* node, char ch, std::vector<int>& terminal_index) {
     }
 }
 
-std::vector<int> aho_corasick(std::vector<std::string> pattern, std::vector<std::string> text) {
+std::vector<int> aho_corasick(const std::vector<std::string>& pattern, const std::vector<std::string>& text) {
     trie_node* root = init_automation(pattern);
     std::vector<int> counts(pattern.size());
     for (int i = 0; i < text.size(); i++) {

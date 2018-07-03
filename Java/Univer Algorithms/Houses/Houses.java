@@ -16,7 +16,7 @@ public class Houses {
                     return -6;
                 }
             }
-            else {
+            else -1,{
                 return -6;
             }
         }
@@ -62,7 +62,7 @@ public class Houses {
                     path[i.getNum()] = ok.get(ok.size()-1).getNum();
                 }
             }
-            Double min = 2100000000.0;
+            Double min = 2100000std000.0;
             int index = -1;
             int index2 = -1;
             for (Dijkstra i: nok) {

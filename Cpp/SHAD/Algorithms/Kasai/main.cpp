@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm>
 
-std::vector<int> count_rank_array(std::vector<int> suffix_array) {
+std::vector<int> count_rank_array(const std::vector<int>& suffix_array) {
     std::vector<int> rank_array(suffix_array.size());
     for (int i = 0; i < suffix_array.size(); i++) {
         rank_array[suffix_array[i]] = i;
@@ -10,7 +10,7 @@ std::vector<int> count_rank_array(std::vector<int> suffix_array) {
     return rank_array;
 }
 
-std::vector<int> count_lcp_array(std::string s, std::vector<int> suffix_array) {
+std::vector<int> count_lcp_array(const std::string& s, const std::vector<int>& suffix_array) {
     std::vector<int> lcp_array(suffix_array.size());
     std::vector<int> rank_array = count_rank_array(suffix_array);
     int lb = 0;
@@ -28,12 +28,12 @@ std::vector<int> count_lcp_array(std::string s, std::vector<int> suffix_array) {
     return lcp_array;
 }
 
-int count_max_lcp(std::string s, std::vector<int> suffix_array) {
+int count_max_lcp(const std::string& s, const std::vector<int>& suffix_array) {
     std::vector<int> lcp_array = count_lcp_array(s, suffix_array);
     return *(std::max_element(lcp_array.begin(), lcp_array.end()));
 }
 
-int count_unique_lcp_lengths(std::string s, std::vector<int> suffix_array) {
+int count_unique_lcp_lengths(const std::string& s, const std::vector<int>& suffix_array) {
     std::vector<int> lcp_array = count_lcp_array(s, suffix_array);
     std::vector<bool> lcp_has_len(lcp_array.size());
     for (int i = 0; i < lcp_array.size(); i++) {
@@ -42,7 +42,7 @@ int count_unique_lcp_lengths(std::string s, std::vector<int> suffix_array) {
     return (int) std::count(lcp_has_len.begin(), lcp_has_len.end(), true);
 }
 
-uint64_t count_unique_substrings(std::string s, std::vector<int> suffix_array) {
+uint64_t count_unique_substrings(const std::string& s, const std::vector<int>& suffix_array) {
     std::vector<int> lcp_array = count_lcp_array(s, suffix_array);
     uint64_t count = 0;
     for (int i = 0; i < suffix_array.size(); i++) {

@@ -68,7 +68,7 @@ trie_node *init_automation(const std::vector<std::vector<std::string> > &pattern
     return root;
 }
 
-trie_node *advance(trie_node *node, std::string line, std::vector<int> &terminal_index) {
+trie_node *advance(trie_node *node, const std::string& line, std::vector<int> &terminal_index) {
     trie_node *cur = node;
     while (cur->father != nullptr) {
         if (cur->children.find(line) != cur->children.end()) {
@@ -86,7 +86,8 @@ trie_node *advance(trie_node *node, std::string line, std::vector<int> &terminal
     }
 }
 
-std::vector<int> two_dim_matching(const std::vector<std::string> &text, const std::vector<std::vector<std::string> > &pattern) {
+std::vector<int> two_dim_matching(const std::vector<std::string> &text,
+                                  const std::vector<std::vector<std::string> > &pattern) {
     trie_node *root = init_automation(pattern);
     std::vector<std::string> text_part(text.size());
     for (int i = 0; i < text.size(); i++) {
