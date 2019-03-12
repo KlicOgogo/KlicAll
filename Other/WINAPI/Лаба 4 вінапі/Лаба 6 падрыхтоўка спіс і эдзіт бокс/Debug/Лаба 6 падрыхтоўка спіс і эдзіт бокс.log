@@ -1,0 +1,20 @@
+﻿Построение начато 28.04.2015 23:00:09.
+     1>Проект "C:\Users\Andrejka\Documents\Visual Studio 2012\Projects\Лаба 4 вінапі\Лаба 6 падрыхтоўка спіс і эдзіт бокс\Лаба 6 падрыхтоўка спіс і эдзіт бокс.vcxproj" в узле 2 (целевые объекты Build).
+     1>InitializeBuildStatus:
+         Обращение к "Debug\Лаба 6 падрыхтоўка спіс і эдзіт бокс.unsuccessfulbuild".
+       ClCompile:
+         Для всех выходных данных обновления не требуется.
+       ResourceCompile:
+         Для всех выходных данных обновления не требуется.
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Andrejka\Documents\Visual Studio 2012\Projects\Лаба 4 вінапі\Debug\Лаба 6 падрыхтоўка спіс і эдзіт бокс.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Andrejka\Documents\Visual Studio 2012\Projects\Лаба 4 вінапі\Debug\Лаба 6 падрыхтоўка спіс і эдзіт бокс.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Andrejka\Documents\Visual Studio 2012\Projects\Лаба 4 вінапі\Debug\Лаба 6 падрыхтоўка спіс і эдзіт бокс.lib" /MACHINE:X86 "Debug\Лаба 6 падрыхтоўка спіс і эдзіт бокс.res"
+         "Debug\Бадзяжым эдзіт бокс і лістбохcpp.obj"
+         Лаба 6 падрыхтоўка спіс і эдзіт бокс.vcxproj -> C:\Users\Andrejka\Documents\Visual Studio 2012\Projects\Лаба 4 вінапі\Debug\Лаба 6 падрыхтоўка спіс і эдзіт бокс.exe
+       FinalizeBuildStatus:
+         Файл "Debug\Лаба 6 падрыхтоўка спіс і эдзіт бокс.unsuccessfulbuild" удаляется.
+         Обращение к "Debug\Лаба 6 падрыхтоўка спіс і эдзіт бокс.lastbuildstate".
+     1>Построение проекта "C:\Users\Andrejka\Documents\Visual Studio 2012\Projects\Лаба 4 вінапі\Лаба 6 падрыхтоўка спіс і эдзіт бокс\Лаба 6 падрыхтоўка спіс і эдзіт бокс.vcxproj" завершено (целевые объекты Build).
+
+Построение успешно завершено.
+
+Затраченное время: 00:00:01.04
