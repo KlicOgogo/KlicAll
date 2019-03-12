@@ -8,6 +8,7 @@
 *.txt
 *.tsv
 .idea/
+.vscode/
 out/
 target/
 cmake-build-debug/
