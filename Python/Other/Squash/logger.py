@@ -4,7 +4,7 @@ from collections import Counter
 from datetime import datetime
 import sys
 
-import pandas as pd 
+import pandas as pd
 from absl import flags, app
 
 from common import date_is_correct
@@ -55,12 +55,12 @@ def score_is_correct(score):
 
 
 def main(_):
-    games_scv_filename = 'games.csv' 
+    games_scv_filename = 'games.csv'
     games = pd.read_csv(games_scv_filename)
-    
+
     game_to_add = {}
 
-    if FLAGS.day is None:    
+    if FLAGS.day is None:
         cur_date = datetime.now()
         cur_year = str(cur_date.year)
         cur_month = '0' * (cur_date.month < 10) + str(cur_date.month)
@@ -87,26 +87,26 @@ def main(_):
         game_to_add['Winner'] = FLAGS.winner
     else:
         print('Matchup adding failed')
-        return 
+        return
 
     if check_player(FLAGS.looser, games):
         game_to_add['Looser'] = FLAGS.looser
     else:
         print('Matchup adding failed')
-        return 
+        return
 
     if score_is_correct(FLAGS.score):
         game_to_add['Score'] = FLAGS.score
     else:
         print('Matchup adding failed: score {} is incorrect'.format(FLAGS.score))
-        return 
+        return
 
     if ball_is_correct(FLAGS.ball):
         game_to_add['Ball'] = FLAGS.ball.lower()
     else:
         print('Matchup adding failed: ball {} is incorrect'.format(FLAGS.ball))
-        return 
-    
+        return
+
     games = games.append(game_to_add, ignore_index=True)
     games.to_csv(games_scv_filename, index=False)
     print('Matchup adding succeeded')
