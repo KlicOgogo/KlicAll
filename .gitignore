@@ -15,3 +15,5 @@ cmake-build-debug/
 __pycache__/
 .ipynb_checkpoints/
 Debug/
+*.out
+.Rproj.user/
