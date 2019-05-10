@@ -1,3 +1,0 @@
-/home/andrejka/CLionProjects/negative_cycle_ahon/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/andrejka/CLionProjects/negative_cycle_ahon/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/andrejka/CLionProjects/negative_cycle_ahon/cmake-build-debug/CMakeFiles/negative_cycle_ahon.dir

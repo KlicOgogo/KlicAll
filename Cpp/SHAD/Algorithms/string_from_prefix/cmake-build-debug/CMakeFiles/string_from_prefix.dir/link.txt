@@ -1,1 +1,0 @@
-/usr/bin/c++   -g   CMakeFiles/string_from_prefix.dir/main.cpp.o  -o string_from_prefix 

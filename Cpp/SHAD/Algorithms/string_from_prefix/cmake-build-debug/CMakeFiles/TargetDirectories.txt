@@ -1,3 +1,0 @@
-/home/andrejka/CLionProjects/string_from_prefix/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/andrejka/CLionProjects/string_from_prefix/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/andrejka/CLionProjects/string_from_prefix/cmake-build-debug/CMakeFiles/string_from_prefix.dir

@@ -1,1 +1,0 @@
-/usr/bin/c++   -g   CMakeFiles/Kasai_zbs.dir/main.cpp.o  -o Kasai_zbs 

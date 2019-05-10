@@ -1,1 +1,0 @@
-/usr/bin/c++   -g   CMakeFiles/nokia_problem.dir/main.cpp.o  -o nokia_problem 

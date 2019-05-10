@@ -1,6 +1,0 @@
-One 4
-Two 1
-Three 8
-Four 10
-Five 15
-Six 20

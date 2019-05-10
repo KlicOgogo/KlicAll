@@ -1,3 +1,0 @@
-/home/andrejka/CLionProjects/Dijkstra/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/andrejka/CLionProjects/Dijkstra/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/andrejka/CLionProjects/Dijkstra/cmake-build-debug/CMakeFiles/Dijkstra.dir

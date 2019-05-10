@@ -1,3 +1,0 @@
-/home/andrejka/CLionProjects/Aho_Corasick/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/andrejka/CLionProjects/Aho_Corasick/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/andrejka/CLionProjects/Aho_Corasick/cmake-build-debug/CMakeFiles/Aho_Corasick.dir

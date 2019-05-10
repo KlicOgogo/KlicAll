@@ -1,1 +1,0 @@
-/usr/bin/c++   -fopenmp -O2 -g   CMakeFiles/Lab1.dir/main.cpp.o  -o Lab1 
