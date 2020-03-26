@@ -1,3 +1,0 @@
-# Other
-
-University disciplines' labs.
